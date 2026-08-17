@@ -1,1 +1,42 @@
+# Seller Trust & Safety Analysis
 
+Combines seller performance, returns, and reviews into a weekly view to identify sustained trust-damaging patterns earlier.
+
+## Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone <repository-url>
+   cd <project-directory>
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   uv sync
+   ```
+
+3. Configure environment variables:
+
+   ```bash
+   copy .env.example .env
+   ```
+
+## Project Structure
+
+```text
+data/raw/        Source data
+data/processed/  Cleaned data
+notebooks/       Jupyter analysis
+scripts/         Python scripts
+output/          Generated reports and figures
+```
+
+## Running the Analysis
+
+```bash
+uv run python scripts/clean_data.py
+uv run python scripts/<analysis_script>.py
+uv run jupyter notebook
+```
