@@ -1,0 +1,46 @@
+column_name,data_type,description,business_meaning,example_value,related_kpi,notes
+customer_id,string,Identifier for a customer record linked to an order,Connects an order to its customer record,9ef432eb6251297304e76186b10a928d,Customer tracking,Source: olist_customers_dataset.csv; identifier string; may repeat for customer addresses
+customer_unique_id,string,Persistent customer identifier across customer records,Identifies a shopper for repeat purchase and lifetime-value analysis,861eff4711a542e4b93843c6dd7febb0,Customer lifetime value,Source: olist_customers_dataset.csv; preferred key for unique-customer analysis
+customer_zip_code_prefix,string,First five digits of customer postal code,Supports customer geography and logistics analysis,14409,Freight cost by geography,Source: olist_customers_dataset.csv; keep as string to preserve leading zeros
+customer_city,string,Customer city,Describes customer location for regional analysis,franca,Orders by geography,Source: olist_customers_dataset.csv; city names are lowercase
+customer_state,string,Two-letter customer state code,Describes customer region for sales and shipping analysis,SP,Orders by geography,Source: olist_customers_dataset.csv
+geolocation_zip_code_prefix,string,Postal-code prefix for a geolocation record,Maps postal areas to coordinates and regions,01037,Geographic coverage,Source: olist_geolocation_dataset.csv; keep as string; multiple rows may share a prefix
+geolocation_lat,float,Latitude of a geolocation point,Provides geographic position for mapping and distance analysis,-23.54562128115268,Geographic coverage,Source: olist_geolocation_dataset.csv
+geolocation_lng,float,Longitude of a geolocation point,Provides geographic position for mapping and distance analysis,-46.63929204800168,Geographic coverage,Source: olist_geolocation_dataset.csv
+geolocation_city,string,City associated with a geolocation record,Labels mapped geographic areas,sao paulo,Geographic coverage,Source: olist_geolocation_dataset.csv
+geolocation_state,string,Two-letter state code for a geolocation record,Supports regional mapping and logistics analysis,SP,Geographic coverage,Source: olist_geolocation_dataset.csv
+order_id,string,Unique identifier for an order,Tracks an order across customers items payments and reviews,b81ef226f3fe1789b1e8b2acac839d17,Order volume,Source: orders items payments and reviews; primary business join key
+order_status,string,Current lifecycle status of an order,Shows whether an order was delivered canceled or otherwise processed,delivered,Order completion rate,Source: olist_orders_dataset.csv; values include delivered canceled shipped and unavailable
+order_purchase_timestamp,datetime,Timestamp when the order was placed,Defines order timing for demand and sales trends,2017-10-02 10:56:33,Order volume,Source: olist_orders_dataset.csv; historical timestamp
+order_approved_at,datetime,Timestamp when payment or order approval was recorded,Measures approval timing after purchase,2017-10-02 11:07:15,Payment approval time,Source: olist_orders_dataset.csv; nullable for some orders
+order_delivered_carrier_date,datetime,Timestamp when the order was handed to the carrier,Measures seller-to-carrier fulfillment speed,2017-10-04 19:55:00,Carrier handoff time,Source: olist_orders_dataset.csv; nullable when not handed over
+order_delivered_customer_date,datetime,Timestamp when the customer received the order,Measures end-to-end delivery time,2017-10-10 21:25:13,Average delivery time,Source: olist_orders_dataset.csv; nullable for undelivered orders
+order_estimated_delivery_date,datetime,Estimated customer delivery date,Provides the promised delivery benchmark,2017-10-18 00:00:00,Late delivery rate,Source: olist_orders_dataset.csv
+order_item_id,integer,Sequence number of an item within an order,Counts multiple line items belonging to one order,1,Items per order,Source: olist_order_items_dataset.csv; not globally unique
+product_id,string,Identifier for a product,Connects order items to product attributes,4244733e06e7ecb4970a6e2683c13e61,Product sales,Source: order items and products; join key
+seller_id,string,Identifier for the seller fulfilling an item,Supports seller sales and service-performance analysis,48436dade18ac8b2bce089ec2a041202,Seller revenue,Source: order items and sellers; join key
+shipping_limit_date,datetime,Latest date by which the seller should ship the item,Measures seller shipping commitment performance,2017-09-19 09:45:35,Seller shipping compliance,Source: olist_order_items_dataset.csv
+price,float,Price of one product item,Measures merchandise sales value before freight,58.90,Gross merchandise value,Source: olist_order_items_dataset.csv; Brazilian reais
+freight_value,float,Freight charge for one order item,Measures shipping cost and its effect on order economics,13.29,Freight ratio,Source: olist_order_items_dataset.csv; Brazilian reais
+payment_sequential,integer,Sequence number of a payment within an order,Identifies split or multiple payment records,1,Payment method mix,Source: olist_order_payments_dataset.csv; starts at 1 per order
+payment_type,string,Payment method used for a payment,Shows customer payment preferences,credit_card,Payment method mix,Source: olist_order_payments_dataset.csv; values include credit_card boleto voucher and debit_card
+payment_installments,integer,Number of installments selected for a payment,Measures financing behavior and payment flexibility,8,Installment usage,Source: olist_order_payments_dataset.csv
+payment_value,float,Amount associated with a payment record,Measures money paid by the customer,99.33,Total payment value,Source: olist_order_payments_dataset.csv; Brazilian reais; multiple rows may belong to one order
+review_id,string,Unique identifier for a review,Tracks customer feedback records,7bc2406110b926393aa56f80a40eba40,Review volume,Source: olist_order_reviews_dataset.csv
+review_score,integer,Customer rating from one to five,Measures customer satisfaction and service quality,4,Average review score,Source: olist_order_reviews_dataset.csv; expected range 1 to 5
+review_comment_title,string,Optional title written with a review,Captures summarized customer feedback context,,Review sentiment,Source: olist_order_reviews_dataset.csv; frequently null
+review_comment_message,string,Optional text written with a review,Captures detailed customer feedback,,Review sentiment,Source: olist_order_reviews_dataset.csv; frequently null
+review_creation_date,datetime,Timestamp when the review was created,Measures timing and volume of customer feedback,2018-01-18 00:00:00,Review volume,Source: olist_order_reviews_dataset.csv
+review_answer_timestamp,datetime,Timestamp when the review received an answer,Measures response time to customer feedback,2018-01-18 21:46:59,Review response time,Source: olist_order_reviews_dataset.csv; nullable
+product_category_name,string,Original Portuguese product category,Groups products for category performance analysis,beleza_saude,Revenue by category,Source: olist_products_dataset.csv; nullable and translated separately
+product_name_lenght,integer,Character count of the product name,Describes product listing content quality or completeness,40,Listing quality,Source-native spelling is misspelled; proposed name product_name_length
+product_description_lenght,integer,Character count of the product description,Describes product listing detail,287,Listing quality,Source-native spelling is misspelled; proposed name product_description_length
+product_photos_qty,integer,Number of photos listed for a product,Measures visual merchandising completeness,1,Listing quality,Source: olist_products_dataset.csv; nullable for some products
+product_weight_g,float,Product weight in grams,Supports shipping cost and logistics analysis,225,Freight cost,Source: olist_products_dataset.csv; grams; nullable
+product_length_cm,float,Product length in centimeters,Supports package-size and logistics analysis,16,Freight cost,Source: olist_products_dataset.csv; centimeters; nullable
+product_height_cm,float,Product height in centimeters,Supports package-size and logistics analysis,10,Freight cost,Source: olist_products_dataset.csv; centimeters; nullable
+product_width_cm,float,Product width in centimeters,Supports package-size and logistics analysis,14,Freight cost,Source: olist_products_dataset.csv; centimeters; nullable
+seller_zip_code_prefix,string,First five digits of seller postal code,Supports seller geography and shipping analysis,13023,Freight cost by geography,Source: olist_sellers_dataset.csv; keep as string
+seller_city,string,Seller city,Describes seller location for regional analysis,campinas,Seller distribution,Source: olist_sellers_dataset.csv; city names are lowercase
+seller_state,string,Two-letter seller state code,Describes seller region and origin of shipments,SP,Seller distribution,Source: olist_sellers_dataset.csv
+product_category_name_english,string,English translation of a product category,Provides an English reporting dimension for category analysis,health_beauty,Revenue by category,Source: product_category_name_translation.csv; join to product_category_name
