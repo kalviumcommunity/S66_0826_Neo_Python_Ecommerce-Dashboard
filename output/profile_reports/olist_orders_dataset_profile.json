@@ -1,0 +1,109 @@
+{
+  "dataset": "olist_orders_dataset.csv",
+  "record_count": 99441,
+  "column_count": 8,
+  "nulls_and_duplicates": {
+    "null_counts": {
+      "order_id": 0,
+      "customer_id": 0,
+      "order_status": 0,
+      "order_purchase_timestamp": 0,
+      "order_approved_at": 160,
+      "order_delivered_carrier_date": 1783,
+      "order_delivered_customer_date": 2965,
+      "order_estimated_delivery_date": 0
+    },
+    "null_percentages": {
+      "order_id": 0.0,
+      "customer_id": 0.0,
+      "order_status": 0.0,
+      "order_purchase_timestamp": 0.0,
+      "order_approved_at": 0.16,
+      "order_delivered_carrier_date": 1.79,
+      "order_delivered_customer_date": 2.98,
+      "order_estimated_delivery_date": 0.0
+    },
+    "exact_duplicate_count": 0,
+    "duplicate_percentage": 0.0
+  },
+  "numerical_stats": {},
+  "categorical_stats": {
+    "order_id": {
+      "unique_count": 99441,
+      "top_values": {},
+      "null_count": 0
+    },
+    "customer_id": {
+      "unique_count": 99441,
+      "top_values": {},
+      "null_count": 0
+    },
+    "order_status": {
+      "unique_count": 8,
+      "top_values": {
+        "delivered": 96478,
+        "shipped": 1107,
+        "canceled": 625,
+        "unavailable": 609,
+        "invoiced": 314
+      },
+      "null_count": 0
+    },
+    "order_purchase_timestamp": {
+      "unique_count": 98875,
+      "top_values": {
+        "2018-03-31 15:08:21": 3,
+        "2017-11-20 10:59:08": 3,
+        "2018-08-02 12:06:09": 3,
+        "2018-08-02 12:05:26": 3,
+        "2018-02-19 15:37:47": 3
+      },
+      "null_count": 0
+    },
+    "order_approved_at": {
+      "unique_count": 90733,
+      "top_values": {
+        "2018-02-27 04:31:10": 9,
+        "2017-11-07 07:30:38": 7,
+        "2018-02-06 05:31:52": 7,
+        "2018-07-05 16:33:01": 7,
+        "2017-11-07 07:30:29": 7
+      },
+      "null_count": 160
+    },
+    "order_delivered_carrier_date": {
+      "unique_count": 81018,
+      "top_values": {
+        "2018-05-09 15:48:00": 47,
+        "2018-05-10 18:29:00": 32,
+        "2018-05-07 12:31:00": 21,
+        "2018-07-24 16:07:00": 16,
+        "2018-05-02 15:15:00": 16
+      },
+      "null_count": 1783
+    },
+    "order_delivered_customer_date": {
+      "unique_count": 95664,
+      "top_values": {
+        "2018-05-14 20:02:44": 3,
+        "2016-10-27 17:32:07": 3,
+        "2018-05-08 23:38:46": 3,
+        "2018-07-24 21:36:42": 3,
+        "2017-12-02 00:26:45": 3
+      },
+      "null_count": 2965
+    },
+    "order_estimated_delivery_date": {
+      "unique_count": 459,
+      "top_values": {
+        "2017-12-20 00:00:00": 522,
+        "2018-03-12 00:00:00": 516,
+        "2018-03-13 00:00:00": 513,
+        "2018-05-29 00:00:00": 513,
+        "2018-02-14 00:00:00": 507
+      },
+      "null_count": 0
+    }
+  },
+  "quality_issues": []
+}

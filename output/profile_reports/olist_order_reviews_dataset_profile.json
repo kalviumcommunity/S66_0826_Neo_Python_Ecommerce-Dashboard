@@ -1,0 +1,119 @@
+{
+  "dataset": "olist_order_reviews_dataset.csv",
+  "record_count": 99224,
+  "column_count": 7,
+  "nulls_and_duplicates": {
+    "null_counts": {
+      "review_id": 0,
+      "order_id": 0,
+      "review_score": 0,
+      "review_comment_title": 87656,
+      "review_comment_message": 58247,
+      "review_creation_date": 0,
+      "review_answer_timestamp": 0
+    },
+    "null_percentages": {
+      "review_id": 0.0,
+      "order_id": 0.0,
+      "review_score": 0.0,
+      "review_comment_title": 88.34,
+      "review_comment_message": 58.7,
+      "review_creation_date": 0.0,
+      "review_answer_timestamp": 0.0
+    },
+    "exact_duplicate_count": 0,
+    "duplicate_percentage": 0.0
+  },
+  "numerical_stats": {
+    "min": {
+      "review_score": 1.0
+    },
+    "max": {
+      "review_score": 5.0
+    },
+    "mean": {
+      "review_score": 4.09
+    },
+    "median": {
+      "review_score": 5.0
+    },
+    "std": {
+      "review_score": 1.35
+    },
+    "null_count": {
+      "review_score": 0
+    }
+  },
+  "categorical_stats": {
+    "review_id": {
+      "unique_count": 98410,
+      "top_values": {},
+      "null_count": 0
+    },
+    "order_id": {
+      "unique_count": 98673,
+      "top_values": {},
+      "null_count": 0
+    },
+    "review_comment_title": {
+      "unique_count": 4527,
+      "top_values": {
+        "Recomendo": 423,
+        "recomendo": 345,
+        "Bom": 293,
+        "super recomendo": 270,
+        "Excelente": 248
+      },
+      "null_count": 87656
+    },
+    "review_comment_message": {
+      "unique_count": 36159,
+      "top_values": {
+        "Muito bom": 230,
+        "Bom": 189,
+        "muito bom": 122,
+        "bom": 107,
+        "Recomendo": 100
+      },
+      "null_count": 58247
+    },
+    "review_creation_date": {
+      "unique_count": 636,
+      "top_values": {
+        "2017-12-19 00:00:00": 463,
+        "2018-08-28 00:00:00": 452,
+        "2017-12-20 00:00:00": 440,
+        "2018-05-19 00:00:00": 434,
+        "2018-05-15 00:00:00": 425
+      },
+      "null_count": 0
+    },
+    "review_answer_timestamp": {
+      "unique_count": 98248,
+      "top_values": {
+        "2017-06-15 23:21:05": 4,
+        "2017-02-14 13:58:48": 3,
+        "2017-09-11 09:58:09": 3,
+        "2018-04-07 21:13:05": 3,
+        "2018-07-31 23:11:57": 3
+      },
+      "null_count": 0
+    }
+  },
+  "quality_issues": [
+    {
+      "type": "High nulls",
+      "column": "review_comment_title",
+      "severity": "HIGH",
+      "value": "88.3% missing",
+      "recommendation": "Consider imputation or column exclusion"
+    },
+    {
+      "type": "High nulls",
+      "column": "review_comment_message",
+      "severity": "HIGH",
+      "value": "58.7% missing",
+      "recommendation": "Consider imputation or column exclusion"
+    }
+  ]
+}

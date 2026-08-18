@@ -1,0 +1,78 @@
+{
+  "dataset": "olist_customers_dataset.csv",
+  "record_count": 99441,
+  "column_count": 5,
+  "nulls_and_duplicates": {
+    "null_counts": {
+      "customer_id": 0,
+      "customer_unique_id": 0,
+      "customer_zip_code_prefix": 0,
+      "customer_city": 0,
+      "customer_state": 0
+    },
+    "null_percentages": {
+      "customer_id": 0.0,
+      "customer_unique_id": 0.0,
+      "customer_zip_code_prefix": 0.0,
+      "customer_city": 0.0,
+      "customer_state": 0.0
+    },
+    "exact_duplicate_count": 0,
+    "duplicate_percentage": 0.0
+  },
+  "numerical_stats": {
+    "min": {
+      "customer_zip_code_prefix": 1003.0
+    },
+    "max": {
+      "customer_zip_code_prefix": 99990.0
+    },
+    "mean": {
+      "customer_zip_code_prefix": 35137.47
+    },
+    "median": {
+      "customer_zip_code_prefix": 24416.0
+    },
+    "std": {
+      "customer_zip_code_prefix": 29797.94
+    },
+    "null_count": {
+      "customer_zip_code_prefix": 0
+    }
+  },
+  "categorical_stats": {
+    "customer_id": {
+      "unique_count": 99441,
+      "top_values": {},
+      "null_count": 0
+    },
+    "customer_unique_id": {
+      "unique_count": 96096,
+      "top_values": {},
+      "null_count": 0
+    },
+    "customer_city": {
+      "unique_count": 4119,
+      "top_values": {
+        "sao paulo": 15540,
+        "rio de janeiro": 6882,
+        "belo horizonte": 2773,
+        "brasilia": 2131,
+        "curitiba": 1521
+      },
+      "null_count": 0
+    },
+    "customer_state": {
+      "unique_count": 27,
+      "top_values": {
+        "SP": 41746,
+        "RJ": 12852,
+        "MG": 11635,
+        "RS": 5466,
+        "PR": 5045
+      },
+      "null_count": 0
+    }
+  },
+  "quality_issues": []
+}

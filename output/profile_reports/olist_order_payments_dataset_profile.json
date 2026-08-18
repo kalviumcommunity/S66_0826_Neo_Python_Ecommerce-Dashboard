@@ -1,0 +1,74 @@
+{
+  "dataset": "olist_order_payments_dataset.csv",
+  "record_count": 103886,
+  "column_count": 5,
+  "nulls_and_duplicates": {
+    "null_counts": {
+      "order_id": 0,
+      "payment_sequential": 0,
+      "payment_type": 0,
+      "payment_installments": 0,
+      "payment_value": 0
+    },
+    "null_percentages": {
+      "order_id": 0.0,
+      "payment_sequential": 0.0,
+      "payment_type": 0.0,
+      "payment_installments": 0.0,
+      "payment_value": 0.0
+    },
+    "exact_duplicate_count": 0,
+    "duplicate_percentage": 0.0
+  },
+  "numerical_stats": {
+    "min": {
+      "payment_sequential": 1.0,
+      "payment_installments": 0.0,
+      "payment_value": 0.0
+    },
+    "max": {
+      "payment_sequential": 29.0,
+      "payment_installments": 24.0,
+      "payment_value": 13664.08
+    },
+    "mean": {
+      "payment_sequential": 1.09,
+      "payment_installments": 2.85,
+      "payment_value": 154.1
+    },
+    "median": {
+      "payment_sequential": 1.0,
+      "payment_installments": 1.0,
+      "payment_value": 100.0
+    },
+    "std": {
+      "payment_sequential": 0.71,
+      "payment_installments": 2.69,
+      "payment_value": 217.49
+    },
+    "null_count": {
+      "payment_sequential": 0,
+      "payment_installments": 0,
+      "payment_value": 0
+    }
+  },
+  "categorical_stats": {
+    "order_id": {
+      "unique_count": 99440,
+      "top_values": {},
+      "null_count": 0
+    },
+    "payment_type": {
+      "unique_count": 5,
+      "top_values": {
+        "credit_card": 76795,
+        "boleto": 19784,
+        "voucher": 5775,
+        "debit_card": 1529,
+        "not_defined": 3
+      },
+      "null_count": 0
+    }
+  },
+  "quality_issues": []
+}

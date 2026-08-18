@@ -1,0 +1,88 @@
+{
+  "dataset": "olist_geolocation_dataset.csv",
+  "record_count": 1000163,
+  "column_count": 5,
+  "nulls_and_duplicates": {
+    "null_counts": {
+      "geolocation_zip_code_prefix": 0,
+      "geolocation_lat": 0,
+      "geolocation_lng": 0,
+      "geolocation_city": 0,
+      "geolocation_state": 0
+    },
+    "null_percentages": {
+      "geolocation_zip_code_prefix": 0.0,
+      "geolocation_lat": 0.0,
+      "geolocation_lng": 0.0,
+      "geolocation_city": 0.0,
+      "geolocation_state": 0.0
+    },
+    "exact_duplicate_count": 261831,
+    "duplicate_percentage": 26.18
+  },
+  "numerical_stats": {
+    "min": {
+      "geolocation_zip_code_prefix": 1001.0,
+      "geolocation_lat": -36.61,
+      "geolocation_lng": -101.47
+    },
+    "max": {
+      "geolocation_zip_code_prefix": 99990.0,
+      "geolocation_lat": 45.07,
+      "geolocation_lng": 121.11
+    },
+    "mean": {
+      "geolocation_zip_code_prefix": 36574.17,
+      "geolocation_lat": -21.18,
+      "geolocation_lng": -46.39
+    },
+    "median": {
+      "geolocation_zip_code_prefix": 26530.0,
+      "geolocation_lat": -22.92,
+      "geolocation_lng": -46.64
+    },
+    "std": {
+      "geolocation_zip_code_prefix": 30549.34,
+      "geolocation_lat": 5.72,
+      "geolocation_lng": 4.27
+    },
+    "null_count": {
+      "geolocation_zip_code_prefix": 0,
+      "geolocation_lat": 0,
+      "geolocation_lng": 0
+    }
+  },
+  "categorical_stats": {
+    "geolocation_city": {
+      "unique_count": 8011,
+      "top_values": {
+        "sao paulo": 135800,
+        "rio de janeiro": 62151,
+        "belo horizonte": 27805,
+        "s\u00e3o paulo": 24918,
+        "curitiba": 16593
+      },
+      "null_count": 0
+    },
+    "geolocation_state": {
+      "unique_count": 27,
+      "top_values": {
+        "SP": 404268,
+        "MG": 126336,
+        "RJ": 121169,
+        "RS": 61851,
+        "PR": 57859
+      },
+      "null_count": 0
+    }
+  },
+  "quality_issues": [
+    {
+      "type": "High duplicates",
+      "column": "Full row",
+      "severity": "HIGH",
+      "value": "26.2% duplicated",
+      "recommendation": "Deduplication required before analysis"
+    }
+  ]
+}
