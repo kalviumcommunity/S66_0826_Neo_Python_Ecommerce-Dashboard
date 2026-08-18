@@ -27,3 +27,61 @@
 2026-08-18 10:37:00,989 - INFO - Processed product_category_name_translation.csv: 71 rows -> 71 rows
 2026-08-18 10:37:00,990 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/product_category_name_translation.csv
 2026-08-18 10:37:00,991 - INFO - Workflow completed successfully.
+2026-08-18 11:30:59,810 - INFO - Starting data cleaning workflow.
+2026-08-18 11:30:59,933 - INFO - Ingested 99441 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_customers_dataset.csv
+2026-08-18 11:30:59,969 - INFO - Processed olist_customers_dataset.csv: 99441 rows -> 99441 rows
+2026-08-18 11:31:00,123 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_customers_dataset.csv
+2026-08-18 11:31:00,584 - INFO - Ingested 1000163 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_geolocation_dataset.csv
+2026-08-18 11:31:00,846 - INFO - Processed olist_geolocation_dataset.csv: 1000163 rows -> 738332 rows
+2026-08-18 11:31:02,849 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_geolocation_dataset.csv
+2026-08-18 11:31:03,002 - INFO - Ingested 112650 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_order_items_dataset.csv
+2026-08-18 11:31:03,057 - INFO - Processed olist_order_items_dataset.csv: 112650 rows -> 112650 rows
+2026-08-18 11:31:03,395 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_order_items_dataset.csv
+2026-08-18 11:31:03,455 - INFO - Ingested 103886 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_order_payments_dataset.csv
+2026-08-18 11:31:03,556 - INFO - Processed olist_order_payments_dataset.csv: 103886 rows -> 103886 rows
+2026-08-18 11:31:03,717 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_order_payments_dataset.csv
+2026-08-18 11:31:03,919 - INFO - Ingested 99224 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_order_reviews_dataset.csv
+2026-08-18 11:31:03,989 - INFO - Processed olist_order_reviews_dataset.csv: 99224 rows -> 99224 rows
+2026-08-18 11:31:04,269 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_order_reviews_dataset.csv
+2026-08-18 11:31:04,536 - INFO - Ingested 99441 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_orders_dataset.csv
+2026-08-18 11:31:04,655 - INFO - Processed olist_orders_dataset.csv: 99441 rows -> 99441 rows
+2026-08-18 11:31:04,990 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_orders_dataset.csv
+2026-08-18 11:31:05,016 - INFO - Ingested 32951 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_products_dataset.csv
+2026-08-18 11:31:05,025 - INFO - Processed olist_products_dataset.csv: 32951 rows -> 32951 rows
+2026-08-18 11:31:05,148 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_products_dataset.csv
+2026-08-18 11:31:05,151 - INFO - Ingested 3095 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_sellers_dataset.csv
+2026-08-18 11:31:05,153 - INFO - Processed olist_sellers_dataset.csv: 3095 rows -> 3095 rows
+2026-08-18 11:31:05,157 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_sellers_dataset.csv
+2026-08-18 11:31:05,158 - INFO - Ingested 71 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/product_category_name_translation.csv
+2026-08-18 11:31:05,159 - INFO - Processed product_category_name_translation.csv: 71 rows -> 71 rows
+2026-08-18 11:31:05,160 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/product_category_name_translation.csv
+2026-08-18 11:31:05,160 - INFO - Workflow completed successfully.
+2026-08-18 11:43:04,799 - INFO - Starting data cleaning workflow.
+2026-08-18 11:43:04,918 - INFO - Ingested 99441 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_customers_dataset.csv
+2026-08-18 11:43:04,950 - INFO - Processed olist_customers_dataset.csv: 99441 rows -> 99441 rows
+2026-08-18 11:43:05,109 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_customers_dataset.csv
+2026-08-18 11:43:05,554 - INFO - Ingested 1000163 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_geolocation_dataset.csv
+2026-08-18 11:43:05,814 - INFO - Processed olist_geolocation_dataset.csv: 1000163 rows -> 738332 rows
+2026-08-18 11:43:07,822 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_geolocation_dataset.csv
+2026-08-18 11:43:07,979 - INFO - Ingested 112650 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_order_items_dataset.csv
+2026-08-18 11:43:08,034 - INFO - Processed olist_order_items_dataset.csv: 112650 rows -> 112650 rows
+2026-08-18 11:43:08,373 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_order_items_dataset.csv
+2026-08-18 11:43:08,434 - INFO - Ingested 103886 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_order_payments_dataset.csv
+2026-08-18 11:43:08,459 - INFO - Processed olist_order_payments_dataset.csv: 103886 rows -> 103886 rows
+2026-08-18 11:43:08,624 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_order_payments_dataset.csv
+2026-08-18 11:43:08,827 - INFO - Ingested 99224 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_order_reviews_dataset.csv
+2026-08-18 11:43:08,897 - INFO - Processed olist_order_reviews_dataset.csv: 99224 rows -> 99224 rows
+2026-08-18 11:43:09,176 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_order_reviews_dataset.csv
+2026-08-18 11:43:09,428 - INFO - Ingested 99441 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_orders_dataset.csv
+2026-08-18 11:43:09,544 - INFO - Processed olist_orders_dataset.csv: 99441 rows -> 99441 rows
+2026-08-18 11:43:09,877 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_orders_dataset.csv
+2026-08-18 11:43:09,902 - INFO - Ingested 32951 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_products_dataset.csv
+2026-08-18 11:43:09,911 - INFO - Processed olist_products_dataset.csv: 32951 rows -> 32951 rows
+2026-08-18 11:43:10,033 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_products_dataset.csv
+2026-08-18 11:43:10,036 - INFO - Ingested 3095 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/olist_sellers_dataset.csv
+2026-08-18 11:43:10,038 - INFO - Processed olist_sellers_dataset.csv: 3095 rows -> 3095 rows
+2026-08-18 11:43:10,042 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/olist_sellers_dataset.csv
+2026-08-18 11:43:10,043 - INFO - Ingested 71 rows from /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/data/raw/product_category_name_translation.csv
+2026-08-18 11:43:10,044 - INFO - Processed product_category_name_translation.csv: 71 rows -> 71 rows
+2026-08-18 11:43:10,045 - INFO - Saved cleaned output to /home/aryan/S66_0826_Neo_Python_Ecommerce-Dashboard/output/product_category_name_translation.csv
+2026-08-18 11:43:10,045 - INFO - Workflow completed successfully.
