@@ -39,8 +39,26 @@ def clean_missing_values(df: pd.DataFrame) -> pd.DataFrame:
             df[column] = df[column].astype(str).str.strip()
             df[column] = df[column].replace({"nan": np.nan, "None": np.nan, "": np.nan})
 
+    numeric_like_keywords = (
+        "amount",
+        "price",
+        "freight",
+        "value",
+        "total",
+        "score",
+        "rating",
+        "lat",
+        "lng",
+        "latitude",
+        "longitude",
+        "installments",
+        "sequential",
+    )
+
     numeric_like_columns = [
-        column for column in df.columns if any(keyword in column for keyword in ("amount", "price", "payment", "freight", "value", "total", "score", "rating", "lat", "lng", "latitude", "longitude"))
+        column
+        for column in df.columns
+        if any(keyword in column for keyword in numeric_like_keywords)
     ]
 
     for column in numeric_like_columns:
