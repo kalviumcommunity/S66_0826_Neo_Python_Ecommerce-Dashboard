@@ -6,13 +6,13 @@ Purpose
 Prerequisites
 - `uv` in PATH and project dependencies installed (see `pyproject.toml`).
 - Run from the repository root.
-- Recommended: use the pinned Python runtime (3.13).
+- Recommended: use the pinned Python runtime (3.14).
 
 Quick commands
 
 ```bash
 # (optional) pin Python to a compatible runtime
-uv python pin 3.13
+uv python pin 3.14
 
 # (optional) sync the virtualenv
 uv sync

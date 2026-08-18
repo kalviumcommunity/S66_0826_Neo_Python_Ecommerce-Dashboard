@@ -1,4 +1,5 @@
 import logging
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -11,6 +12,8 @@ OUTPUT_DIR = PROJECT_ROOT / "output"
 LOG_FILE = PROJECT_ROOT / "output" / "data_cleaning.log"
 
 # 2. LOGGING SETUP
+# Ensure the log directory exists before logging is configured at import time.
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 logging.basicConfig(
     filename=str(LOG_FILE),
     level=logging.INFO,
@@ -23,11 +26,23 @@ logging.basicConfig(
 def normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
     """Convert all column names to a clean, consistent format."""
     df = df.copy()
-    df.columns = [
+    normalized_columns = [
         str(column).strip().lower().replace(" ", "_").replace("-", "_")
         for column in df.columns
     ]
-    return df.loc[:, ~df.columns.duplicated()].copy()
+
+    duplicate_columns = [
+        column_name for column_name, count in Counter(normalized_columns).items() if count > 1
+    ]
+    if duplicate_columns:
+        duplicates_text = ", ".join(sorted(duplicate_columns))
+        raise ValueError(
+            "Column normalization produced duplicates; please resolve conflicting "
+            f"column names before processing: {duplicates_text}"
+        )
+
+    df.columns = normalized_columns
+    return df
 
 
 def clean_missing_values(df: pd.DataFrame) -> pd.DataFrame:
