@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-08-18T13:00:52.953275",
+  "filepath": "data/processed/olist_geolocation_dataset.csv",
+  "validations": {
+    "file_exists": "PASS: File exists and has content: data/processed/olist_geolocation_dataset.csv",
+    "format": "PASS: Format valid: csv",
+    "schema": "PASS: Schema valid: 5 columns present",
+    "encoding": "PASS: Detected: utf-8 (confidence: 80.6%)"
+  },
+  "statistics": {
+    "rows": 738332,
+    "columns": 5,
+    "file_size_mb": 41.33,
+    "bytes": 43333586
+  }
+}

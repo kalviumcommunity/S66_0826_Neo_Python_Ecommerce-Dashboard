@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-08-18T13:01:21.600166",
+  "filepath": "data/processed/product_category_name_translation.csv",
+  "validations": {
+    "file_exists": "PASS: File exists and has content: data/processed/product_category_name_translation.csv",
+    "format": "PASS: Format valid: csv",
+    "schema": "PASS: Schema valid: 2 columns present",
+    "encoding": "PASS: Detected: ascii (confidence: 100.0%)"
+  },
+  "statistics": {
+    "rows": 71,
+    "columns": 2,
+    "file_size_mb": 0.0,
+    "bytes": 2540
+  }
+}
