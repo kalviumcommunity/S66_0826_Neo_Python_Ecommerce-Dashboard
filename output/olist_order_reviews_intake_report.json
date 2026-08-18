@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-08-18T13:01:05.259626",
+  "filepath": "data/processed/olist_order_reviews_dataset.csv",
+  "validations": {
+    "file_exists": "PASS: File exists and has content: data/processed/olist_order_reviews_dataset.csv",
+    "format": "PASS: Format valid: csv",
+    "schema": "PASS: Schema valid: 7 columns present",
+    "encoding": "PASS: Detected: utf-8 (confidence: 80.8%)"
+  },
+  "statistics": {
+    "rows": 99224,
+    "columns": 7,
+    "file_size_mb": 13.31,
+    "bytes": 13955535
+  }
+}
