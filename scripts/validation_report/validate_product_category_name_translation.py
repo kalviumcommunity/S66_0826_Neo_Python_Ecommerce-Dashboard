@@ -11,7 +11,7 @@ EXPECTED_COLUMNS = [
     "product_category_name",
     "product_category_name_english",
 ]
-OUTPUT_REPORT = "output/product_category_name_translation_intake_report.json"
+OUTPUT_REPORT = "output/validation_report/product_category_name_translation_intake_report.json"
 
 
 def validate_file_exists(filepath):
@@ -25,7 +25,7 @@ def validate_file_exists(filepath):
     return True, f"PASS: File exists and has content: {filepath}"
 
 
-def validate_file_format(filepath, allowed_formats=["csv", "json", "xlsx"]):
+def validate_file_format(filepath, allowed_formats=("csv",)):
     """Check if file extension is supported."""
     extension = filepath.split(".")[-1].lower()
 
@@ -56,7 +56,9 @@ def detect_encoding(filepath):
     with open(filepath, "rb") as f:
         result = chardet.detect(f.read(10000))
 
-    encoding = result.get("encoding", "utf-8")
+    encoding = result.get("encoding") or "utf-8"
+    if encoding.lower() == "ascii":
+        encoding = "utf-8"
     confidence = result.get("confidence", 0)
 
     return encoding, f"PASS: Detected: {encoding} (confidence: {confidence:.1%})"
@@ -76,6 +78,12 @@ def capture_dataset_stats(filepath, df):
     }
 
 
+def write_intake_report(report):
+    os.makedirs(os.path.dirname(OUTPUT_REPORT), exist_ok=True)
+    with open(OUTPUT_REPORT, "w", encoding="utf-8") as f:
+        json.dump(report, f, indent=2, default=str)
+
+
 def generate_intake_report(filepath, expected_columns):
     """Generate complete intake validation report."""
     report = {
@@ -87,26 +95,32 @@ def generate_intake_report(filepath, expected_columns):
     file_exists, msg = validate_file_exists(filepath)
     report["validations"]["file_exists"] = msg
     if not file_exists:
+        write_intake_report(report)
         return report
 
     format_valid, msg = validate_file_format(filepath)
     report["validations"]["format"] = msg
-
-    df = pd.read_csv(filepath)
-
-    schema_valid, msg = validate_schema(df, expected_columns)
-    report["validations"]["schema"] = msg
+    if not format_valid:
+        write_intake_report(report)
+        return report
 
     encoding, msg = detect_encoding(filepath)
     report["validations"]["encoding"] = msg
 
+    try:
+        df = pd.read_csv(filepath, encoding=encoding)
+    except (UnicodeDecodeError, pd.errors.ParserError, OSError) as exc:
+        report["validations"]["data_read"] = f"FAIL: Unable to read file: {exc}"
+        write_intake_report(report)
+        return report
+
+    schema_valid, msg = validate_schema(df, expected_columns)
+    report["validations"]["schema"] = msg
+
     stats = capture_dataset_stats(filepath, df)
     report["statistics"] = stats
 
-    os.makedirs(os.path.dirname(OUTPUT_REPORT), exist_ok=True)
-    with open(OUTPUT_REPORT, "w", encoding="utf-8") as f:
-        json.dump(report, f, indent=2, default=str)
-
+    write_intake_report(report)
     return report
 
 

@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-08-18T13:01:19.331419",
+  "timestamp": "2026-08-19T12:26:16.073864",
   "filepath": "data/processed/olist_sellers_dataset.csv",
   "validations": {
     "file_exists": "PASS: File exists and has content: data/processed/olist_sellers_dataset.csv",
     "format": "PASS: Format valid: csv",
-    "schema": "PASS: Schema valid: 4 columns present",
-    "encoding": "PASS: Detected: ascii (confidence: 100.0%)"
+    "encoding": "PASS: Detected: utf-8 (confidence: 100.0%)",
+    "schema": "PASS: Schema valid: 4 columns present"
   },
   "statistics": {
     "rows": 3095,

@@ -27,6 +27,7 @@ Combines seller performance, returns, and reviews into a weekly view to identify
 
 ```text
 data/raw/        Source data
+data/ingested/   Re-exported data after ingestion
 data/processed/  Cleaned data
 notebooks/       Jupyter analysis
 scripts/         Python scripts
@@ -36,6 +37,7 @@ output/          Generated reports and figures
 ## Running the Analysis
 
 ```bash
+uv run python scripts/ingest_data.py
 uv run python scripts/clean_data.py
 uv run python scripts/<analysis_script>.py
 uv run jupyter notebook
