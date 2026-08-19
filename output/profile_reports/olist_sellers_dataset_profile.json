@@ -1,0 +1,71 @@
+{
+  "dataset": "olist_sellers_dataset.csv",
+  "record_count": 3095,
+  "column_count": 4,
+  "nulls_and_duplicates": {
+    "null_counts": {
+      "seller_id": 0,
+      "seller_zip_code_prefix": 0,
+      "seller_city": 0,
+      "seller_state": 0
+    },
+    "null_percentages": {
+      "seller_id": 0.0,
+      "seller_zip_code_prefix": 0.0,
+      "seller_city": 0.0,
+      "seller_state": 0.0
+    },
+    "exact_duplicate_count": 0,
+    "duplicate_percentage": 0.0
+  },
+  "numerical_stats": {
+    "min": {
+      "seller_zip_code_prefix": 1001.0
+    },
+    "max": {
+      "seller_zip_code_prefix": 99730.0
+    },
+    "mean": {
+      "seller_zip_code_prefix": 32291.06
+    },
+    "median": {
+      "seller_zip_code_prefix": 14940.0
+    },
+    "std": {
+      "seller_zip_code_prefix": 32713.45
+    },
+    "null_count": {
+      "seller_zip_code_prefix": 0
+    }
+  },
+  "categorical_stats": {
+    "seller_id": {
+      "unique_count": 3095,
+      "top_values": {},
+      "null_count": 0
+    },
+    "seller_city": {
+      "unique_count": 611,
+      "top_values": {
+        "sao paulo": 694,
+        "curitiba": 127,
+        "rio de janeiro": 96,
+        "belo horizonte": 68,
+        "ribeirao preto": 52
+      },
+      "null_count": 0
+    },
+    "seller_state": {
+      "unique_count": 23,
+      "top_values": {
+        "SP": 1849,
+        "PR": 349,
+        "MG": 244,
+        "SC": 190,
+        "RJ": 171
+      },
+      "null_count": 0
+    }
+  },
+  "quality_issues": []
+}

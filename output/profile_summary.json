@@ -1,0 +1,68 @@
+{
+  "dataset_count": 9,
+  "datasets": [
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "record_count": 99441,
+      "column_count": 5,
+      "quality_issue_count": 0,
+      "duplicate_percentage": 0.0
+    },
+    {
+      "dataset": "olist_geolocation_dataset.csv",
+      "record_count": 1000163,
+      "column_count": 5,
+      "quality_issue_count": 1,
+      "duplicate_percentage": 26.18
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "record_count": 112650,
+      "column_count": 7,
+      "quality_issue_count": 0,
+      "duplicate_percentage": 0.0
+    },
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "record_count": 103886,
+      "column_count": 5,
+      "quality_issue_count": 0,
+      "duplicate_percentage": 0.0
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "record_count": 99224,
+      "column_count": 7,
+      "quality_issue_count": 2,
+      "duplicate_percentage": 0.0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "record_count": 99441,
+      "column_count": 8,
+      "quality_issue_count": 0,
+      "duplicate_percentage": 0.0
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "record_count": 32951,
+      "column_count": 9,
+      "quality_issue_count": 0,
+      "duplicate_percentage": 0.0
+    },
+    {
+      "dataset": "olist_sellers_dataset.csv",
+      "record_count": 3095,
+      "column_count": 4,
+      "quality_issue_count": 0,
+      "duplicate_percentage": 0.0
+    },
+    {
+      "dataset": "product_category_name_translation.csv",
+      "record_count": 71,
+      "column_count": 2,
+      "quality_issue_count": 0,
+      "duplicate_percentage": 0.0
+    }
+  ]
+}

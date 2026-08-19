@@ -1,0 +1,43 @@
+{
+  "dataset": "product_category_name_translation.csv",
+  "record_count": 71,
+  "column_count": 2,
+  "nulls_and_duplicates": {
+    "null_counts": {
+      "product_category_name": 0,
+      "product_category_name_english": 0
+    },
+    "null_percentages": {
+      "product_category_name": 0.0,
+      "product_category_name_english": 0.0
+    },
+    "exact_duplicate_count": 0,
+    "duplicate_percentage": 0.0
+  },
+  "numerical_stats": {},
+  "categorical_stats": {
+    "product_category_name": {
+      "unique_count": 71,
+      "top_values": {
+        "beleza_saude": 1,
+        "informatica_acessorios": 1,
+        "automotivo": 1,
+        "cama_mesa_banho": 1,
+        "moveis_decoracao": 1
+      },
+      "null_count": 0
+    },
+    "product_category_name_english": {
+      "unique_count": 71,
+      "top_values": {
+        "health_beauty": 1,
+        "computers_accessories": 1,
+        "auto": 1,
+        "bed_bath_table": 1,
+        "furniture_decor": 1
+      },
+      "null_count": 0
+    }
+  },
+  "quality_issues": []
+}

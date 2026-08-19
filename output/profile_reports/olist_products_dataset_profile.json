@@ -1,0 +1,106 @@
+{
+  "dataset": "olist_products_dataset.csv",
+  "record_count": 32951,
+  "column_count": 9,
+  "nulls_and_duplicates": {
+    "null_counts": {
+      "product_id": 0,
+      "product_category_name": 610,
+      "product_name_lenght": 610,
+      "product_description_lenght": 610,
+      "product_photos_qty": 610,
+      "product_weight_g": 2,
+      "product_length_cm": 2,
+      "product_height_cm": 2,
+      "product_width_cm": 2
+    },
+    "null_percentages": {
+      "product_id": 0.0,
+      "product_category_name": 1.85,
+      "product_name_lenght": 1.85,
+      "product_description_lenght": 1.85,
+      "product_photos_qty": 1.85,
+      "product_weight_g": 0.01,
+      "product_length_cm": 0.01,
+      "product_height_cm": 0.01,
+      "product_width_cm": 0.01
+    },
+    "exact_duplicate_count": 0,
+    "duplicate_percentage": 0.0
+  },
+  "numerical_stats": {
+    "min": {
+      "product_name_lenght": 5.0,
+      "product_description_lenght": 4.0,
+      "product_photos_qty": 1.0,
+      "product_weight_g": 0.0,
+      "product_length_cm": 7.0,
+      "product_height_cm": 2.0,
+      "product_width_cm": 6.0
+    },
+    "max": {
+      "product_name_lenght": 76.0,
+      "product_description_lenght": 3992.0,
+      "product_photos_qty": 20.0,
+      "product_weight_g": 40425.0,
+      "product_length_cm": 105.0,
+      "product_height_cm": 105.0,
+      "product_width_cm": 118.0
+    },
+    "mean": {
+      "product_name_lenght": 48.48,
+      "product_description_lenght": 771.5,
+      "product_photos_qty": 2.19,
+      "product_weight_g": 2276.47,
+      "product_length_cm": 30.82,
+      "product_height_cm": 16.94,
+      "product_width_cm": 23.2
+    },
+    "median": {
+      "product_name_lenght": 51.0,
+      "product_description_lenght": 595.0,
+      "product_photos_qty": 1.0,
+      "product_weight_g": 700.0,
+      "product_length_cm": 25.0,
+      "product_height_cm": 13.0,
+      "product_width_cm": 20.0
+    },
+    "std": {
+      "product_name_lenght": 10.25,
+      "product_description_lenght": 635.12,
+      "product_photos_qty": 1.74,
+      "product_weight_g": 4282.04,
+      "product_length_cm": 16.91,
+      "product_height_cm": 13.64,
+      "product_width_cm": 12.08
+    },
+    "null_count": {
+      "product_name_lenght": 610,
+      "product_description_lenght": 610,
+      "product_photos_qty": 610,
+      "product_weight_g": 2,
+      "product_length_cm": 2,
+      "product_height_cm": 2,
+      "product_width_cm": 2
+    }
+  },
+  "categorical_stats": {
+    "product_id": {
+      "unique_count": 32951,
+      "top_values": {},
+      "null_count": 0
+    },
+    "product_category_name": {
+      "unique_count": 73,
+      "top_values": {
+        "cama_mesa_banho": 3029,
+        "esporte_lazer": 2867,
+        "moveis_decoracao": 2657,
+        "beleza_saude": 2444,
+        "utilidades_domesticas": 2335
+      },
+      "null_count": 610
+    }
+  },
+  "quality_issues": []
+}
