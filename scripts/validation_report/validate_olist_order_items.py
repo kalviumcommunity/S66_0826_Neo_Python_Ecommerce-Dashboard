@@ -16,7 +16,7 @@ EXPECTED_COLUMNS = [
     "price",
     "freight_value",
 ]
-OUTPUT_REPORT = "output/olist_order_items_intake_report.json"
+OUTPUT_REPORT = "output/validation_report/olist_order_items_intake_report.json"
 
 
 def validate_file_exists(filepath):
@@ -61,7 +61,9 @@ def detect_encoding(filepath):
     with open(filepath, "rb") as f:
         result = chardet.detect(f.read(10000))
 
-    encoding = result.get("encoding", "utf-8")
+    encoding = result.get("encoding") or "utf-8"
+    if encoding.lower() == "ascii":
+        encoding = "utf-8"
     confidence = result.get("confidence", 0)
 
     return encoding, f"PASS: Detected: {encoding} (confidence: {confidence:.1%})"
@@ -130,3 +132,8 @@ def generate_intake_report(filepath, expected_columns):
 if __name__ == "__main__":
     intake_report = generate_intake_report(SAMPLE_FILE, EXPECTED_COLUMNS)
     print(json.dumps(intake_report, indent=2, default=str))
+    if any(
+        isinstance(message, str) and message.startswith("FAIL:")
+        for message in intake_report["validations"].values()
+    ):
+        raise SystemExit(1)
