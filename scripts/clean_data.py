@@ -10,6 +10,17 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 OUTPUT_DIR = PROJECT_ROOT / "output"
 LOG_FILE = PROJECT_ROOT / "output" / "data_cleaning.log"
+IDENTIFIER_DTYPES = {
+    "customer_id": "string",
+    "customer_unique_id": "string",
+    "customer_zip_code_prefix": "string",
+    "geolocation_zip_code_prefix": "string",
+    "order_id": "string",
+    "product_id": "string",
+    "seller_id": "string",
+    "seller_zip_code_prefix": "string",
+    "review_id": "string",
+}
 
 # 2. LOGGING SETUP
 # Ensure the log directory exists before logging is configured at import time.
@@ -91,7 +102,7 @@ def clean_missing_values(df: pd.DataFrame) -> pd.DataFrame:
 def ingest_data(filepath: str | Path) -> pd.DataFrame:
     """Read a CSV file from disk and return a Pandas DataFrame."""
     try:
-        df = pd.read_csv(filepath)
+        df = pd.read_csv(filepath, dtype=IDENTIFIER_DTYPES)
         logging.info("Ingested %s rows from %s", len(df), filepath)
         return df
     except FileNotFoundError:

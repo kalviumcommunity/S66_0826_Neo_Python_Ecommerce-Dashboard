@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-19T12:26:16.077916",
+  "timestamp": "2026-08-19T15:19:00.280142",
   "filepath": "data/processed/product_category_name_translation.csv",
   "validations": {
     "file_exists": "PASS: File exists and has content: data/processed/product_category_name_translation.csv",

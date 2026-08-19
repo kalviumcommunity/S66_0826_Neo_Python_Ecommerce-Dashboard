@@ -129,3 +129,8 @@ def generate_intake_report(filepath, expected_columns):
 if __name__ == "__main__":
     intake_report = generate_intake_report(SAMPLE_FILE, EXPECTED_COLUMNS)
     print(json.dumps(intake_report, indent=2, default=str))
+    if any(
+        isinstance(message, str) and message.startswith("FAIL:")
+        for message in intake_report["validations"].values()
+    ):
+        raise SystemExit(1)

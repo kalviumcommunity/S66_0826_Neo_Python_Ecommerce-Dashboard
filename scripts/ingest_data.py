@@ -1,13 +1,43 @@
 """Load raw project data with explicit parsing parameters and audit output."""
 
-import json
 from pathlib import Path
+
 import pandas as pd
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 INGESTED_DATA_DIR = PROJECT_ROOT / "data" / "ingested"
+
+DATASET_DTYPES = {
+    "olist_customers_dataset.csv": {
+        "customer_id": "string",
+        "customer_unique_id": "string",
+        "customer_zip_code_prefix": "string",
+    },
+    "olist_geolocation_dataset.csv": {
+        "geolocation_zip_code_prefix": "string",
+    },
+    "olist_order_items_dataset.csv": {
+        "order_id": "string",
+        "product_id": "string",
+        "seller_id": "string",
+    },
+    "olist_order_payments_dataset.csv": {"order_id": "string"},
+    "olist_order_reviews_dataset.csv": {
+        "review_id": "string",
+        "order_id": "string",
+    },
+    "olist_orders_dataset.csv": {
+        "order_id": "string",
+        "customer_id": "string",
+    },
+    "olist_products_dataset.csv": {"product_id": "string"},
+    "olist_sellers_dataset.csv": {
+        "seller_id": "string",
+        "seller_zip_code_prefix": "string",
+    },
+}
 
 
 def ingest_csv(
@@ -50,39 +80,13 @@ def ingest_csv(
         raise ValueError(f"Invalid CSV structure: {filepath}") from exc
 
 
-def ingest_json(filepath: str | Path, is_nested: bool = False) -> pd.DataFrame:
-    """Load a JSON file, optionally flattening nested records into columns.
-
-    Args:
-        filepath: Path to the JSON file.
-        is_nested: When true, flatten nested dictionaries using dotted column names.
-
-    Returns:
-        A DataFrame containing the loaded records.
-    """
-    try:
-        if is_nested:
-            with open(filepath, encoding="utf-8") as file:
-                records = json.load(file)
-            df = pd.json_normalize(records)
-            print("✓ Nested JSON flattened to tabular format")
-        else:
-            df = pd.read_json(filepath)
-
-        print(f"✓ JSON loaded: {filepath}")
-        print(f"  Shape: {df.shape[0]} rows × {df.shape[1]} columns")
-        print(f"  Columns: {list(df.columns)}")
-        return df
-    except FileNotFoundError:
-        print(f"Error: File not found - {filepath}")
-        raise
-
 
 def ingest_csv_with_fallback(
     filepath: str | Path,
     delimiters: tuple[str, ...] = (",",),
     fallback_encodings: tuple[str, ...] | None = None,
     min_columns: int | None = None,
+    dtype_dict=None,
 ) -> pd.DataFrame:
     """Load a CSV by trying each delimiter and encoding combination.
 
@@ -96,9 +100,10 @@ def ingest_csv_with_fallback(
         fallback_encodings: Encodings to try for each delimiter.
         min_columns: Optional minimum number of columns required for success. This
             prevents a wrong delimiter from being accepted as a one-column result.
+        dtype_dict: Optional mapping of columns to pandas data types.
     """
     if fallback_encodings is None:
-        fallback_encodings = ("utf-8", "latin-1", "iso-8859-1", "cp1252")
+        fallback_encodings = ("utf-8", "cp1252", "latin-1")
 
     try:
         for delimiter in delimiters:
@@ -108,6 +113,7 @@ def ingest_csv_with_fallback(
                         filepath,
                         delimiter=delimiter,
                         encoding=encoding,
+                        dtype=dtype_dict,
                     )
                     if min_columns is not None and df.shape[1] < min_columns:
                         continue
@@ -167,7 +173,11 @@ def ingest_all_raw_csvs(
     summary = []
 
     for source_file in source_files:
-        df = ingest_csv_with_fallback(source_file, min_columns=2)
+        df = ingest_csv_with_fallback(
+            source_file,
+            min_columns=2,
+            dtype_dict=DATASET_DTYPES.get(source_file.name),
+        )
         document_ingestion(df, source_file.name)
         output_file = output_dir / source_file.name
         df.to_csv(output_file, index=False, encoding="utf-8")
