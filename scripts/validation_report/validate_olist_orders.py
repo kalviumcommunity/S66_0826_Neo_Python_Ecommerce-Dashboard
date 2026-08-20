@@ -16,6 +16,9 @@ EXPECTED_COLUMNS = [
     "order_delivered_carrier_date",
     "order_delivered_customer_date",
     "order_estimated_delivery_date",
+    "order_approved_at_missing",
+    "order_delivered_carrier_date_missing",
+    "order_delivered_customer_date_missing",
 ]
 OUTPUT_REPORT = "output/validation_report/olist_orders_intake_report.json"
 

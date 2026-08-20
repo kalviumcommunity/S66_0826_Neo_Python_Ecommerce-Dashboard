@@ -17,6 +17,15 @@ EXPECTED_COLUMNS = [
     "product_length_cm",
     "product_height_cm",
     "product_width_cm",
+    "product_category_name_missing",
+    "product_name_lenght_missing",
+    "product_description_lenght_missing",
+    "product_photos_qty_missing",
+    "product_weight_g_missing",
+    "product_length_cm_missing",
+    "product_height_cm_missing",
+    "product_width_cm_missing",
+    "product_category_name_analysis",
 ]
 OUTPUT_REPORT = "output/validation_report/olist_products_intake_report.json"
 

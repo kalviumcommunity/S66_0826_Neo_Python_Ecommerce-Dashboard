@@ -1,0 +1,115 @@
+{
+  "dataset": "olist_geolocation_dataset.csv",
+  "input": "data/ingested/olist_geolocation_dataset.csv",
+  "output": "data/processed/olist_geolocation_dataset.csv",
+  "before_analysis": [
+    {
+      "dataset": "olist_geolocation_dataset.csv",
+      "column": "geolocation_zip_code_prefix",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 19015,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_geolocation_dataset.csv",
+      "column": "geolocation_lat",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "float64",
+      "unique_count": 717349,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_geolocation_dataset.csv",
+      "column": "geolocation_lng",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "float64",
+      "unique_count": 717613,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_geolocation_dataset.csv",
+      "column": "geolocation_city",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 8011,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_geolocation_dataset.csv",
+      "column": "geolocation_state",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 27,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    }
+  ],
+  "after_validation": {
+    "rows_before": 1000163,
+    "rows_after": 1000163,
+    "rows_removed": 0,
+    "total_nulls_before": 0,
+    "total_nulls_after": 0,
+    "columns_before": [
+      "geolocation_zip_code_prefix",
+      "geolocation_lat",
+      "geolocation_lng",
+      "geolocation_city",
+      "geolocation_state"
+    ],
+    "columns_after": [
+      "geolocation_zip_code_prefix",
+      "geolocation_lat",
+      "geolocation_lng",
+      "geolocation_city",
+      "geolocation_state"
+    ],
+    "missing_after": [
+      {
+        "column": "geolocation_zip_code_prefix",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "geolocation_lat",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "float64"
+      },
+      {
+        "column": "geolocation_lng",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "float64"
+      },
+      {
+        "column": "geolocation_city",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      },
+      {
+        "column": "geolocation_state",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      }
+    ],
+    "new_null_counts": {
+      "geolocation_zip_code_prefix": 0,
+      "geolocation_lat": 0,
+      "geolocation_lng": 0,
+      "geolocation_city": 0,
+      "geolocation_state": 0
+    },
+    "unexpected_new_nulls": [],
+    "validation_status": "PASS"
+  },
+  "decisions": []
+}

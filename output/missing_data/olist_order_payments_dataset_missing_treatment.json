@@ -1,0 +1,115 @@
+{
+  "dataset": "olist_order_payments_dataset.csv",
+  "input": "data/ingested/olist_order_payments_dataset.csv",
+  "output": "data/processed/olist_order_payments_dataset.csv",
+  "before_analysis": [
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "column": "order_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 99440,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "column": "payment_sequential",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "int64",
+      "unique_count": 29,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "column": "payment_type",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 5,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "column": "payment_installments",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "int64",
+      "unique_count": 24,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "column": "payment_value",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "float64",
+      "unique_count": 29077,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    }
+  ],
+  "after_validation": {
+    "rows_before": 103886,
+    "rows_after": 103886,
+    "rows_removed": 0,
+    "total_nulls_before": 0,
+    "total_nulls_after": 0,
+    "columns_before": [
+      "order_id",
+      "payment_sequential",
+      "payment_type",
+      "payment_installments",
+      "payment_value"
+    ],
+    "columns_after": [
+      "order_id",
+      "payment_sequential",
+      "payment_type",
+      "payment_installments",
+      "payment_value"
+    ],
+    "missing_after": [
+      {
+        "column": "order_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "payment_sequential",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "int64"
+      },
+      {
+        "column": "payment_type",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      },
+      {
+        "column": "payment_installments",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "int64"
+      },
+      {
+        "column": "payment_value",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "float64"
+      }
+    ],
+    "new_null_counts": {
+      "order_id": 0,
+      "payment_sequential": 0,
+      "payment_type": 0,
+      "payment_installments": 0,
+      "payment_value": 0
+    },
+    "unexpected_new_nulls": [],
+    "validation_status": "PASS"
+  },
+  "decisions": []
+}

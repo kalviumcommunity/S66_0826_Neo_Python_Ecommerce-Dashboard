@@ -1,0 +1,115 @@
+{
+  "dataset": "olist_customers_dataset.csv",
+  "input": "data/ingested/olist_customers_dataset.csv",
+  "output": "data/processed/olist_customers_dataset.csv",
+  "before_analysis": [
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "column": "customer_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 99441,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "column": "customer_unique_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 96096,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "column": "customer_zip_code_prefix",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 14994,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "column": "customer_city",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 4119,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "column": "customer_state",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 27,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    }
+  ],
+  "after_validation": {
+    "rows_before": 99441,
+    "rows_after": 99441,
+    "rows_removed": 0,
+    "total_nulls_before": 0,
+    "total_nulls_after": 0,
+    "columns_before": [
+      "customer_id",
+      "customer_unique_id",
+      "customer_zip_code_prefix",
+      "customer_city",
+      "customer_state"
+    ],
+    "columns_after": [
+      "customer_id",
+      "customer_unique_id",
+      "customer_zip_code_prefix",
+      "customer_city",
+      "customer_state"
+    ],
+    "missing_after": [
+      {
+        "column": "customer_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "customer_unique_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "customer_zip_code_prefix",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "customer_city",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      },
+      {
+        "column": "customer_state",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      }
+    ],
+    "new_null_counts": {
+      "customer_id": 0,
+      "customer_unique_id": 0,
+      "customer_zip_code_prefix": 0,
+      "customer_city": 0,
+      "customer_state": 0
+    },
+    "unexpected_new_nulls": [],
+    "validation_status": "PASS"
+  },
+  "decisions": []
+}

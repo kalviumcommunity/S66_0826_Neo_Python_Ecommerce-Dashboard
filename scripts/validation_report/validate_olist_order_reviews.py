@@ -15,6 +15,8 @@ EXPECTED_COLUMNS = [
     "review_comment_message",
     "review_creation_date",
     "review_answer_timestamp",
+    "review_comment_title_missing",
+    "review_comment_message_missing",
 ]
 OUTPUT_REPORT = "output/validation_report/olist_order_reviews_intake_report.json"
 

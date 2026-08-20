@@ -1,0 +1,79 @@
+{
+  "input_directory": "data/ingested",
+  "output_directory": "data/processed",
+  "dataset_count": 9,
+  "datasets": [
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "rows_before": 99441,
+      "rows_after": 99441,
+      "rows_removed": 0,
+      "total_nulls_before": 0,
+      "total_nulls_after": 0
+    },
+    {
+      "dataset": "olist_geolocation_dataset.csv",
+      "rows_before": 1000163,
+      "rows_after": 1000163,
+      "rows_removed": 0,
+      "total_nulls_before": 0,
+      "total_nulls_after": 0
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "rows_before": 112650,
+      "rows_after": 112650,
+      "rows_removed": 0,
+      "total_nulls_before": 0,
+      "total_nulls_after": 0
+    },
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "rows_before": 103886,
+      "rows_after": 103886,
+      "rows_removed": 0,
+      "total_nulls_before": 0,
+      "total_nulls_after": 0
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "rows_before": 99224,
+      "rows_after": 99224,
+      "rows_removed": 0,
+      "total_nulls_before": 145903,
+      "total_nulls_after": 145903
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rows_before": 99441,
+      "rows_after": 99441,
+      "rows_removed": 0,
+      "total_nulls_before": 4908,
+      "total_nulls_after": 4908
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "rows_before": 32951,
+      "rows_after": 32951,
+      "rows_removed": 0,
+      "total_nulls_before": 2448,
+      "total_nulls_after": 2448
+    },
+    {
+      "dataset": "olist_sellers_dataset.csv",
+      "rows_before": 3095,
+      "rows_after": 3095,
+      "rows_removed": 0,
+      "total_nulls_before": 0,
+      "total_nulls_after": 0
+    },
+    {
+      "dataset": "product_category_name_translation.csv",
+      "rows_before": 71,
+      "rows_after": 71,
+      "rows_removed": 0,
+      "total_nulls_before": 0,
+      "total_nulls_after": 0
+    }
+  ]
+}

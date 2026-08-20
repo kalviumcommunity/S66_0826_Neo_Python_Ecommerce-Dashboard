@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-08-19T15:18:58.813357",
+  "timestamp": "2026-08-20T13:51:06.438717",
   "filepath": "data/processed/olist_products_dataset.csv",
   "validations": {
     "file_exists": "PASS: File exists and has content: data/processed/olist_products_dataset.csv",
     "format": "PASS: Format valid: csv",
     "encoding": "PASS: Detected: utf-8 (confidence: 100.0%)",
-    "schema": "PASS: Schema valid: 9 columns present"
+    "schema": "PASS: Schema valid: 18 columns present"
   },
   "statistics": {
     "rows": 32951,
-    "columns": 9,
-    "file_size_mb": 2.67,
-    "bytes": 2795930
+    "columns": 18,
+    "file_size_mb": 4.67,
+    "bytes": 4896382
   }
 }
