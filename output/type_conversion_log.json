@@ -1,0 +1,530 @@
+[
+  {
+    "dataset": "olist_customers_dataset.csv",
+    "column": "customer_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_customers_dataset.csv",
+    "column": "customer_unique_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_customers_dataset.csv",
+    "column": "customer_zip_code_prefix",
+    "dtype_before": "Int64",
+    "dtype_after": "string",
+    "changed": true,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_customers_dataset.csv",
+    "column": "customer_city",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_customers_dataset.csv",
+    "column": "customer_state",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_geolocation_dataset.csv",
+    "column": "geolocation_zip_code_prefix",
+    "dtype_before": "Int64",
+    "dtype_after": "string",
+    "changed": true,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_geolocation_dataset.csv",
+    "column": "geolocation_lat",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_geolocation_dataset.csv",
+    "column": "geolocation_lng",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_geolocation_dataset.csv",
+    "column": "geolocation_city",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_geolocation_dataset.csv",
+    "column": "geolocation_state",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_items_dataset.csv",
+    "column": "order_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_items_dataset.csv",
+    "column": "order_item_id",
+    "dtype_before": "Int64",
+    "dtype_after": "Int64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_items_dataset.csv",
+    "column": "product_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_items_dataset.csv",
+    "column": "seller_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_items_dataset.csv",
+    "column": "shipping_limit_date",
+    "dtype_before": "string",
+    "dtype_after": "datetime64[us]",
+    "changed": true,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_items_dataset.csv",
+    "column": "price",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_items_dataset.csv",
+    "column": "freight_value",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_payments_dataset.csv",
+    "column": "order_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_payments_dataset.csv",
+    "column": "payment_sequential",
+    "dtype_before": "Int64",
+    "dtype_after": "Int64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_payments_dataset.csv",
+    "column": "payment_type",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_payments_dataset.csv",
+    "column": "payment_installments",
+    "dtype_before": "Int64",
+    "dtype_after": "Int64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_payments_dataset.csv",
+    "column": "payment_value",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_reviews_dataset.csv",
+    "column": "review_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_reviews_dataset.csv",
+    "column": "order_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_reviews_dataset.csv",
+    "column": "review_score",
+    "dtype_before": "Int64",
+    "dtype_after": "Int64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_reviews_dataset.csv",
+    "column": "review_comment_title",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_reviews_dataset.csv",
+    "column": "review_comment_message",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_reviews_dataset.csv",
+    "column": "review_creation_date",
+    "dtype_before": "string",
+    "dtype_after": "datetime64[us]",
+    "changed": true,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_reviews_dataset.csv",
+    "column": "review_answer_timestamp",
+    "dtype_before": "string",
+    "dtype_after": "datetime64[us]",
+    "changed": true,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_reviews_dataset.csv",
+    "column": "review_comment_title_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_order_reviews_dataset.csv",
+    "column": "review_comment_message_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "column": "order_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "column": "customer_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "column": "order_status",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "column": "order_purchase_timestamp",
+    "dtype_before": "string",
+    "dtype_after": "datetime64[us]",
+    "changed": true,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "column": "order_approved_at",
+    "dtype_before": "string",
+    "dtype_after": "datetime64[us]",
+    "changed": true,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "column": "order_delivered_carrier_date",
+    "dtype_before": "string",
+    "dtype_after": "datetime64[us]",
+    "changed": true,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "column": "order_delivered_customer_date",
+    "dtype_before": "string",
+    "dtype_after": "datetime64[us]",
+    "changed": true,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "column": "order_estimated_delivery_date",
+    "dtype_before": "string",
+    "dtype_after": "datetime64[us]",
+    "changed": true,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "column": "order_approved_at_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "column": "order_delivered_carrier_date_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "column": "order_delivered_customer_date_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_category_name",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_name_lenght",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_description_lenght",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_photos_qty",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_weight_g",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_length_cm",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_height_cm",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_width_cm",
+    "dtype_before": "Float64",
+    "dtype_after": "Float64",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_category_name_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_name_lenght_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_description_lenght_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_photos_qty_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_weight_g_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_length_cm_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_height_cm_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_width_cm_missing",
+    "dtype_before": "boolean",
+    "dtype_after": "boolean",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "column": "product_category_name_analysis",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_sellers_dataset.csv",
+    "column": "seller_id",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_sellers_dataset.csv",
+    "column": "seller_zip_code_prefix",
+    "dtype_before": "Int64",
+    "dtype_after": "string",
+    "changed": true,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_sellers_dataset.csv",
+    "column": "seller_city",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "olist_sellers_dataset.csv",
+    "column": "seller_state",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "product_category_name_translation.csv",
+    "column": "product_category_name",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  },
+  {
+    "dataset": "product_category_name_translation.csv",
+    "column": "product_category_name_english",
+    "dtype_before": "string",
+    "dtype_after": "string",
+    "changed": false,
+    "status": "success"
+  }
+]
