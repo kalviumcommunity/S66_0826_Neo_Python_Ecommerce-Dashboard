@@ -1,0 +1,183 @@
+{
+  "dataset": "olist_order_reviews_dataset.csv",
+  "input": "data/ingested/olist_order_reviews_dataset.csv",
+  "output": "data/processed/olist_order_reviews_dataset.csv",
+  "before_analysis": [
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "column": "review_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 98410,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "column": "order_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 98673,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "column": "review_score",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "int64",
+      "unique_count": 5,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "column": "review_comment_title",
+      "null_count": 87656,
+      "null_percentage": 88.34,
+      "data_type": "str",
+      "unique_count": 4527,
+      "null_meaning": "Optional customer-provided text; null means no text was supplied."
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "column": "review_comment_message",
+      "null_count": 58247,
+      "null_percentage": 58.7,
+      "data_type": "str",
+      "unique_count": 36159,
+      "null_meaning": "Optional customer-provided text; null means no text was supplied."
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "column": "review_creation_date",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 636,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "column": "review_answer_timestamp",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 98248,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    }
+  ],
+  "after_validation": {
+    "rows_before": 99224,
+    "rows_after": 99224,
+    "rows_removed": 0,
+    "total_nulls_before": 145903,
+    "total_nulls_after": 145903,
+    "columns_before": [
+      "review_id",
+      "order_id",
+      "review_score",
+      "review_comment_title",
+      "review_comment_message",
+      "review_creation_date",
+      "review_answer_timestamp"
+    ],
+    "columns_after": [
+      "review_id",
+      "order_id",
+      "review_score",
+      "review_comment_title",
+      "review_comment_message",
+      "review_creation_date",
+      "review_answer_timestamp",
+      "review_comment_title_missing",
+      "review_comment_message_missing"
+    ],
+    "missing_after": [
+      {
+        "column": "review_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "order_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "review_score",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "int64"
+      },
+      {
+        "column": "review_comment_title",
+        "null_count_after": 87656,
+        "null_percentage_after": 88.34,
+        "data_type_after": "str"
+      },
+      {
+        "column": "review_comment_message",
+        "null_count_after": 58247,
+        "null_percentage_after": 58.7,
+        "data_type_after": "str"
+      },
+      {
+        "column": "review_creation_date",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      },
+      {
+        "column": "review_answer_timestamp",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      },
+      {
+        "column": "review_comment_title_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      },
+      {
+        "column": "review_comment_message_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      }
+    ],
+    "unexpected_new_nulls": [],
+    "validation_status": "PASS"
+  },
+  "decisions": [
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "column": "review_comment_title",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 87656,
+      "null_percentage_before": 88.34,
+      "null_count_after": 87656,
+      "rows_affected": 87656,
+      "value_used": null,
+      "missingness_indicator": "review_comment_title_missing",
+      "business_reasoning": "Missing review text means the customer did not provide that optional text.",
+      "risk_assessment": "Low"
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "column": "review_comment_message",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 58247,
+      "null_percentage_before": 58.7,
+      "null_count_after": 58247,
+      "rows_affected": 58247,
+      "value_used": null,
+      "missingness_indicator": "review_comment_message_missing",
+      "business_reasoning": "Missing review text means the customer did not provide that optional text.",
+      "risk_assessment": "Low"
+    }
+  ]
+}

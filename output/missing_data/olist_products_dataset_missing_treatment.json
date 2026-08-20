@@ -1,0 +1,356 @@
+{
+  "dataset": "olist_products_dataset.csv",
+  "input": "data/ingested/olist_products_dataset.csv",
+  "output": "data/processed/olist_products_dataset.csv",
+  "before_analysis": [
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 32951,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_category_name",
+      "null_count": 610,
+      "null_percentage": 1.85,
+      "data_type": "str",
+      "unique_count": 73,
+      "null_meaning": "Product category is unavailable in the source catalog."
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_name_lenght",
+      "null_count": 610,
+      "null_percentage": 1.85,
+      "data_type": "float64",
+      "unique_count": 66,
+      "null_meaning": "Optional product metadata is unavailable in the source catalog."
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_description_lenght",
+      "null_count": 610,
+      "null_percentage": 1.85,
+      "data_type": "float64",
+      "unique_count": 2960,
+      "null_meaning": "Optional product metadata is unavailable in the source catalog."
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_photos_qty",
+      "null_count": 610,
+      "null_percentage": 1.85,
+      "data_type": "float64",
+      "unique_count": 19,
+      "null_meaning": "Optional product metadata is unavailable in the source catalog."
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_weight_g",
+      "null_count": 2,
+      "null_percentage": 0.01,
+      "data_type": "float64",
+      "unique_count": 2204,
+      "null_meaning": "Physical product measurement is unavailable in the source catalog."
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_length_cm",
+      "null_count": 2,
+      "null_percentage": 0.01,
+      "data_type": "float64",
+      "unique_count": 99,
+      "null_meaning": "Physical product measurement is unavailable in the source catalog."
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_height_cm",
+      "null_count": 2,
+      "null_percentage": 0.01,
+      "data_type": "float64",
+      "unique_count": 102,
+      "null_meaning": "Physical product measurement is unavailable in the source catalog."
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_width_cm",
+      "null_count": 2,
+      "null_percentage": 0.01,
+      "data_type": "float64",
+      "unique_count": 95,
+      "null_meaning": "Physical product measurement is unavailable in the source catalog."
+    }
+  ],
+  "after_validation": {
+    "rows_before": 32951,
+    "rows_after": 32951,
+    "rows_removed": 0,
+    "total_nulls_before": 2448,
+    "total_nulls_after": 2448,
+    "columns_before": [
+      "product_id",
+      "product_category_name",
+      "product_name_lenght",
+      "product_description_lenght",
+      "product_photos_qty",
+      "product_weight_g",
+      "product_length_cm",
+      "product_height_cm",
+      "product_width_cm"
+    ],
+    "columns_after": [
+      "product_id",
+      "product_category_name",
+      "product_name_lenght",
+      "product_description_lenght",
+      "product_photos_qty",
+      "product_weight_g",
+      "product_length_cm",
+      "product_height_cm",
+      "product_width_cm",
+      "product_category_name_missing",
+      "product_name_lenght_missing",
+      "product_description_lenght_missing",
+      "product_photos_qty_missing",
+      "product_weight_g_missing",
+      "product_length_cm_missing",
+      "product_height_cm_missing",
+      "product_width_cm_missing",
+      "product_category_name_analysis"
+    ],
+    "missing_after": [
+      {
+        "column": "product_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "product_category_name",
+        "null_count_after": 610,
+        "null_percentage_after": 1.85,
+        "data_type_after": "str"
+      },
+      {
+        "column": "product_name_lenght",
+        "null_count_after": 610,
+        "null_percentage_after": 1.85,
+        "data_type_after": "float64"
+      },
+      {
+        "column": "product_description_lenght",
+        "null_count_after": 610,
+        "null_percentage_after": 1.85,
+        "data_type_after": "float64"
+      },
+      {
+        "column": "product_photos_qty",
+        "null_count_after": 610,
+        "null_percentage_after": 1.85,
+        "data_type_after": "float64"
+      },
+      {
+        "column": "product_weight_g",
+        "null_count_after": 2,
+        "null_percentage_after": 0.01,
+        "data_type_after": "float64"
+      },
+      {
+        "column": "product_length_cm",
+        "null_count_after": 2,
+        "null_percentage_after": 0.01,
+        "data_type_after": "float64"
+      },
+      {
+        "column": "product_height_cm",
+        "null_count_after": 2,
+        "null_percentage_after": 0.01,
+        "data_type_after": "float64"
+      },
+      {
+        "column": "product_width_cm",
+        "null_count_after": 2,
+        "null_percentage_after": 0.01,
+        "data_type_after": "float64"
+      },
+      {
+        "column": "product_category_name_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      },
+      {
+        "column": "product_name_lenght_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      },
+      {
+        "column": "product_description_lenght_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      },
+      {
+        "column": "product_photos_qty_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      },
+      {
+        "column": "product_weight_g_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      },
+      {
+        "column": "product_length_cm_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      },
+      {
+        "column": "product_height_cm_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      },
+      {
+        "column": "product_width_cm_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      },
+      {
+        "column": "product_category_name_analysis",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      }
+    ],
+    "unexpected_new_nulls": [],
+    "validation_status": "PASS"
+  },
+  "decisions": [
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_category_name",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 610,
+      "null_percentage_before": 1.85,
+      "null_count_after": 610,
+      "rows_affected": 610,
+      "value_used": null,
+      "missingness_indicator": "product_category_name_missing",
+      "business_reasoning": "Catalog metadata or physical measurements are unavailable in the source; arbitrary mode or median values would misrepresent the product.",
+      "risk_assessment": "Low"
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_name_lenght",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 610,
+      "null_percentage_before": 1.85,
+      "null_count_after": 610,
+      "rows_affected": 610,
+      "value_used": null,
+      "missingness_indicator": "product_name_lenght_missing",
+      "business_reasoning": "Catalog metadata or physical measurements are unavailable in the source; arbitrary mode or median values would misrepresent the product.",
+      "risk_assessment": "Low"
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_description_lenght",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 610,
+      "null_percentage_before": 1.85,
+      "null_count_after": 610,
+      "rows_affected": 610,
+      "value_used": null,
+      "missingness_indicator": "product_description_lenght_missing",
+      "business_reasoning": "Catalog metadata or physical measurements are unavailable in the source; arbitrary mode or median values would misrepresent the product.",
+      "risk_assessment": "Low"
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_photos_qty",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 610,
+      "null_percentage_before": 1.85,
+      "null_count_after": 610,
+      "rows_affected": 610,
+      "value_used": null,
+      "missingness_indicator": "product_photos_qty_missing",
+      "business_reasoning": "Catalog metadata or physical measurements are unavailable in the source; arbitrary mode or median values would misrepresent the product.",
+      "risk_assessment": "Low"
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_weight_g",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 2,
+      "null_percentage_before": 0.01,
+      "null_count_after": 2,
+      "rows_affected": 2,
+      "value_used": null,
+      "missingness_indicator": "product_weight_g_missing",
+      "business_reasoning": "Catalog metadata or physical measurements are unavailable in the source; arbitrary mode or median values would misrepresent the product.",
+      "risk_assessment": "Low"
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_length_cm",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 2,
+      "null_percentage_before": 0.01,
+      "null_count_after": 2,
+      "rows_affected": 2,
+      "value_used": null,
+      "missingness_indicator": "product_length_cm_missing",
+      "business_reasoning": "Catalog metadata or physical measurements are unavailable in the source; arbitrary mode or median values would misrepresent the product.",
+      "risk_assessment": "Low"
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_height_cm",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 2,
+      "null_percentage_before": 0.01,
+      "null_count_after": 2,
+      "rows_affected": 2,
+      "value_used": null,
+      "missingness_indicator": "product_height_cm_missing",
+      "business_reasoning": "Catalog metadata or physical measurements are unavailable in the source; arbitrary mode or median values would misrepresent the product.",
+      "risk_assessment": "Low"
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_width_cm",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 2,
+      "null_percentage_before": 0.01,
+      "null_count_after": 2,
+      "rows_affected": 2,
+      "value_used": null,
+      "missingness_indicator": "product_width_cm_missing",
+      "business_reasoning": "Catalog metadata or physical measurements are unavailable in the source; arbitrary mode or median values would misrepresent the product.",
+      "risk_assessment": "Low"
+    },
+    {
+      "dataset": "olist_products_dataset.csv",
+      "column": "product_category_name_analysis",
+      "strategy": "derived_unknown_label",
+      "null_count_before": 610,
+      "null_count_after": 0,
+      "rows_affected": 610,
+      "value_used": "unknown",
+      "missingness_indicator": "product_category_name_missing",
+      "business_reasoning": "Provide a safe grouping value for category analysis while preserving the original nullable category column.",
+      "risk_assessment": "Low"
+    }
+  ]
+}

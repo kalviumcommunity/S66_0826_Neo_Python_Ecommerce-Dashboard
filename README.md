@@ -38,7 +38,10 @@ output/          Generated reports and figures
 
 ```bash
 uv run python scripts/ingest_data.py
+uv run python scripts/handle_missing.py
 uv run python scripts/clean_data.py
 uv run python scripts/<analysis_script>.py
 uv run jupyter notebook
 ```
+
+`handle_missing.py` reads the validated CSVs from `data/ingested/`, preserves meaningful Olist nulls, adds missingness indicators, writes outputs to `data/processed/`, and generates treatment reports in `output/missing_data/` plus `output/imputation_decisions.json`.

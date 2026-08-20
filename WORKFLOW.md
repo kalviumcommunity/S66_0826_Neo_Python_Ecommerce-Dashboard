@@ -17,17 +17,29 @@ uv python pin 3.14
 # (optional) sync the virtualenv
 uv sync
 
-# run the workflow (data/raw -> output)
+# ingest source CSVs (data/raw -> data/ingested)
+uv run python scripts/ingest_data.py
+
+# analyze and handle missing values (data/ingested -> data/processed)
+uv run python scripts/handle_missing.py
+
+# run the legacy/general cleaning workflow if needed
 uv run python scripts/clean_data.py
 
 # capture stdout for submission
 uv run python scripts/clean_data.py > output/sample_run.txt 2>&1
 ```
 
-What it does
-- Ingest: read all CSVs in `data/raw/`.
-- Process: normalize columns, drop duplicates, fill numeric nulls with medians, parse date-like columns.
-- Output: write cleaned CSVs to `output/` and log to `output/data_cleaning.log`.
+What the missing-data workflow does
+- Reads the ingested CSVs from `data/ingested/`.
+- Profiles missing values before treatment.
+- Preserves meaningful review-text, order-event, and product-catalog nulls.
+- Adds missingness indicators and a derived `unknown` product-category field for analysis.
+- Writes processed CSVs to `data/processed/`.
+- Writes per-dataset reports and summaries to `output/missing_data/`.
+- Writes the auditable decision log to `output/imputation_decisions.json`.
+
+The existing `clean_data.py` remains available as a separate general cleaning workflow.
 
 Sample output (excerpt)
 
@@ -47,7 +59,7 @@ uv run python -c "import pandas; import numpy; print(pandas.__version__, numpy._
 ```
 
 - Segfaults/import crashes: pin to 3.13 and `uv sync`.
-- No output files: confirm `data/raw/` contains CSVs and re-run.
+- No output files: confirm `data/ingested/` contains CSVs and run `scripts/ingest_data.py` first.
 
 Save sample output
 - Capture and optionally commit:

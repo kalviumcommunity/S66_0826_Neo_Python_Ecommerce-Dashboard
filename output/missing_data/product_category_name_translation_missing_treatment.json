@@ -1,0 +1,57 @@
+{
+  "dataset": "product_category_name_translation.csv",
+  "input": "data/ingested/product_category_name_translation.csv",
+  "output": "data/processed/product_category_name_translation.csv",
+  "before_analysis": [
+    {
+      "dataset": "product_category_name_translation.csv",
+      "column": "product_category_name",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 71,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "product_category_name_translation.csv",
+      "column": "product_category_name_english",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 71,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    }
+  ],
+  "after_validation": {
+    "rows_before": 71,
+    "rows_after": 71,
+    "rows_removed": 0,
+    "total_nulls_before": 0,
+    "total_nulls_after": 0,
+    "columns_before": [
+      "product_category_name",
+      "product_category_name_english"
+    ],
+    "columns_after": [
+      "product_category_name",
+      "product_category_name_english"
+    ],
+    "missing_after": [
+      {
+        "column": "product_category_name",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      },
+      {
+        "column": "product_category_name_english",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      }
+    ],
+    "unexpected_new_nulls": [],
+    "validation_status": "PASS"
+  },
+  "decisions": []
+}

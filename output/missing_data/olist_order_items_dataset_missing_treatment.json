@@ -1,0 +1,142 @@
+{
+  "dataset": "olist_order_items_dataset.csv",
+  "input": "data/ingested/olist_order_items_dataset.csv",
+  "output": "data/processed/olist_order_items_dataset.csv",
+  "before_analysis": [
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "column": "order_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 98666,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "column": "order_item_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "int64",
+      "unique_count": 21,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "column": "product_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 32951,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "column": "seller_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 3095,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "column": "shipping_limit_date",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 93318,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "column": "price",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "float64",
+      "unique_count": 5968,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "column": "freight_value",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "float64",
+      "unique_count": 6999,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    }
+  ],
+  "after_validation": {
+    "rows_before": 112650,
+    "rows_after": 112650,
+    "rows_removed": 0,
+    "total_nulls_before": 0,
+    "total_nulls_after": 0,
+    "columns_before": [
+      "order_id",
+      "order_item_id",
+      "product_id",
+      "seller_id",
+      "shipping_limit_date",
+      "price",
+      "freight_value"
+    ],
+    "columns_after": [
+      "order_id",
+      "order_item_id",
+      "product_id",
+      "seller_id",
+      "shipping_limit_date",
+      "price",
+      "freight_value"
+    ],
+    "missing_after": [
+      {
+        "column": "order_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "order_item_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "int64"
+      },
+      {
+        "column": "product_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "seller_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "shipping_limit_date",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      },
+      {
+        "column": "price",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "float64"
+      },
+      {
+        "column": "freight_value",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "float64"
+      }
+    ],
+    "unexpected_new_nulls": [],
+    "validation_status": "PASS"
+  },
+  "decisions": []
+}

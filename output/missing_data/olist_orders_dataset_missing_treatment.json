@@ -1,0 +1,220 @@
+{
+  "dataset": "olist_orders_dataset.csv",
+  "input": "data/ingested/olist_orders_dataset.csv",
+  "output": "data/processed/olist_orders_dataset.csv",
+  "before_analysis": [
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "column": "order_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 99441,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "column": "customer_id",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "string",
+      "unique_count": 99441,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "column": "order_status",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 8,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "column": "order_purchase_timestamp",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 98875,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "column": "order_approved_at",
+      "null_count": 160,
+      "null_percentage": 0.16,
+      "data_type": "str",
+      "unique_count": 90733,
+      "null_meaning": "Operational event date may be unavailable for incomplete or cancelled orders."
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "column": "order_delivered_carrier_date",
+      "null_count": 1783,
+      "null_percentage": 1.79,
+      "data_type": "str",
+      "unique_count": 81018,
+      "null_meaning": "Operational event date may be unavailable for incomplete or cancelled orders."
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "column": "order_delivered_customer_date",
+      "null_count": 2965,
+      "null_percentage": 2.98,
+      "data_type": "str",
+      "unique_count": 95664,
+      "null_meaning": "Operational event date may be unavailable for incomplete or cancelled orders."
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "column": "order_estimated_delivery_date",
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "data_type": "str",
+      "unique_count": 459,
+      "null_meaning": "No missing values expected or no dataset-specific treatment configured."
+    }
+  ],
+  "after_validation": {
+    "rows_before": 99441,
+    "rows_after": 99441,
+    "rows_removed": 0,
+    "total_nulls_before": 4908,
+    "total_nulls_after": 4908,
+    "columns_before": [
+      "order_id",
+      "customer_id",
+      "order_status",
+      "order_purchase_timestamp",
+      "order_approved_at",
+      "order_delivered_carrier_date",
+      "order_delivered_customer_date",
+      "order_estimated_delivery_date"
+    ],
+    "columns_after": [
+      "order_id",
+      "customer_id",
+      "order_status",
+      "order_purchase_timestamp",
+      "order_approved_at",
+      "order_delivered_carrier_date",
+      "order_delivered_customer_date",
+      "order_estimated_delivery_date",
+      "order_approved_at_missing",
+      "order_delivered_carrier_date_missing",
+      "order_delivered_customer_date_missing"
+    ],
+    "missing_after": [
+      {
+        "column": "order_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "customer_id",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "string"
+      },
+      {
+        "column": "order_status",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "str"
+      },
+      {
+        "column": "order_purchase_timestamp",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "datetime64[us]"
+      },
+      {
+        "column": "order_approved_at",
+        "null_count_after": 160,
+        "null_percentage_after": 0.16,
+        "data_type_after": "datetime64[us]"
+      },
+      {
+        "column": "order_delivered_carrier_date",
+        "null_count_after": 1783,
+        "null_percentage_after": 1.79,
+        "data_type_after": "datetime64[us]"
+      },
+      {
+        "column": "order_delivered_customer_date",
+        "null_count_after": 2965,
+        "null_percentage_after": 2.98,
+        "data_type_after": "datetime64[us]"
+      },
+      {
+        "column": "order_estimated_delivery_date",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "datetime64[us]"
+      },
+      {
+        "column": "order_approved_at_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      },
+      {
+        "column": "order_delivered_carrier_date_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      },
+      {
+        "column": "order_delivered_customer_date_missing",
+        "null_count_after": 0,
+        "null_percentage_after": 0.0,
+        "data_type_after": "bool"
+      }
+    ],
+    "unexpected_new_nulls": [],
+    "validation_status": "PASS"
+  },
+  "decisions": [
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "column": "order_approved_at",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 160,
+      "null_percentage_before": 0.16,
+      "null_count_after": 160,
+      "rows_affected": 160,
+      "value_used": null,
+      "missingness_indicator": "order_approved_at_missing",
+      "business_reasoning": "Operational event dates are naturally absent for incomplete, unavailable, or cancelled orders; global date imputation would invent events.",
+      "risk_assessment": "Medium"
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "column": "order_delivered_carrier_date",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 1783,
+      "null_percentage_before": 1.79,
+      "null_count_after": 1783,
+      "rows_affected": 1783,
+      "value_used": null,
+      "missingness_indicator": "order_delivered_carrier_date_missing",
+      "business_reasoning": "Operational event dates are naturally absent for incomplete, unavailable, or cancelled orders; global date imputation would invent events.",
+      "risk_assessment": "Medium"
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "column": "order_delivered_customer_date",
+      "strategy": "preserve_null_add_indicator",
+      "null_count_before": 2965,
+      "null_percentage_before": 2.98,
+      "null_count_after": 2965,
+      "rows_affected": 2965,
+      "value_used": null,
+      "missingness_indicator": "order_delivered_customer_date_missing",
+      "business_reasoning": "Operational event dates are naturally absent for incomplete, unavailable, or cancelled orders; global date imputation would invent events.",
+      "risk_assessment": "Medium"
+    }
+  ]
+}
