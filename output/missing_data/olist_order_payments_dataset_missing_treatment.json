@@ -101,6 +101,13 @@
         "data_type_after": "float64"
       }
     ],
+    "new_null_counts": {
+      "order_id": 0,
+      "payment_sequential": 0,
+      "payment_type": 0,
+      "payment_installments": 0,
+      "payment_value": 0
+    },
     "unexpected_new_nulls": [],
     "validation_status": "PASS"
   },

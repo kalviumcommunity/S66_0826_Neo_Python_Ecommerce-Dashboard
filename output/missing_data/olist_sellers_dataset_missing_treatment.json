@@ -84,6 +84,12 @@
         "data_type_after": "str"
       }
     ],
+    "new_null_counts": {
+      "seller_id": 0,
+      "seller_zip_code_prefix": 0,
+      "seller_city": 0,
+      "seller_state": 0
+    },
     "unexpected_new_nulls": [],
     "validation_status": "PASS"
   },

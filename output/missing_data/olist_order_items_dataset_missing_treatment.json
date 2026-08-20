@@ -135,6 +135,15 @@
         "data_type_after": "float64"
       }
     ],
+    "new_null_counts": {
+      "order_id": 0,
+      "order_item_id": 0,
+      "product_id": 0,
+      "seller_id": 0,
+      "shipping_limit_date": 0,
+      "price": 0,
+      "freight_value": 0
+    },
     "unexpected_new_nulls": [],
     "validation_status": "PASS"
   },

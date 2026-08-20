@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-08-19T15:18:57.674218",
+  "timestamp": "2026-08-20T13:51:05.582508",
   "filepath": "data/processed/olist_orders_dataset.csv",
   "validations": {
     "file_exists": "PASS: File exists and has content: data/processed/olist_orders_dataset.csv",
     "format": "PASS: Format valid: csv",
     "encoding": "PASS: Detected: utf-8 (confidence: 100.0%)",
-    "schema": "PASS: Schema valid: 8 columns present"
+    "schema": "PASS: Schema valid: 11 columns present"
   },
   "statistics": {
     "rows": 99441,
-    "columns": 8,
-    "file_size_mb": 15.75,
-    "bytes": 16511915
+    "columns": 11,
+    "file_size_mb": 17.45,
+    "bytes": 18297046
   }
 }

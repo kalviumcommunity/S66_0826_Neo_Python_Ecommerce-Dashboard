@@ -61,13 +61,14 @@ def _percentage(count: int, row_count: int) -> float:
 def analyze_missing_values(df: pd.DataFrame, dataset_name: str = "dataset") -> pd.DataFrame:
     """Compute null counts, percentages, types, and treatment context."""
     row_count = len(df)
+    null_counts = df.isna().sum()
     missing_analysis = pd.DataFrame(
         {
             "dataset": dataset_name,
             "column": df.columns,
-            "null_count": df.isna().sum().to_numpy(),
+            "null_count": null_counts.to_numpy(),
             "null_percentage": [
-                _percentage(int(count), row_count) for count in df.isna().sum()
+                _percentage(int(count), row_count) for count in null_counts
             ],
             "data_type": [str(dtype) for dtype in df.dtypes],
             "unique_count": [int(df[column].nunique(dropna=True)) for column in df.columns],
@@ -167,7 +168,7 @@ def drop_rows_with_nulls(df: pd.DataFrame, critical_cols: list[str]) -> pd.DataF
 def add_missing_indicator(df: pd.DataFrame, column: str) -> tuple[pd.DataFrame, str]:
     """Add a boolean indicator for null values in a source column."""
     indicator = f"{column}_missing"
-    result = df.copy()
+    result = df.copy(deep=False)
     result[indicator] = result[column].isna()
     return result, indicator
 
@@ -225,12 +226,17 @@ def apply_dataset_treatment(
                 )
 
     elif dataset_name == "olist_orders_dataset.csv":
+        original_date_values = {
+            column: result[column].copy()
+            for column in ORDER_DATE_COLUMNS
+            if column in result
+        }
         for column in ORDER_DATE_COLUMNS:
             if column in result:
                 result[column] = pd.to_datetime(result[column], errors="coerce")
         for column in ORDER_MISSINGNESS_COLUMNS:
             if column in result:
-                before = result[column].copy()
+                before = original_date_values[column]
                 result, indicator = add_missing_indicator(result, column)
                 decisions.append(
                     _decision(
@@ -315,10 +321,15 @@ def validate_imputation(
             }
         )
 
+    shared_columns = df_original.columns.intersection(df_imputed.columns)
+    new_null_counts = {}
+    for column in shared_columns:
+        original_mask = df_original[column].isna().reindex(df_imputed.index, fill_value=True)
+        treated_mask = df_imputed[column].isna()
+        new_null_counts[column] = int((treated_mask & ~original_mask).sum())
+
     unexpected_new_nulls = [
-        column
-        for column in df_original.columns
-        if not df_original[column].isna().any() and df_imputed[column].isna().any()
+        column for column, count in new_null_counts.items() if count > 0
     ]
     report = {
         "rows_before": len(df_original),
@@ -329,6 +340,7 @@ def validate_imputation(
         "columns_before": list(df_original.columns),
         "columns_after": list(df_imputed.columns),
         "missing_after": missing_after,
+        "new_null_counts": new_null_counts,
         "unexpected_new_nulls": unexpected_new_nulls,
         "validation_status": "FAIL" if unexpected_new_nulls else "PASS",
     }
@@ -357,9 +369,6 @@ def process_dataset(input_path: Path, output_dir: Path) -> tuple[dict[str, Any],
     treated_df, decisions = apply_dataset_treatment(df, dataset_name)
     after_report = validate_imputation(df, treated_df)
 
-    output_dir.mkdir(parents=True, exist_ok=True)
-    treated_df.to_csv(output_dir / dataset_name, index=False, encoding="utf-8")
-
     report = {
         "dataset": dataset_name,
         "input": str(input_path.relative_to(PROJECT_ROOT)),
@@ -372,6 +381,15 @@ def process_dataset(input_path: Path, output_dir: Path) -> tuple[dict[str, Any],
     report_path.parent.mkdir(parents=True, exist_ok=True)
     with report_path.open("w", encoding="utf-8") as report_file:
         json.dump(report, report_file, indent=2, default=_json_safe, allow_nan=False)
+
+    if after_report["validation_status"] != "PASS":
+        raise ValueError(
+            f"Post-treatment validation failed for {dataset_name}: "
+            f"{after_report['unexpected_new_nulls']}"
+        )
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    treated_df.to_csv(output_dir / dataset_name, index=False, encoding="utf-8")
     return report, decisions
 
 
@@ -427,7 +445,12 @@ def handle_all_ingested_data(
 def main() -> None:
     """Run missing-data handling for all ingested Olist CSV files."""
     print("Starting Olist missing-data workflow...\n")
-    summary = handle_all_ingested_data()
+    try:
+        summary = handle_all_ingested_data()
+    except Exception as exc:
+        print(f"\n✗ Missing-data workflow failed: {exc}")
+        raise SystemExit(1) from exc
+
     print("\n✓ Missing-data workflow completed")
     print(f"  Datasets processed: {summary['dataset_count']}")
     print(f"  Processed files: {PROCESSED_DATA_DIR}")

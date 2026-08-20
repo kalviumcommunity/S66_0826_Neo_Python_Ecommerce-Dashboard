@@ -101,6 +101,13 @@
         "data_type_after": "str"
       }
     ],
+    "new_null_counts": {
+      "geolocation_zip_code_prefix": 0,
+      "geolocation_lat": 0,
+      "geolocation_lng": 0,
+      "geolocation_city": 0,
+      "geolocation_state": 0
+    },
     "unexpected_new_nulls": [],
     "validation_status": "PASS"
   },

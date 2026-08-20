@@ -101,6 +101,13 @@
         "data_type_after": "str"
       }
     ],
+    "new_null_counts": {
+      "customer_id": 0,
+      "customer_unique_id": 0,
+      "customer_zip_code_prefix": 0,
+      "customer_city": 0,
+      "customer_state": 0
+    },
     "unexpected_new_nulls": [],
     "validation_status": "PASS"
   },

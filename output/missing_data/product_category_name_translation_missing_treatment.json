@@ -50,6 +50,10 @@
         "data_type_after": "str"
       }
     ],
+    "new_null_counts": {
+      "product_category_name": 0,
+      "product_category_name_english": 0
+    },
     "unexpected_new_nulls": [],
     "validation_status": "PASS"
   },

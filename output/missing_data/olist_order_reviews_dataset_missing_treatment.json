@@ -149,6 +149,15 @@
         "data_type_after": "bool"
       }
     ],
+    "new_null_counts": {
+      "review_id": 0,
+      "order_id": 0,
+      "review_score": 0,
+      "review_comment_title": 0,
+      "review_comment_message": 0,
+      "review_creation_date": 0,
+      "review_answer_timestamp": 0
+    },
     "unexpected_new_nulls": [],
     "validation_status": "PASS"
   },
