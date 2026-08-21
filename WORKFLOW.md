@@ -23,6 +23,9 @@ uv run python scripts/ingest_data.py
 # analyze and handle missing values (data/ingested -> data/processed)
 uv run python scripts/handle_missing.py
 
+# detect duplicates and remove confirmed geolocation exact duplicates
+uv run python scripts/deduplicate_data.py
+
 # run the legacy/general cleaning workflow if needed
 uv run python scripts/clean_data.py
 
@@ -40,6 +43,8 @@ What the missing-data workflow does
 - Writes the auditable decision log to `output/imputation_decisions.json`.
 
 The existing `clean_data.py` remains available as a separate general cleaning workflow.
+
+The deduplication workflow reads `data/processed/`, writes the confirmed geolocation result to `data/processed/deduplicated/`, reports near-duplicate candidates without removing them, and saves audit files under `output/deduplication/`.
 
 Sample output (excerpt)
 

@@ -1,0 +1,56 @@
+[
+  {
+    "dataset": "olist_customers_dataset.csv",
+    "exact_strategy": "report_only",
+    "near_duplicate_strategy": "report_only",
+    "business_reasoning": "Repeated business keys require table-specific review before removal."
+  },
+  {
+    "dataset": "olist_geolocation_dataset.csv",
+    "exact_strategy": "keep_first",
+    "near_duplicate_strategy": "report_only",
+    "business_reasoning": "Exact duplicate geolocation rows are redundant; repeated ZIP prefixes are not removed because they can represent legitimate coordinates or cities."
+  },
+  {
+    "dataset": "olist_order_items_dataset.csv",
+    "exact_strategy": "report_only",
+    "near_duplicate_strategy": "report_only",
+    "business_reasoning": "Repeated business keys require table-specific review before removal."
+  },
+  {
+    "dataset": "olist_order_payments_dataset.csv",
+    "exact_strategy": "report_only",
+    "near_duplicate_strategy": "report_only",
+    "business_reasoning": "Repeated business keys require table-specific review before removal."
+  },
+  {
+    "dataset": "olist_order_reviews_dataset.csv",
+    "exact_strategy": "report_only",
+    "near_duplicate_strategy": "report_only",
+    "business_reasoning": "Repeated business keys require table-specific review before removal."
+  },
+  {
+    "dataset": "olist_orders_dataset.csv",
+    "exact_strategy": "report_only",
+    "near_duplicate_strategy": "report_only",
+    "business_reasoning": "Repeated business keys require table-specific review before removal."
+  },
+  {
+    "dataset": "olist_products_dataset.csv",
+    "exact_strategy": "report_only",
+    "near_duplicate_strategy": "report_only",
+    "business_reasoning": "Repeated business keys require table-specific review before removal."
+  },
+  {
+    "dataset": "olist_sellers_dataset.csv",
+    "exact_strategy": "report_only",
+    "near_duplicate_strategy": "report_only",
+    "business_reasoning": "Repeated business keys require table-specific review before removal."
+  },
+  {
+    "dataset": "product_category_name_translation.csv",
+    "exact_strategy": "report_only",
+    "near_duplicate_strategy": "report_only",
+    "business_reasoning": "Repeated business keys require table-specific review before removal."
+  }
+]
