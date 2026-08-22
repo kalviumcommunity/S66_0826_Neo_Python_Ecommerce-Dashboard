@@ -1,0 +1,37 @@
+{
+  "dataset": "olist_geolocation_dataset.csv",
+  "records": 738332,
+  "passed": 738332,
+  "failed": 0,
+  "pass_percentage": 100.0,
+  "rules": [
+    {
+      "dataset": "olist_geolocation_dataset.csv",
+      "rule": "valid_geolocation_zip_code_prefix_not_null",
+      "records": 738332,
+      "passed": 738332,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_geolocation_dataset.csv",
+      "rule": "valid_geolocation_zip_code_prefix_format",
+      "records": 738332,
+      "passed": 738332,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_geolocation_dataset.csv",
+      "rule": "valid_latitude",
+      "records": 738332,
+      "passed": 738332,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_geolocation_dataset.csv",
+      "rule": "valid_longitude",
+      "records": 738332,
+      "passed": 738332,
+      "failed": 0
+    }
+  ]
+}

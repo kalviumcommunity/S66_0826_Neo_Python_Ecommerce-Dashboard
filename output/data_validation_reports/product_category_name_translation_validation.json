@@ -1,0 +1,8 @@
+{
+  "dataset": "product_category_name_translation.csv",
+  "records": 71,
+  "passed": 71,
+  "failed": 0,
+  "pass_percentage": 100.0,
+  "rules": []
+}

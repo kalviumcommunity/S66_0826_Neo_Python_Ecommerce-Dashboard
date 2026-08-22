@@ -1,0 +1,79 @@
+{
+  "dataset": "olist_order_items_dataset.csv",
+  "records": 112650,
+  "passed": 112650,
+  "failed": 0,
+  "pass_percentage": 100.0,
+  "rules": [
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "rule": "valid_order_id_not_null",
+      "records": 112650,
+      "passed": 112650,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "rule": "valid_product_id_not_null",
+      "records": 112650,
+      "passed": 112650,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "rule": "valid_seller_id_not_null",
+      "records": 112650,
+      "passed": 112650,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "rule": "valid_order_id_format",
+      "records": 112650,
+      "passed": 112650,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "rule": "valid_product_id_format",
+      "records": 112650,
+      "passed": 112650,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "rule": "valid_seller_id_format",
+      "records": 112650,
+      "passed": 112650,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "rule": "valid_order_item_id",
+      "records": 112650,
+      "passed": 112650,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "rule": "valid_price",
+      "records": 112650,
+      "passed": 112650,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "rule": "valid_freight_value",
+      "records": 112650,
+      "passed": 112650,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_items_dataset.csv",
+      "rule": "valid_shipping_limit_date",
+      "records": 112650,
+      "passed": 112650,
+      "failed": 0
+    }
+  ]
+}

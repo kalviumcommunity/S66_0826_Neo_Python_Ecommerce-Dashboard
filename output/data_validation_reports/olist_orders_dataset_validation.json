@@ -1,0 +1,100 @@
+{
+  "dataset": "olist_orders_dataset.csv",
+  "records": 99441,
+  "passed": 99252,
+  "failed": 189,
+  "pass_percentage": 99.81,
+  "rules": [
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_order_id_not_null",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_customer_id_not_null",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_order_id_format",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_customer_id_format",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_order_status",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_order_purchase_timestamp",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_order_approved_at",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_order_delivered_carrier_date",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_order_delivered_customer_date",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_order_estimated_delivery_date",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_approval_after_purchase",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_carrier_after_purchase",
+      "records": 99441,
+      "passed": 99275,
+      "failed": 166
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "rule": "valid_delivery_after_carrier",
+      "records": 99441,
+      "passed": 99418,
+      "failed": 23
+    }
+  ]
+}
