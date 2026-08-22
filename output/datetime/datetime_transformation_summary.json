@@ -1,0 +1,64 @@
+{
+  "timestamp": "2026-08-22T05:15:45.565697+00:00",
+  "timezone_note": "Source Olist timestamps are timezone-naive; no UTC conversion was applied.",
+  "timestamp_format": "%Y-%m-%d %H:%M:%S",
+  "date_format": "%Y-%m-%d",
+  "input_files": [
+    "data/processed/olist_orders_dataset.csv",
+    "data/processed/olist_order_payments_dataset.csv"
+  ],
+  "rows_processed": 99441,
+  "customers": 99441,
+  "date_min": "2016-09-04T21:15:19",
+  "date_max": "2018-10-17T17:30:18",
+  "weeks": 112,
+  "as_of": "2018-10-17T17:30:18",
+  "peak_activity_windows": [
+    {
+      "day_of_week": "Tuesday",
+      "hour": 14,
+      "order_count": 1124,
+      "revenue": 187921.29,
+      "average_order_value": 167.18975978647688
+    },
+    {
+      "day_of_week": "Monday",
+      "hour": 21,
+      "order_count": 1118,
+      "revenue": 179942.31,
+      "average_order_value": 160.9501878354204
+    },
+    {
+      "day_of_week": "Monday",
+      "hour": 14,
+      "order_count": 1096,
+      "revenue": 182390.45,
+      "average_order_value": 166.41464416058395
+    },
+    {
+      "day_of_week": "Monday",
+      "hour": 16,
+      "order_count": 1094,
+      "revenue": 175954.63,
+      "average_order_value": 160.836042047532
+    },
+    {
+      "day_of_week": "Tuesday",
+      "hour": 16,
+      "order_count": 1081,
+      "revenue": 176443.45,
+      "average_order_value": 163.22243293246996
+    }
+  ],
+  "recency": {
+    "min_days": 0,
+    "max_days": 772,
+    "median_days": 271.0,
+    "inactive_90_days": 89912
+  },
+  "outputs": {
+    "temporal_data": "data/processed/temporal",
+    "reports": "output/datetime",
+    "figures": "output/datetime/figures"
+  }
+}
