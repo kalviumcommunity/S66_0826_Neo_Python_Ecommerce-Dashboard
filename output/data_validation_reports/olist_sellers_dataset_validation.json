@@ -1,0 +1,30 @@
+{
+  "dataset": "olist_sellers_dataset.csv",
+  "records": 3095,
+  "passed": 3095,
+  "failed": 0,
+  "pass_percentage": 100.0,
+  "rules": [
+    {
+      "dataset": "olist_sellers_dataset.csv",
+      "rule": "valid_seller_id_not_null",
+      "records": 3095,
+      "passed": 3095,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_sellers_dataset.csv",
+      "rule": "valid_seller_id_format",
+      "records": 3095,
+      "passed": 3095,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_sellers_dataset.csv",
+      "rule": "valid_seller_zip_code_prefix_format",
+      "records": 3095,
+      "passed": 3095,
+      "failed": 0
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "dataset": "olist_customers_dataset.csv",
+  "records": 99441,
+  "passed": 99441,
+  "failed": 0,
+  "pass_percentage": 100.0,
+  "rules": [
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "rule": "valid_customer_id_not_null",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "rule": "valid_customer_unique_id_not_null",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "rule": "valid_customer_id_format",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "rule": "valid_customer_unique_id_format",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "rule": "valid_customer_zip_code_prefix_format",
+      "records": 99441,
+      "passed": 99441,
+      "failed": 0
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "dataset": "olist_order_reviews_dataset.csv",
+  "records": 99224,
+  "passed": 99224,
+  "failed": 0,
+  "pass_percentage": 100.0,
+  "rules": [
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "rule": "valid_review_id_not_null",
+      "records": 99224,
+      "passed": 99224,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "rule": "valid_order_id_not_null",
+      "records": 99224,
+      "passed": 99224,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "rule": "valid_review_id_format",
+      "records": 99224,
+      "passed": 99224,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "rule": "valid_order_id_format",
+      "records": 99224,
+      "passed": 99224,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "rule": "valid_review_score",
+      "records": 99224,
+      "passed": 99224,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "rule": "valid_review_creation_date",
+      "records": 99224,
+      "passed": 99224,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "rule": "valid_review_answer_timestamp",
+      "records": 99224,
+      "passed": 99224,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_reviews_dataset.csv",
+      "rule": "valid_review_date_order",
+      "records": 99224,
+      "passed": 99224,
+      "failed": 0
+    }
+  ]
+}

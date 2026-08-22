@@ -1,0 +1,51 @@
+{
+  "dataset": "olist_order_payments_dataset.csv",
+  "records": 103886,
+  "passed": 103881,
+  "failed": 5,
+  "pass_percentage": 100.0,
+  "rules": [
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "rule": "valid_order_id_not_null",
+      "records": 103886,
+      "passed": 103886,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "rule": "valid_order_id_format",
+      "records": 103886,
+      "passed": 103886,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "rule": "valid_payment_sequential",
+      "records": 103886,
+      "passed": 103886,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "rule": "valid_payment_installments",
+      "records": 103886,
+      "passed": 103884,
+      "failed": 2
+    },
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "rule": "valid_payment_value",
+      "records": 103886,
+      "passed": 103886,
+      "failed": 0
+    },
+    {
+      "dataset": "olist_order_payments_dataset.csv",
+      "rule": "valid_payment_type",
+      "records": 103886,
+      "passed": 103883,
+      "failed": 3
+    }
+  ]
+}
