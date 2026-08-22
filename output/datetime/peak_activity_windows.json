@@ -1,0 +1,37 @@
+[
+  {
+    "day_of_week": "Tuesday",
+    "hour": 14,
+    "order_count": 1124,
+    "revenue": 187921.29,
+    "average_order_value": 167.18975978647688
+  },
+  {
+    "day_of_week": "Monday",
+    "hour": 21,
+    "order_count": 1118,
+    "revenue": 179942.31,
+    "average_order_value": 160.9501878354204
+  },
+  {
+    "day_of_week": "Monday",
+    "hour": 14,
+    "order_count": 1096,
+    "revenue": 182390.45,
+    "average_order_value": 166.41464416058395
+  },
+  {
+    "day_of_week": "Monday",
+    "hour": 16,
+    "order_count": 1094,
+    "revenue": 175954.63,
+    "average_order_value": 160.836042047532
+  },
+  {
+    "day_of_week": "Tuesday",
+    "hour": 16,
+    "order_count": 1081,
+    "revenue": 176443.45,
+    "average_order_value": 163.22243293246996
+  }
+]

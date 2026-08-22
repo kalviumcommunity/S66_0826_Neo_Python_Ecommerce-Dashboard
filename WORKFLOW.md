@@ -26,6 +26,9 @@ uv run python scripts/handle_missing.py
 # detect duplicates and remove confirmed geolocation exact duplicates
 uv run python scripts/deduplicate_data.py
 
+# transform dates and create temporal features, metrics, reports, and figures
+uv run python scripts/transform_datetime.py
+
 # run the legacy/general cleaning workflow if needed
 uv run python scripts/clean_data.py
 
@@ -45,6 +48,8 @@ What the missing-data workflow does
 The existing `clean_data.py` remains available as a separate general cleaning workflow.
 
 The deduplication workflow reads `data/processed/`, writes the confirmed geolocation result to `data/processed/deduplicated/`, reports near-duplicate candidates without removing them, and saves audit files under `output/deduplication/`.
+
+The date and time workflow reads the processed orders and payments tables, parses Olist date columns with explicit formats, derives vectorized calendar features, calculates customer recency, aggregates weekly and day/hour activity, and writes derived files to `data/processed/temporal/`. Reports and figures are saved under `output/datetime/`. Because Olist source timestamps do not include timezone offsets, they remain timezone-naive and are not assumed to be UTC.
 
 Sample output (excerpt)
 

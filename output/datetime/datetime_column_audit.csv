@@ -1,0 +1,6 @@
+column,format,dtype_before,dtype_after,rows,original_nulls,parsed_nulls,invalid_non_empty_values,status
+order_purchase_timestamp,%Y-%m-%d %H:%M:%S,str,datetime64[us],99441,0,0,0,success
+order_approved_at,%Y-%m-%d %H:%M:%S,str,datetime64[us],99441,160,160,0,success
+order_delivered_carrier_date,%Y-%m-%d %H:%M:%S,str,datetime64[us],99441,1783,1783,0,success
+order_delivered_customer_date,%Y-%m-%d %H:%M:%S,str,datetime64[us],99441,2965,2965,0,success
+order_estimated_delivery_date,%Y-%m-%d,str,datetime64[us],99441,0,0,0,success
