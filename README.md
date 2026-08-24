@@ -41,6 +41,7 @@ uv run python scripts/ingest_data.py
 uv run python scripts/handle_missing.py
 uv run python scripts/deduplicate_data.py
 uv run python scripts/transform_datetime.py
+uv run python scripts/validate_merges.py
 uv run python scripts/clean_data.py
 uv run python scripts/<analysis_script>.py
 uv run jupyter notebook
@@ -51,3 +52,5 @@ uv run jupyter notebook
 The `deduplicate_data.py` script analyzes all processed CSVs, removes only confirmed exact duplicate rows from geolocation by default, reports near-duplicate key groups without deleting them, writes the deduplicated geolocation file to `data/processed/deduplicated/`, and creates audit reports under `output/deduplication/`.
 
 The `transform_datetime.py` script parses Olist order event dates with explicit formats, derives purchase day/hour/week/month features, calculates reproducible customer recency, creates weekly and day/hour aggregations, and saves temporal CSVs under `data/processed/temporal/` plus reports and figures under `output/datetime/`. Olist timestamps are timezone-naive in the source, so the workflow does not silently treat them as UTC.
+
+The `validate_merges.py` script validates the processed customer/order integration with an explicit one-to-one left join on `customer_id`, compares inner/left/right/outer row counts, exports unmatched records, and documents key cardinality under `output/merge_validation/`. Payment rows are aggregated by `order_id` before being joined to orders so payment multiplicity cannot create duplicate order rows or double-count revenue. Integrated views are written under `data/processed/integrated/`.

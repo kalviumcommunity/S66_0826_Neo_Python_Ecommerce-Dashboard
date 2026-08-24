@@ -1,0 +1,5 @@
+join_type,result_rows,distinct_join_keys,left_only_rows,right_only_rows,matched_rows
+inner,99441,99441,0,0,99441
+left,99441,99441,0,0,99441
+right,99441,99441,0,0,99441
+outer,99441,99441,0,0,99441

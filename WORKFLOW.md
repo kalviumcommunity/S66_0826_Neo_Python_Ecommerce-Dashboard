@@ -29,6 +29,9 @@ uv run python scripts/deduplicate_data.py
 # transform dates and create temporal features, metrics, reports, and figures
 uv run python scripts/transform_datetime.py
 
+# validate customer/order/payment joins and create integrated views
+uv run python scripts/validate_merges.py
+
 # run the legacy/general cleaning workflow if needed
 uv run python scripts/clean_data.py
 
@@ -50,6 +53,8 @@ The existing `clean_data.py` remains available as a separate general cleaning wo
 The deduplication workflow reads `data/processed/`, writes the confirmed geolocation result to `data/processed/deduplicated/`, reports near-duplicate candidates without removing them, and saves audit files under `output/deduplication/`.
 
 The date and time workflow reads the processed orders and payments tables, parses Olist date columns with explicit formats, derives vectorized calendar features, calculates customer recency, aggregates weekly and day/hour activity, and writes derived files to `data/processed/temporal/`. Reports and figures are saved under `output/datetime/`. Because Olist source timestamps do not include timezone offsets, they remain timezone-naive and are not assumed to be UTC.
+
+The merge-validation workflow reads from `data/processed/`, validates the one-to-one customer/order left join on `customer_id`, compares all four join types, exports unmatched records, and writes decisions under `output/merge_validation/`. It aggregates the many-side payment table by `order_id` before joining to the order-level data. Integrated outputs are written to `data/processed/integrated/`; source datasets are not modified.
 
 Sample output (excerpt)
 

@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-08-24T10:40:17.111762+00:00",
+  "primary_join": {
+    "join_type": "left",
+    "left_table": "olist_customers_dataset.csv",
+    "right_table": "olist_orders_dataset.csv",
+    "join_key": [
+      "customer_id"
+    ],
+    "validation": "one_to_one",
+    "left_rows": 99441,
+    "right_rows": 99441,
+    "result_rows": 99441,
+    "row_change_from_left": 0,
+    "duplicate_join_rows": 0,
+    "unmatched_left_rows": 0,
+    "unmatched_right_rows": 0,
+    "unmatched_left_keys": 0,
+    "unmatched_right_keys": 0,
+    "reasoning": "A left join preserves every processed customer record while enriching it with its matching Olist order record. one_to_one validation prevents silent row multiplication."
+  },
+  "key_profiles": [
+    {
+      "dataset": "olist_customers_dataset.csv",
+      "key": "customer_id",
+      "rows": 99441,
+      "distinct_keys": 99441,
+      "null_keys": 0,
+      "duplicate_key_rows": 0,
+      "max_rows_per_key": 1,
+      "dtype": "string"
+    },
+    {
+      "dataset": "olist_orders_dataset.csv",
+      "key": "customer_id",
+      "rows": 99441,
+      "distinct_keys": 99441,
+      "null_keys": 0,
+      "duplicate_key_rows": 0,
+      "max_rows_per_key": 1,
+      "dtype": "string"
+    }
+  ],
+  "payment_integration": {
+    "source_table": "olist_order_payments_dataset.csv",
+    "aggregation_key": "order_id",
+    "payment_rows": 103886,
+    "aggregated_order_rows": 99440,
+    "orphaned_payment_rows": 0,
+    "reasoning": "Payments are many-side records, so they are aggregated by order_id before joining to the order-level table."
+  },
+  "outputs": {
+    "integrated_data": "data/processed/integrated",
+    "reports": "output/merge_validation"
+  }
+}
