@@ -1,0 +1,44 @@
+{
+  "customer_summary": {
+    "total_customers": 96096,
+    "spend_tier_distribution": {
+      "Medium": 24037,
+      "Low": 24026,
+      "VIP": 24021,
+      "High": 24012
+    },
+    "rfm_segment_distribution": {
+      "High Value": 31726,
+      "Promising / Loyal": 24904,
+      "At-Risk": 13931,
+      "Hibernating": 9564,
+      "New / Recent": 9259,
+      "Champions": 6712
+    },
+    "avg_spend_per_order": 161.40011717449218
+  },
+  "seller_summary": {
+    "total_sellers": 3095,
+    "risk_level_distribution": {
+      "Low Risk": 2397,
+      "Moderate Risk": 474,
+      "High Risk": 224
+    },
+    "activity_tier_distribution": {
+      "Low Volume": 1032,
+      "High Volume": 1032,
+      "Mid Volume": 1031
+    },
+    "avg_seller_trust_score": 86.1335735056543,
+    "avg_late_delivery_ratio": 0.07192452342487884
+  },
+  "order_summary": {
+    "total_order_items": 112650,
+    "freight_tier_distribution": {
+      "Moderate Freight": 61351,
+      "Low Freight": 41027,
+      "High Freight": 10272
+    },
+    "avg_item_freight_ratio": 0.2133641615623613
+  }
+}

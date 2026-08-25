@@ -42,6 +42,7 @@ uv run python scripts/handle_missing.py
 uv run python scripts/deduplicate_data.py
 uv run python scripts/transform_datetime.py
 uv run python scripts/validate_merges.py
+uv run python scripts/feature_engineering.py
 uv run python scripts/clean_data.py
 uv run python scripts/<analysis_script>.py
 uv run jupyter notebook
@@ -54,3 +55,5 @@ The `deduplicate_data.py` script analyzes all processed CSVs, removes only confi
 The `transform_datetime.py` script parses Olist order event dates with explicit formats, derives purchase day/hour/week/month features, calculates reproducible customer recency, creates weekly and day/hour aggregations, and saves temporal CSVs under `data/processed/temporal/` plus reports and figures under `output/datetime/`. Olist timestamps are timezone-naive in the source, so the workflow does not silently treat them as UTC.
 
 The `validate_merges.py` script validates the processed customer/order integration with an explicit one-to-one left join on `customer_id`, compares inner/left/right/outer row counts, exports unmatched records, and documents key cardinality under `output/merge_validation/`. Payment rows are aggregated by `order_id` before being joined to orders so payment multiplicity cannot create duplicate order rows or double-count revenue. Integrated views are written under `data/processed/integrated/`.
+
+The `feature_engineering.py` script computes value-driving ratios (spend per order, freight ratio, late delivery ratio), tiered/binned features using `pd.cut` and `pd.qcut` (customer spend tiers, seller activity tiers, freight tiers), and composite business scores (Customer RFM score & segment, Seller Trust/Risk score). Feature datasets are written under `data/processed/features/` and summary reports are saved under `output/feature_engineering/`.
