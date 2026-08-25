@@ -1,0 +1,4 @@
+order_segment,observation_count,mean,median,minimum,maximum,total_revenue,observation_share,revenue_share
+Low-value,24912,43.0,43.32,0.0,62.01,1071283.61,0.250523,0.066918
+Mid-value,49669,109.6,105.33,62.02,176.97,5443631.7,0.499487,0.340038
+High-value,24859,381.91,265.94,176.98,13664.08,9493956.81,0.24999,0.593043

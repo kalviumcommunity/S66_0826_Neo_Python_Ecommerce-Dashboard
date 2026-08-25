@@ -1,0 +1,27 @@
+{
+  "source": "data/processed/integrated/orders_with_payment_totals.csv",
+  "revenue_column": "total_payment_value",
+  "analysis_grain": "order",
+  "customer_grain": "customer_unique_id",
+  "statistics": {
+    "count": 99440,
+    "mean": 160.99,
+    "median": 105.29,
+    "std": 221.95,
+    "min": 0.0,
+    "max": 13664.08,
+    "skewness": 9.150169,
+    "excess_kurtosis": 233.406523,
+    "p25": 62.01,
+    "p50": 105.29,
+    "p75": 176.97,
+    "p90": 308.24,
+    "p95": 452.99,
+    "p99": 1075.79
+  },
+  "interpretation": {
+    "skewness": "Highly right-skewed; use median and percentiles with the mean.",
+    "kurtosis": "Very heavy tails; investigate extreme values.",
+    "business_action": "Separate regular and high-value customers and investigate the top revenue contributors."
+  }
+}
