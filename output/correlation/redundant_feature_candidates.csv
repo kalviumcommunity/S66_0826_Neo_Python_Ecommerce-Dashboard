@@ -1,0 +1,9 @@
+feature_a,feature_b,method,correlation,absolute_correlation,strength
+total_item_price,order_revenue,pearson,0.9959698733878193,0.9959698733878193,strong
+total_item_price,average_item_price,pearson,0.9331693361267265,0.9331693361267265,strong
+average_item_price,order_revenue,pearson,0.9211962096778622,0.9211962096778622,strong
+total_item_price,order_revenue,spearman,0.9897214176736263,0.9897214176736263,strong
+total_item_price,average_item_price,spearman,0.9541427293919796,0.9541427293919796,strong
+average_item_price,order_revenue,spearman,0.9304901203918902,0.9304901203918902,strong
+total_customer_spend,average_order_value,pearson,1.0,1.0,strong
+total_customer_spend,average_order_value,spearman,1.0,1.0,strong
