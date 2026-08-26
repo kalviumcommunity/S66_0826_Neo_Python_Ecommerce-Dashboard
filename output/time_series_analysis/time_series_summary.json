@@ -1,0 +1,29 @@
+{
+  "date_range": {
+    "start": "2016-09-04",
+    "end": "2018-10-17",
+    "total_days": 774
+  },
+  "platform_totals": {
+    "total_orders": 99441,
+    "total_revenue": 16008872.12,
+    "peak_daily_orders": 1176,
+    "peak_daily_revenue": 179200.03
+  },
+  "trend_insights": {
+    "recent_3_months_vs_prior_3_months_revenue_pct": -68.33,
+    "recent_3_months_vs_prior_3_months_order_pct": -66.21,
+    "longest_consecutive_mom_revenue_growth_streak_months": 5,
+    "avg_wow_revenue_growth_pct": Infinity
+  },
+  "weekly_summary": {
+    "total_weeks": 112,
+    "avg_weekly_orders": 887.87,
+    "avg_weekly_revenue": 142936.36
+  },
+  "monthly_summary": {
+    "total_months": 26,
+    "avg_monthly_orders": 3824.65,
+    "avg_monthly_revenue": 615725.85
+  }
+}
