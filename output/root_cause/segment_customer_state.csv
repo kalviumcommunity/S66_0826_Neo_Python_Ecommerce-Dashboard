@@ -1,0 +1,6 @@
+customer_state,order_count,successful_orders,failed_orders,revenue,success_rate,failure_rate
+sp,10,9,0,1721.72,0.9,0.0
+rj,2,2,0,3181.64,1.0,0.0
+ba,1,1,0,98.8,1.0,0.0
+df,1,1,0,141.3,1.0,0.0
+pr,1,1,0,105.37,1.0,0.0

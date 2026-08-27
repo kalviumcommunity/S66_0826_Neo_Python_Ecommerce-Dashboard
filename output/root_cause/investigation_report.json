@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-08-27T06:47:32.550245+00:00",
+  "data_source": "data/processed/",
+  "build_audit": {
+    "timestamp": {
+      "format": "%Y-%m-%d %H:%M:%S",
+      "dtype_before": "str",
+      "dtype_after": "datetime64[us]",
+      "invalid_non_empty_values": 0,
+      "null_values": 0
+    },
+    "orders_before": 99441,
+    "orders_after": 99441,
+    "order_ids_unique": true,
+    "payment_rows_aggregated_before_join": 103886
+  },
+  "time_window": {
+    "problem_date": "2017-07-06",
+    "problem_hour": 14,
+    "anomaly_threshold": 0.936683626857673,
+    "selection_method": "mean_minus_one_standard_deviation",
+    "minimum_observations": 20,
+    "minimum_fallback_observations": 5,
+    "anomaly_dates": [
+      "2016-10-09",
+      "2018-08-28",
+      "2016-10-05",
+      "2016-10-06",
+      "2017-02-01",
+      "2016-10-08",
+      "2017-02-16",
+      "2017-02-11",
+      "2016-10-04",
+      "2017-02-22",
+      "2017-03-06",
+      "2017-02-03",
+      "2017-02-14",
+      "2016-10-07",
+      "2017-07-09",
+      "2017-02-08",
+      "2017-03-02",
+      "2017-04-14",
+      "2017-03-05",
+      "2016-10-10",
+      "2017-03-04",
+      "2017-05-27",
+      "2017-05-30",
+      "2017-02-06",
+      "2017-05-31",
+      "2017-09-23",
+      "2017-10-21",
+      "2017-05-12",
+      "2017-01-31",
+      "2017-09-29",
+      "2017-10-30",
+      "2017-07-06",
+      "2017-01-30",
+      "2017-03-23",
+      "2017-02-15",
+      "2017-08-12",
+      "2017-03-28",
+      "2017-04-09",
+      "2017-03-08",
+      "2017-02-25",
+      "2017-02-26",
+      "2017-04-20",
+      "2017-12-23",
+      "2017-05-07",
+      "2017-01-25",
+      "2017-02-20",
+      "2017-04-17",
+      "2017-05-13",
+      "2017-06-10",
+      "2017-04-11",
+      "2017-03-15",
+      "2017-06-26",
+      "2017-02-19",
+      "2017-01-23",
+      "2017-01-29",
+      "2017-01-18",
+      "2017-01-21"
+    ],
+    "problem_period_order_count": 15,
+    "problem_period_revenue": 5248.830000000001
+  },
+  "hypothesis": {
+    "confidence": "INCONCLUSIVE",
+    "statement": "No sufficiently strong segment concentration was found in the available Olist data.",
+    "strongest_segment_pattern": {
+      "dimension": "payment_type",
+      "segment": "credit_card",
+      "orders": 11,
+      "failed_orders": 0,
+      "problem_failure_rate": 0.0,
+      "outside_failure_rate": 0.01156054176902563,
+      "rate_difference": -0.01156054176902563
+    },
+    "candidate_patterns": [
+      {
+        "dimension": "payment_type",
+        "segment": "credit_card",
+        "orders": 11,
+        "failed_orders": 0,
+        "problem_failure_rate": 0.0,
+        "outside_failure_rate": 0.01156054176902563,
+        "rate_difference": -0.01156054176902563
+      },
+      {
+        "dimension": "customer_state",
+        "segment": "sp",
+        "orders": 10,
+        "failed_orders": 0,
+        "problem_failure_rate": 0.0,
+        "outside_failure_rate": 0.014831320682384512,
+        "rate_difference": -0.014831320682384512
+      }
+    ],
+    "limitations": [
+      "Olist contains no application error_message or payment-provider incident log.",
+      "Delivered status is an operational fulfillment proxy, not a direct payment-success field.",
+      "An observational pattern does not establish a causal relationship."
+    ]
+  },
+  "validation": {
+    "problem_period_has_orders": true,
+    "problem_period_failure_rate": 0.0,
+    "outside_period_failure_rate": 0.012411240520588175,
+    "segment_pattern_present": true,
+    "external_event_validation": "not performed; no external event file supplied",
+    "segment_failure_rate_exceeds_outside_rate": false,
+    "conclusion": "Root cause remains unconfirmed; collect logs or external incident evidence before acting."
+  },
+  "available_error_log_evidence": false,
+  "external_validation": "not performed; no external event file supplied",
+  "recommended_next_evidence": [
+    "payment gateway logs",
+    "application error logs",
+    "deployment and infrastructure incident logs"
+  ]
+}

@@ -42,6 +42,7 @@ uv run python scripts/handle_missing.py
 uv run python scripts/deduplicate_data.py
 uv run python scripts/transform_datetime.py
 uv run python scripts/validate_merges.py
+uv run python scripts/investigate_anomalies.py
 uv run python scripts/clean_data.py
 uv run python scripts/<analysis_script>.py
 uv run jupyter notebook
@@ -54,3 +55,5 @@ The `deduplicate_data.py` script analyzes all processed CSVs, removes only confi
 The `transform_datetime.py` script parses Olist order event dates with explicit formats, derives purchase day/hour/week/month features, calculates reproducible customer recency, creates weekly and day/hour aggregations, and saves temporal CSVs under `data/processed/temporal/` plus reports and figures under `output/datetime/`. Olist timestamps are timezone-naive in the source, so the workflow does not silently treat them as UTC.
 
 The `validate_merges.py` script validates the processed customer/order integration with an explicit one-to-one left join on `customer_id`, compares inner/left/right/outer row counts, exports unmatched records, and documents key cardinality under `output/merge_validation/`. Payment rows are aggregated by `order_id` before being joined to orders so payment multiplicity cannot create duplicate order rows or double-count revenue. Integrated views are written under `data/processed/integrated/`.
+
+The `investigate_anomalies.py` script performs a root-cause investigation on processed Olist data. It isolates unusual order-outcome dates and hours, analyzes payment type, customer state, product category, and order-status patterns, and writes auditable reports and figures under `output/root_cause/`. Because Olist does not include application error logs or payment-provider incidents, the workflow reports evidence and limitations without inventing a causal explanation.
