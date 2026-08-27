@@ -32,6 +32,9 @@ uv run python scripts/transform_datetime.py
 # validate customer/order/payment joins and create integrated views
 uv run python scripts/validate_merges.py
 
+# compute and validate key performance indicators
+uv run python scripts/define_kpis.py
+
 # run the legacy/general cleaning workflow if needed
 uv run python scripts/clean_data.py
 
@@ -55,6 +58,8 @@ The deduplication workflow reads `data/processed/`, writes the confirmed geoloca
 The date and time workflow reads the processed orders and payments tables, parses Olist date columns with explicit formats, derives vectorized calendar features, calculates customer recency, aggregates weekly and day/hour activity, and writes derived files to `data/processed/temporal/`. Reports and figures are saved under `output/datetime/`. Because Olist source timestamps do not include timezone offsets, they remain timezone-naive and are not assumed to be UTC.
 
 The merge-validation workflow reads from `data/processed/`, validates the one-to-one customer/order left join on `customer_id`, compares all four join types, exports unmatched records, and writes decisions under `output/merge_validation/`. It aggregates the many-side payment table by `order_id` before joining to the order-level data. Integrated outputs are written to `data/processed/integrated/`; source datasets are not modified.
+
+The KPI validation workflow reads from `data/processed/`, computes six platform-wide metrics (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio), compares each against its target range, and exports full JSON validation logs, a flat CSV summary, and a KPI catalogue template under `output/kpi_report/`.
 
 Sample output (excerpt)
 
