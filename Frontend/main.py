@@ -1,5 +1,6 @@
 import streamlit as st
 
+from components.filters import apply_filters
 from components.upload import (
     display_exploration,
     display_preview,
@@ -38,6 +39,17 @@ elif page == "Data Explorer":
     st.title("Data Explorer")
     dataframe = upload_dataset()
     if dataframe is not None:
-        display_preview(dataframe)
-        display_statistics(dataframe)
-        display_exploration(dataframe)
+        filtered_dataframe = apply_filters(dataframe)
+        st.write(
+            f"Showing {len(filtered_dataframe):,} of "
+            f"{len(dataframe):,} records"
+        )
+        if filtered_dataframe.empty:
+            st.warning(
+                "No data matches the current filters. "
+                "Try broadening your selection."
+            )
+        else:
+            display_preview(filtered_dataframe)
+            display_statistics(filtered_dataframe)
+            display_exploration(filtered_dataframe)
