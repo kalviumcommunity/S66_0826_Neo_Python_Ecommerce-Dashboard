@@ -44,6 +44,7 @@ uv run python scripts/transform_datetime.py
 uv run python scripts/validate_merges.py
 uv run python scripts/define_kpis.py
 uv run python scripts/clean_data.py
+uv run python scripts/analyze_revenue_distribution.py
 uv run python scripts/<analysis_script>.py
 uv run jupyter notebook
 ```
@@ -56,4 +57,5 @@ The `transform_datetime.py` script parses Olist order event dates with explicit 
 
 The `validate_merges.py` script validates the processed customer/order integration with an explicit one-to-one left join on `customer_id`, compares inner/left/right/outer row counts, exports unmatched records, and documents key cardinality under `output/merge_validation/`. Payment rows are aggregated by `order_id` before being joined to orders so payment multiplicity cannot create duplicate order rows or double-count revenue. Integrated views are written under `data/processed/integrated/`.
 
+The `analyze_revenue_distribution.py` script analyzes order-level `total_payment_value`, computes descriptive statistics, skewness, excess kurtosis, percentiles, revenue concentration, order/customer segments, and writes plots and tables to `output/revenue_analysis/`.
 The `define_kpis.py` script formally defines six business KPIs (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio) — each with a documented formula, data source, target range, owner, and update frequency. It computes each KPI from the processed datasets, validates them against their target ranges, and exports a full JSON report and CSV summary under `output/kpi_report/`.
