@@ -1,0 +1,4 @@
+payment_type,order_count,successful_orders,failed_orders,revenue,success_rate,failure_rate
+credit_card,11,10,0,1798.19,0.9090909090909091,0.0
+boleto,3,3,0,3360.4700000000003,1.0,0.0
+voucher,1,1,0,90.17,1.0,0.0

@@ -1,0 +1,30 @@
+ROOT CAUSE INVESTIGATION REPORT
+======================================================================
+
+OBSERVATION
+- Problem date: 2017-07-06
+- Problem hour: 14:00-15:00 (dataset-local timestamp)
+- Orders in problem hour: 15
+- Revenue in problem hour: 5,248.83
+- Detection method: mean_minus_one_standard_deviation
+
+ANALYSIS
+- Olist operational success proxy: order_status == 'delivered'
+- Failed statuses: canceled and unavailable
+- Strongest pattern: No sufficiently strong segment concentration was found in the available Olist data.
+
+HYPOTHESIS (Confidence: INCONCLUSIVE)
+No sufficiently strong segment concentration was found in the available Olist data.
+
+EVIDENCE LIMITATIONS
+- No application error logs or payment-provider incident data are included in Olist.
+- Correlation and segment concentration do not prove causation.
+
+RECOMMENDED ACTIONS
+1. Compare this period with payment gateway and application logs if available.
+2. Add monitoring for hourly cancellation/unavailable spikes by payment type.
+3. Investigate any segment with a sustained elevated failure rate.
+4. Do not implement a causal fix until external or operational evidence confirms it.
+
+VALIDATION
+Root cause remains unconfirmed; collect logs or external incident evidence before acting.
