@@ -1,0 +1,11 @@
+check,value
+source_order_rows,99441
+source_order_item_rows,112650
+orders_without_items_removed,775
+integrated_rows,112650
+integrated_distinct_orders,98666
+integrated_distinct_unique_customers,95420
+missing_product_rows,0
+missing_seller_rows,0
+missing_payment_rows,3
+missing_review_rows,942

@@ -1,0 +1,11 @@
+product_category,order_count,successful_orders,failed_orders,revenue,success_rate,failure_rate
+brinquedos,2,2,0,199.64,1.0,0.0
+cama_mesa_banho,2,2,0,364.44,1.0,0.0
+informatica_acessorios,2,2,0,3067.01,1.0,0.0
+moveis_decoracao,2,1,0,210.90999999999997,0.5,0.0
+pet_shop,2,2,0,192.86,1.0,0.0
+beleza_saude,1,1,0,105.37,1.0,0.0
+esporte_lazer,1,1,0,703.6,1.0,0.0
+instrumentos_musicais,1,1,0,90.17,1.0,0.0
+moveis_escritorio,1,1,0,137.39,1.0,0.0
+papelaria,1,1,0,177.44,1.0,0.0

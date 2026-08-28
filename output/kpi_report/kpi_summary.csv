@@ -1,0 +1,7 @@
+kpi_name,computed_value,unit,target_min,target_max,status,owner,update_frequency
+Revenue Per Customer,166.59,BRL,100.0,300.0,PASS,Revenue Analytics,Monthly
+Order Fulfillment Rate,97.02,%,90.0,100.0,PASS,Operations,Weekly
+Average Review Score,4.0864,score (1-5),3.8,5.0,PASS,Customer Experience,Weekly
+Late Delivery Rate,8.11,%,0.0,10.0,PASS,Logistics,Weekly
+Seller Activity Rate,100.0,%,70.0,100.0,PASS,Seller Growth,Monthly
+Freight Cost Ratio,14.21,%,0.0,25.0,PASS,Pricing & Logistics,Monthly

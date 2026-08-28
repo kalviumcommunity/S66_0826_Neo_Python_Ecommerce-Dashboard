@@ -1,0 +1,114 @@
+{
+  "pipeline": "KPI Definition & Validation",
+  "dataset": "Olist Brazilian E-Commerce",
+  "total_kpis": 6,
+  "passing": 6,
+  "failing": 0,
+  "kpis": [
+    {
+      "kpi_name": "Revenue Per Customer",
+      "description": "Average total payment value earned per unique customer. Measures how much each customer contributes to platform revenue.",
+      "formula": "SUM(payment_value) / COUNT(DISTINCT customer_unique_id)",
+      "data_source": [
+        "olist_order_payments_dataset.csv",
+        "olist_customers_dataset.csv",
+        "olist_orders_dataset.csv"
+      ],
+      "owner": "Revenue Analytics",
+      "update_frequency": "Monthly",
+      "unit": "BRL",
+      "target_min": 100.0,
+      "target_max": 300.0,
+      "computed_value": 166.59,
+      "within_target": true,
+      "status": "PASS",
+      "deviation_notes": []
+    },
+    {
+      "kpi_name": "Order Fulfillment Rate",
+      "description": "Proportion of orders that were successfully delivered to the customer. Indicates logistics reliability and operational quality.",
+      "formula": "COUNT(order_id WHERE order_status = 'delivered') / COUNT(order_id) * 100",
+      "data_source": [
+        "olist_orders_dataset.csv"
+      ],
+      "owner": "Operations",
+      "update_frequency": "Weekly",
+      "unit": "%",
+      "target_min": 90.0,
+      "target_max": 100.0,
+      "computed_value": 97.02,
+      "within_target": true,
+      "status": "PASS",
+      "deviation_notes": []
+    },
+    {
+      "kpi_name": "Average Review Score",
+      "description": "Mean customer satisfaction score across all reviewed orders. Scores range from 1 (worst) to 5 (best).",
+      "formula": "AVG(review_score) WHERE review_score IS NOT NULL",
+      "data_source": [
+        "olist_order_reviews_dataset.csv"
+      ],
+      "owner": "Customer Experience",
+      "update_frequency": "Weekly",
+      "unit": "score (1-5)",
+      "target_min": 3.8,
+      "target_max": 5.0,
+      "computed_value": 4.0864,
+      "within_target": true,
+      "status": "PASS",
+      "deviation_notes": []
+    },
+    {
+      "kpi_name": "Late Delivery Rate",
+      "description": "Proportion of delivered orders where the actual delivery date exceeded the estimated delivery date. Lower is better.",
+      "formula": "COUNT(order_id WHERE order_delivered_customer_date > order_estimated_delivery_date) / COUNT(order_id WHERE order_status = 'delivered') * 100",
+      "data_source": [
+        "olist_orders_dataset.csv"
+      ],
+      "owner": "Logistics",
+      "update_frequency": "Weekly",
+      "unit": "%",
+      "target_min": 0.0,
+      "target_max": 10.0,
+      "computed_value": 8.11,
+      "within_target": true,
+      "status": "PASS",
+      "deviation_notes": []
+    },
+    {
+      "kpi_name": "Seller Activity Rate",
+      "description": "Proportion of registered sellers that have fulfilled at least one order. Indicates how many sellers on the platform are actively contributing.",
+      "formula": "COUNT(DISTINCT seller_id WHERE order_count >= 1) / COUNT(DISTINCT seller_id) * 100",
+      "data_source": [
+        "olist_sellers_dataset.csv",
+        "olist_order_items_dataset.csv"
+      ],
+      "owner": "Seller Growth",
+      "update_frequency": "Monthly",
+      "unit": "%",
+      "target_min": 70.0,
+      "target_max": 100.0,
+      "computed_value": 100.0,
+      "within_target": true,
+      "status": "PASS",
+      "deviation_notes": []
+    },
+    {
+      "kpi_name": "Freight Cost Ratio",
+      "description": "Freight value as a percentage of total order item price. High ratios indicate shipping is expensive relative to product value.",
+      "formula": "SUM(freight_value) / (SUM(price) + SUM(freight_value)) * 100",
+      "data_source": [
+        "olist_order_items_dataset.csv"
+      ],
+      "owner": "Pricing & Logistics",
+      "update_frequency": "Monthly",
+      "unit": "%",
+      "target_min": 0.0,
+      "target_max": 25.0,
+      "computed_value": 14.21,
+      "within_target": true,
+      "status": "PASS",
+      "deviation_notes": []
+    }
+  ]
+}

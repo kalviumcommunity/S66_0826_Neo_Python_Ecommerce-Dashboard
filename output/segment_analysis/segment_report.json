@@ -1,0 +1,752 @@
+{
+  "report": "Revenue and Product Segment Analysis",
+  "revenue_measure": "item_revenue (price + freight_value)",
+  "churn_definition": "customer inactive for at least 90 days after last purchase",
+  "customer_segment_definition": {
+    "one_time": "1 order",
+    "repeat": "2 to 3 orders",
+    "loyal": "more than 3 orders"
+  },
+  "segments": {
+    "loyal": {
+      "churn_proxy_rate": 0.62,
+      "total_revenue": 37384.97,
+      "customer_count": 48,
+      "revenue_contribution_percent": 0.24,
+      "products": {
+        "air_conditioning": {
+          "revenue": 101.12,
+          "customer_count": 1
+        },
+        "arts_and_craftmanship": {
+          "revenue": 145.56,
+          "customer_count": 1
+        },
+        "audio": {
+          "revenue": 137.18,
+          "customer_count": 1
+        },
+        "auto": {
+          "revenue": 696.45,
+          "customer_count": 3
+        },
+        "baby": {
+          "revenue": 715.47,
+          "customer_count": 3
+        },
+        "bed_bath_table": {
+          "revenue": 3291.82,
+          "customer_count": 12
+        },
+        "computers_accessories": {
+          "revenue": 714.94,
+          "customer_count": 2
+        },
+        "consoles_games": {
+          "revenue": 556.22,
+          "customer_count": 2
+        },
+        "construction_tools_construction": {
+          "revenue": 135.07,
+          "customer_count": 2
+        },
+        "cool_stuff": {
+          "revenue": 2075.03,
+          "customer_count": 4
+        },
+        "costruction_tools_tools": {
+          "revenue": 38.66,
+          "customer_count": 1
+        },
+        "drinks": {
+          "revenue": 63.6,
+          "customer_count": 1
+        },
+        "dvds_blu_ray": {
+          "revenue": 172.32,
+          "customer_count": 1
+        },
+        "fashio_female_clothing": {
+          "revenue": 154.52,
+          "customer_count": 1
+        },
+        "fashion_bags_accessories": {
+          "revenue": 3329.39,
+          "customer_count": 8
+        },
+        "fashion_shoes": {
+          "revenue": 73.75,
+          "customer_count": 1
+        },
+        "food": {
+          "revenue": 232.51,
+          "customer_count": 2
+        },
+        "food_drink": {
+          "revenue": 99.03,
+          "customer_count": 2
+        },
+        "furniture_bedroom": {
+          "revenue": 284.14,
+          "customer_count": 3
+        },
+        "furniture_decor": {
+          "revenue": 1943.78,
+          "customer_count": 8
+        },
+        "furniture_living_room": {
+          "revenue": 452.12,
+          "customer_count": 2
+        },
+        "garden_tools": {
+          "revenue": 552.68,
+          "customer_count": 5
+        },
+        "health_beauty": {
+          "revenue": 1596.74,
+          "customer_count": 7
+        },
+        "home_appliances": {
+          "revenue": 76.9,
+          "customer_count": 1
+        },
+        "home_appliances_2": {
+          "revenue": 1236.76,
+          "customer_count": 1
+        },
+        "home_construction": {
+          "revenue": 254.26,
+          "customer_count": 1
+        },
+        "housewares": {
+          "revenue": 2035.95,
+          "customer_count": 9
+        },
+        "la_cuisine": {
+          "revenue": 232.19,
+          "customer_count": 1
+        },
+        "luggage_accessories": {
+          "revenue": 220.59,
+          "customer_count": 3
+        },
+        "perfumery": {
+          "revenue": 538.85,
+          "customer_count": 3
+        },
+        "pet_shop": {
+          "revenue": 191.84,
+          "customer_count": 3
+        },
+        "sports_leisure": {
+          "revenue": 2590.05,
+          "customer_count": 10
+        },
+        "stationery": {
+          "revenue": 194.86,
+          "customer_count": 4
+        },
+        "tablets_printing_image": {
+          "revenue": 60.72,
+          "customer_count": 1
+        },
+        "telephony": {
+          "revenue": 4735.19,
+          "customer_count": 3
+        },
+        "toys": {
+          "revenue": 1899.9,
+          "customer_count": 5
+        },
+        "unknown": {
+          "revenue": 478.06,
+          "customer_count": 6
+        },
+        "watches_gifts": {
+          "revenue": 5076.75,
+          "customer_count": 9
+        }
+      }
+    },
+    "one_time": {
+      "churn_proxy_rate": 0.81,
+      "total_revenue": 14939106.99,
+      "customer_count": 92507,
+      "revenue_contribution_percent": 94.29,
+      "products": {
+        "agro_industry_and_commerce": {
+          "revenue": 76907.0,
+          "customer_count": 176
+        },
+        "air_conditioning": {
+          "revenue": 57515.12,
+          "customer_count": 232
+        },
+        "art": {
+          "revenue": 27554.39,
+          "customer_count": 194
+        },
+        "arts_and_craftmanship": {
+          "revenue": 1756.02,
+          "customer_count": 18
+        },
+        "audio": {
+          "revenue": 54387.21,
+          "customer_count": 334
+        },
+        "auto": {
+          "revenue": 656304.35,
+          "customer_count": 3721
+        },
+        "baby": {
+          "revenue": 460502.49,
+          "customer_count": 2742
+        },
+        "bed_bath_table": {
+          "revenue": 1123664.8,
+          "customer_count": 8547
+        },
+        "books_general_interest": {
+          "revenue": 54415.32,
+          "customer_count": 491
+        },
+        "books_imported": {
+          "revenue": 5155.14,
+          "customer_count": 50
+        },
+        "books_technical": {
+          "revenue": 23048.43,
+          "customer_count": 255
+        },
+        "cds_dvds_musicals": {
+          "revenue": 954.99,
+          "customer_count": 12
+        },
+        "christmas_supplies": {
+          "revenue": 11663.32,
+          "customer_count": 121
+        },
+        "cine_photo": {
+          "revenue": 7060.88,
+          "customer_count": 62
+        },
+        "computers": {
+          "revenue": 225226.14,
+          "customer_count": 175
+        },
+        "computers_accessories": {
+          "revenue": 986931.34,
+          "customer_count": 6276
+        },
+        "consoles_games": {
+          "revenue": 169096.89,
+          "customer_count": 1024
+        },
+        "construction_tools_construction": {
+          "revenue": 156435.42,
+          "customer_count": 709
+        },
+        "construction_tools_lights": {
+          "revenue": 45938.34,
+          "customer_count": 232
+        },
+        "construction_tools_safety": {
+          "revenue": 42783.27,
+          "customer_count": 158
+        },
+        "cool_stuff": {
+          "revenue": 694367.65,
+          "customer_count": 3505
+        },
+        "costruction_tools_garden": {
+          "revenue": 28983.29,
+          "customer_count": 182
+        },
+        "costruction_tools_tools": {
+          "revenue": 17389.95,
+          "customer_count": 94
+        },
+        "diapers_and_hygiene": {
+          "revenue": 1759.27,
+          "customer_count": 25
+        },
+        "drinks": {
+          "revenue": 25403.95,
+          "customer_count": 269
+        },
+        "dvds_blu_ray": {
+          "revenue": 6888.56,
+          "customer_count": 56
+        },
+        "electronics": {
+          "revenue": 200485.15,
+          "customer_count": 2465
+        },
+        "fashio_female_clothing": {
+          "revenue": 3010.59,
+          "customer_count": 34
+        },
+        "fashion_bags_accessories": {
+          "revenue": 163444.66,
+          "customer_count": 1636
+        },
+        "fashion_childrens_clothes": {
+          "revenue": 618.94,
+          "customer_count": 7
+        },
+        "fashion_male_clothing": {
+          "revenue": 11566.2,
+          "customer_count": 100
+        },
+        "fashion_shoes": {
+          "revenue": 25328.51,
+          "customer_count": 219
+        },
+        "fashion_sport": {
+          "revenue": 2588.28,
+          "customer_count": 25
+        },
+        "fashion_underwear_beach": {
+          "revenue": 10636.61,
+          "customer_count": 113
+        },
+        "fixed_telephony": {
+          "revenue": 62904.76,
+          "customer_count": 206
+        },
+        "flowers": {
+          "revenue": 1598.91,
+          "customer_count": 29
+        },
+        "food": {
+          "revenue": 33257.83,
+          "customer_count": 421
+        },
+        "food_drink": {
+          "revenue": 18588.22,
+          "customer_count": 212
+        },
+        "furniture_bedroom": {
+          "revenue": 23003.9,
+          "customer_count": 82
+        },
+        "furniture_decor": {
+          "revenue": 821817.39,
+          "customer_count": 5858
+        },
+        "furniture_living_room": {
+          "revenue": 79294.86,
+          "customer_count": 385
+        },
+        "furniture_mattress_and_upholstery": {
+          "revenue": 5253.89,
+          "customer_count": 34
+        },
+        "garden_tools": {
+          "revenue": 558920.27,
+          "customer_count": 3328
+        },
+        "health_beauty": {
+          "revenue": 1375813.97,
+          "customer_count": 8326
+        },
+        "home_appliances": {
+          "revenue": 83823.64,
+          "customer_count": 628
+        },
+        "home_appliances_2": {
+          "revenue": 120171.98,
+          "customer_count": 220
+        },
+        "home_comfort_2": {
+          "revenue": 1114.58,
+          "customer_count": 22
+        },
+        "home_confort": {
+          "revenue": 62260.3,
+          "customer_count": 367
+        },
+        "home_construction": {
+          "revenue": 90779.15,
+          "customer_count": 456
+        },
+        "housewares": {
+          "revenue": 735219.58,
+          "customer_count": 5532
+        },
+        "industry_commerce_and_business": {
+          "revenue": 45850.66,
+          "customer_count": 225
+        },
+        "kitchen_dining_laundry_garden_furniture": {
+          "revenue": 56045.82,
+          "customer_count": 234
+        },
+        "la_cuisine": {
+          "revenue": 2036.75,
+          "customer_count": 11
+        },
+        "luggage_accessories": {
+          "revenue": 162994.52,
+          "customer_count": 987
+        },
+        "market_place": {
+          "revenue": 32501.58,
+          "customer_count": 266
+        },
+        "music": {
+          "revenue": 6635.99,
+          "customer_count": 34
+        },
+        "musical_instruments": {
+          "revenue": 206156.91,
+          "customer_count": 604
+        },
+        "office_furniture": {
+          "revenue": 326533.36,
+          "customer_count": 1219
+        },
+        "party_supplies": {
+          "revenue": 5274.46,
+          "customer_count": 38
+        },
+        "perfumery": {
+          "revenue": 427712.03,
+          "customer_count": 2985
+        },
+        "pet_shop": {
+          "revenue": 239281.62,
+          "customer_count": 1606
+        },
+        "security_and_services": {
+          "revenue": 324.51,
+          "customer_count": 2
+        },
+        "signaling_and_security": {
+          "revenue": 27227.74,
+          "customer_count": 134
+        },
+        "small_appliances": {
+          "revenue": 192421.05,
+          "customer_count": 605
+        },
+        "small_appliances_home_oven_and_coffee": {
+          "revenue": 49400.48,
+          "customer_count": 74
+        },
+        "sports_leisure": {
+          "revenue": 1068236.32,
+          "customer_count": 7111
+        },
+        "stationery": {
+          "revenue": 267000.47,
+          "customer_count": 2210
+        },
+        "tablets_printing_image": {
+          "revenue": 8462.52,
+          "customer_count": 75
+        },
+        "telephony": {
+          "revenue": 377126.9,
+          "customer_count": 4010
+        },
+        "toys": {
+          "revenue": 535108.63,
+          "customer_count": 3688
+        },
+        "unknown": {
+          "revenue": 203093.17,
+          "customer_count": 1384
+        },
+        "watches_gifts": {
+          "revenue": 1246085.8,
+          "customer_count": 5343
+        }
+      }
+    },
+    "repeat": {
+      "churn_proxy_rate": 0.8,
+      "total_revenue": 867061.28,
+      "customer_count": 2865,
+      "revenue_contribution_percent": 5.47,
+      "products": {
+        "agro_industry_and_commerce": {
+          "revenue": 1467.07,
+          "customer_count": 5
+        },
+        "air_conditioning": {
+          "revenue": 4157.95,
+          "customer_count": 18
+        },
+        "art": {
+          "revenue": 693.42,
+          "customer_count": 8
+        },
+        "arts_and_craftmanship": {
+          "revenue": 282.56,
+          "customer_count": 2
+        },
+        "audio": {
+          "revenue": 1874.55,
+          "customer_count": 14
+        },
+        "auto": {
+          "revenue": 28383.52,
+          "customer_count": 128
+        },
+        "baby": {
+          "revenue": 18900.04,
+          "customer_count": 113
+        },
+        "bed_bath_table": {
+          "revenue": 114725.1,
+          "customer_count": 586
+        },
+        "books_general_interest": {
+          "revenue": 1637.08,
+          "customer_count": 15
+        },
+        "books_imported": {
+          "revenue": 254.56,
+          "customer_count": 2
+        },
+        "books_technical": {
+          "revenue": 330.69,
+          "customer_count": 4
+        },
+        "christmas_supplies": {
+          "revenue": 366.8,
+          "customer_count": 7
+        },
+        "cine_photo": {
+          "revenue": 1128.78,
+          "customer_count": 3
+        },
+        "computers": {
+          "revenue": 7573.29,
+          "customer_count": 4
+        },
+        "computers_accessories": {
+          "revenue": 71626.12,
+          "customer_count": 279
+        },
+        "consoles_games": {
+          "revenue": 7640.13,
+          "customer_count": 32
+        },
+        "construction_tools_construction": {
+          "revenue": 8757.51,
+          "customer_count": 33
+        },
+        "construction_tools_lights": {
+          "revenue": 2725.46,
+          "customer_count": 12
+        },
+        "construction_tools_safety": {
+          "revenue": 1680.35,
+          "customer_count": 8
+        },
+        "cool_stuff": {
+          "revenue": 22887.27,
+          "customer_count": 106
+        },
+        "costruction_tools_garden": {
+          "revenue": 2044.0,
+          "customer_count": 9
+        },
+        "costruction_tools_tools": {
+          "revenue": 505.56,
+          "customer_count": 2
+        },
+        "diapers_and_hygiene": {
+          "revenue": 382.0,
+          "customer_count": 1
+        },
+        "drinks": {
+          "revenue": 2702.4,
+          "customer_count": 22
+        },
+        "dvds_blu_ray": {
+          "revenue": 227.25,
+          "customer_count": 1
+        },
+        "electronics": {
+          "revenue": 6339.91,
+          "customer_count": 75
+        },
+        "fashio_female_clothing": {
+          "revenue": 260.28,
+          "customer_count": 4
+        },
+        "fashion_bags_accessories": {
+          "revenue": 17499.49,
+          "customer_count": 154
+        },
+        "fashion_childrens_clothes": {
+          "revenue": 46.42,
+          "customer_count": 1
+        },
+        "fashion_male_clothing": {
+          "revenue": 1384.03,
+          "customer_count": 10
+        },
+        "fashion_shoes": {
+          "revenue": 3079.38,
+          "customer_count": 18
+        },
+        "fashion_sport": {
+          "revenue": 109.36,
+          "customer_count": 2
+        },
+        "fashion_underwear_beach": {
+          "revenue": 821.13,
+          "customer_count": 8
+        },
+        "fixed_telephony": {
+          "revenue": 1316.05,
+          "customer_count": 11
+        },
+        "food": {
+          "revenue": 3174.1,
+          "customer_count": 22
+        },
+        "food_drink": {
+          "revenue": 1000.22,
+          "customer_count": 11
+        },
+        "furniture_bedroom": {
+          "revenue": 1372.97,
+          "customer_count": 6
+        },
+        "furniture_decor": {
+          "revenue": 78750.62,
+          "customer_count": 451
+        },
+        "furniture_living_room": {
+          "revenue": 7137.75,
+          "customer_count": 28
+        },
+        "furniture_mattress_and_upholstery": {
+          "revenue": 744.65,
+          "customer_count": 4
+        },
+        "garden_tools": {
+          "revenue": 24746.26,
+          "customer_count": 156
+        },
+        "health_beauty": {
+          "revenue": 63837.36,
+          "customer_count": 345
+        },
+        "home_appliances": {
+          "revenue": 11089.89,
+          "customer_count": 74
+        },
+        "home_appliances_2": {
+          "revenue": 2509.18,
+          "customer_count": 8
+        },
+        "home_comfort_2": {
+          "revenue": 56.0,
+          "customer_count": 1
+        },
+        "home_confort": {
+          "revenue": 4812.97,
+          "customer_count": 29
+        },
+        "home_construction": {
+          "revenue": 5886.95,
+          "customer_count": 32
+        },
+        "housewares": {
+          "revenue": 41142.24,
+          "customer_count": 280
+        },
+        "industry_commerce_and_business": {
+          "revenue": 1703.63,
+          "customer_count": 8
+        },
+        "kitchen_dining_laundry_garden_furniture": {
+          "revenue": 2281.98,
+          "customer_count": 13
+        },
+        "la_cuisine": {
+          "revenue": 119.6,
+          "customer_count": 1
+        },
+        "luggage_accessories": {
+          "revenue": 7660.1,
+          "customer_count": 38
+        },
+        "market_place": {
+          "revenue": 1332.95,
+          "customer_count": 13
+        },
+        "music": {
+          "revenue": 88.87,
+          "customer_count": 4
+        },
+        "musical_instruments": {
+          "revenue": 3980.46,
+          "customer_count": 20
+        },
+        "office_furniture": {
+          "revenue": 15999.29,
+          "customer_count": 45
+        },
+        "party_supplies": {
+          "revenue": 38.69,
+          "customer_count": 1
+        },
+        "perfumery": {
+          "revenue": 25087.83,
+          "customer_count": 136
+        },
+        "pet_shop": {
+          "revenue": 14403.19,
+          "customer_count": 80
+        },
+        "signaling_and_security": {
+          "revenue": 789.31,
+          "customer_count": 5
+        },
+        "small_appliances": {
+          "revenue": 14247.78,
+          "customer_count": 22
+        },
+        "small_appliances_home_oven_and_coffee": {
+          "revenue": 793.09,
+          "customer_count": 1
+        },
+        "sports_leisure": {
+          "revenue": 85830.11,
+          "customer_count": 394
+        },
+        "stationery": {
+          "revenue": 10546.38,
+          "customer_count": 82
+        },
+        "tablets_printing_image": {
+          "revenue": 231.37,
+          "customer_count": 3
+        },
+        "telephony": {
+          "revenue": 13021.23,
+          "customer_count": 139
+        },
+        "toys": {
+          "revenue": 24364.02,
+          "customer_count": 151
+        },
+        "unknown": {
+          "revenue": 10091.67,
+          "customer_count": 77
+        },
+        "watches_gifts": {
+          "revenue": 54379.06,
+          "customer_count": 195
+        }
+      }
+    }
+  }
+}
