@@ -1,0 +1,134 @@
+{
+  "timestamp": "2026-08-25T09:34:40.732588+00:00",
+  "analysis_grains": {
+    "order": {
+      "rows": 99441,
+      "numeric_features": [
+        "order_item_count",
+        "total_freight_value",
+        "total_item_price",
+        "average_item_price",
+        "order_revenue",
+        "payment_record_count",
+        "review_score",
+        "review_count",
+        "delivery_days",
+        "delivery_delay_days",
+        "approval_delay_hours"
+      ],
+      "definition": "One row per order; items, payments, and reviews aggregated first."
+    },
+    "customer": {
+      "rows": 99441,
+      "numeric_features": [
+        "order_count",
+        "total_customer_spend",
+        "average_order_value",
+        "average_review_score",
+        "average_delivery_days",
+        "days_since_last_purchase"
+      ],
+      "definition": "One row per customer_id aggregated from order-level metrics."
+    }
+  },
+  "methods": {
+    "pearson": "Linear association; sensitive to outliers.",
+    "spearman": "Rank-based monotonic association; less sensitive to outliers.",
+    "strong_threshold": 0.7,
+    "redundant_feature_threshold": 0.8,
+    "minimum_pairwise_observations": 2
+  },
+  "strongest_relationships": [
+    {
+      "feature_a": "total_item_price",
+      "feature_b": "order_revenue",
+      "method": "pearson",
+      "correlation": 0.9959698733878193,
+      "absolute_correlation": 0.9959698733878193,
+      "strength": "strong"
+    },
+    {
+      "feature_a": "total_item_price",
+      "feature_b": "average_item_price",
+      "method": "pearson",
+      "correlation": 0.9331693361267265,
+      "absolute_correlation": 0.9331693361267265,
+      "strength": "strong"
+    },
+    {
+      "feature_a": "average_item_price",
+      "feature_b": "order_revenue",
+      "method": "pearson",
+      "correlation": 0.9211962096778622,
+      "absolute_correlation": 0.9211962096778622,
+      "strength": "strong"
+    },
+    {
+      "feature_a": "delivery_days",
+      "feature_b": "delivery_delay_days",
+      "method": "pearson",
+      "correlation": 0.6072209824364272,
+      "absolute_correlation": 0.6072209824364272,
+      "strength": "moderate_or_weak"
+    },
+    {
+      "feature_a": "total_freight_value",
+      "feature_b": "order_revenue",
+      "method": "pearson",
+      "correlation": 0.49268110206508237,
+      "absolute_correlation": 0.49268110206508237,
+      "strength": "moderate_or_weak"
+    },
+    {
+      "feature_a": "order_item_count",
+      "feature_b": "total_freight_value",
+      "method": "pearson",
+      "correlation": 0.4369409500727268,
+      "absolute_correlation": 0.4369409500727268,
+      "strength": "moderate_or_weak"
+    },
+    {
+      "feature_a": "total_freight_value",
+      "feature_b": "total_item_price",
+      "method": "pearson",
+      "correlation": 0.4127864197040796,
+      "absolute_correlation": 0.4127864197040796,
+      "strength": "moderate_or_weak"
+    },
+    {
+      "feature_a": "review_score",
+      "feature_b": "delivery_days",
+      "method": "pearson",
+      "correlation": -0.3343017220365596,
+      "absolute_correlation": 0.3343017220365596,
+      "strength": "moderate_or_weak"
+    },
+    {
+      "feature_a": "total_freight_value",
+      "feature_b": "average_item_price",
+      "method": "pearson",
+      "correlation": 0.3015288787189801,
+      "absolute_correlation": 0.3015288787189801,
+      "strength": "moderate_or_weak"
+    },
+    {
+      "feature_a": "review_score",
+      "feature_b": "delivery_delay_days",
+      "method": "pearson",
+      "correlation": -0.2666425452084388,
+      "absolute_correlation": 0.2666425452084388,
+      "strength": "moderate_or_weak"
+    }
+  ],
+  "correlation_caution": "Correlation means variables move together; it does not prove that one causes the other. Reverse causality, confounding variables, shared time trends, and mathematical relationships remain possible explanations.",
+  "domain_cautions": [
+    "Order count and total customer spend are mechanically related because spend accumulates across orders.",
+    "Delivery delay and review score may be associated, but seller, product, and customer factors may confound the relationship.",
+    "Missing delivery dates and reviews were preserved rather than globally imputed."
+  ],
+  "outputs": {
+    "analysis_data": "data/processed/analysis",
+    "reports": "output/correlation",
+    "figures": "output/correlation/figures"
+  }
+}
