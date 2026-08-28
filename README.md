@@ -43,6 +43,7 @@ uv run python scripts/deduplicate_data.py
 uv run python scripts/transform_datetime.py
 uv run python scripts/validate_merges.py
 uv run python scripts/investigate_anomalies.py
+uv run python scripts/define_kpis.py
 uv run python scripts/clean_data.py
 uv run python scripts/<analysis_script>.py
 uv run jupyter notebook
@@ -57,3 +58,4 @@ The `transform_datetime.py` script parses Olist order event dates with explicit 
 The `validate_merges.py` script validates the processed customer/order integration with an explicit one-to-one left join on `customer_id`, compares inner/left/right/outer row counts, exports unmatched records, and documents key cardinality under `output/merge_validation/`. Payment rows are aggregated by `order_id` before being joined to orders so payment multiplicity cannot create duplicate order rows or double-count revenue. Integrated views are written under `data/processed/integrated/`.
 
 The `investigate_anomalies.py` script performs a root-cause investigation on processed Olist data. It isolates unusual order-outcome dates and hours, analyzes payment type, customer state, product category, and order-status patterns, and writes auditable reports and figures under `output/root_cause/`. Because Olist does not include application error logs or payment-provider incidents, the workflow reports evidence and limitations without inventing a causal explanation.
+The `define_kpis.py` script formally defines six business KPIs (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio) — each with a documented formula, data source, target range, owner, and update frequency. It computes each KPI from the processed datasets, validates them against their target ranges, and exports a full JSON report and CSV summary under `output/kpi_report/`.

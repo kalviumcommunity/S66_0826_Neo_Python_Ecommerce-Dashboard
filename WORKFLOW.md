@@ -34,6 +34,8 @@ uv run python scripts/validate_merges.py
 
 # investigate time-window anomalies and document evidence-based hypotheses
 uv run python scripts/investigate_anomalies.py
+# compute and validate key performance indicators
+uv run python scripts/define_kpis.py
 
 # run the legacy/general cleaning workflow if needed
 uv run python scripts/clean_data.py
@@ -60,6 +62,7 @@ The date and time workflow reads the processed orders and payments tables, parse
 The merge-validation workflow reads from `data/processed/`, validates the one-to-one customer/order left join on `customer_id`, compares all four join types, exports unmatched records, and writes decisions under `output/merge_validation/`. It aggregates the many-side payment table by `order_id` before joining to the order-level data. Integrated outputs are written to `data/processed/integrated/`; source datasets are not modified.
 
 The root-cause workflow reads processed Olist orders, payments, customers, items, and products. It parses `order_purchase_timestamp` explicitly, uses delivered status as an operational fulfillment-success proxy, isolates low-success dates and hours, analyzes payment/state/category segments, creates crosstabs and figures, and writes an evidence-limited investigation report under `output/root_cause/`. Olist has no application error logs or payment-provider incident data, so the workflow does not invent an external cause and marks external validation as unavailable unless supplied separately.
+The KPI validation workflow reads from `data/processed/`, computes six platform-wide metrics (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio), compares each against its target range, and exports full JSON validation logs, a flat CSV summary, and a KPI catalogue template under `output/kpi_report/`.
 
 Sample output (excerpt)
 
