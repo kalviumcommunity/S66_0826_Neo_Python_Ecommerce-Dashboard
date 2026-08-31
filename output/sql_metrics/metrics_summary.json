@@ -1,0 +1,26 @@
+{
+  "pipeline": "Centralized SQL Metrics",
+  "database": "/Users/abdulrahmanshihabuddin/.gemini/antigravity-ide/scratch/S66_0826_Neo_Python_Ecommerce-Dashboard/data/analytics.db",
+  "metrics_computed": {
+    "monthly_active_users": {
+      "query_file": "monthly_active_users.sql",
+      "total_months": 25,
+      "peak_active_users_month": "2017-11",
+      "peak_monthly_active_users": 7430,
+      "avg_monthly_active_users": 3921.84
+    },
+    "revenue_by_segment": {
+      "query_file": "revenue_by_segment.sql",
+      "total_segments": 27,
+      "top_state": "sp",
+      "top_state_revenue": 5770266.19,
+      "top_state_share_pct": 37.41
+    },
+    "conversion_rate": {
+      "query_file": "conversion_rate.sql",
+      "total_months": 25,
+      "avg_fulfillment_rate_pct": 85.57,
+      "avg_cancellation_rate_pct": 10.54
+    }
+  }
+}

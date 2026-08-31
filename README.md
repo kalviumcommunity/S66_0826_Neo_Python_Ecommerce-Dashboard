@@ -46,6 +46,7 @@ uv run python scripts/analyze_correlations.py
 uv run python scripts/investigate_anomalies.py
 uv run python scripts/define_kpis.py
 uv run python scripts/database_integration.py
+uv run python scripts/compute_sql_metrics.py
 uv run python scripts/clean_data.py
 uv run python scripts/analyze_revenue_distribution.py
 uv run python scripts/<analysis_script>.py
@@ -66,3 +67,5 @@ The `analyze_revenue_distribution.py` script analyzes order-level `total_payment
 The `define_kpis.py` script formally defines six business KPIs (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio) — each with a documented formula, data source, target range, owner, and update frequency. It computes each KPI from the processed datasets, validates them against their target ranges, and exports a full JSON report and CSV summary under `output/kpi_report/`.
 
 The `database_integration.py` script writes all cleaned, processed Olist CSVs into structured SQLite tables in `data/analytics.db` using SQLAlchemy and Pandas. It validates table column schemas via sqlalchemy.inspect and executes verification aggregation queries, writing the audit details under `output/db_audit/`.
+
+The `compute_sql_metrics.py` script executes centralized, reusable SQL queries defined in `queries/` (Monthly Active Users, Revenue by Geographic Segment, Conversion & Fulfillment Rates) against the SQLite database. It exports standard metric CSVs and summary reports to `output/sql_metrics/`.
