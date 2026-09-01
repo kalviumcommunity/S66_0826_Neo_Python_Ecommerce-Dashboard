@@ -38,6 +38,8 @@ uv run python scripts/analyze_correlations.py
 uv run python scripts/investigate_anomalies.py
 # compute and validate key performance indicators
 uv run python scripts/define_kpis.py
+# execute SQL queries with WHERE, GROUP BY, HAVING, and ORDER BY
+uv run python scripts/run_sql_filtering.py
 
 # run the legacy/general cleaning workflow if needed
 uv run python scripts/clean_data.py
@@ -61,11 +63,13 @@ The deduplication workflow reads `data/processed/`, writes the confirmed geoloca
 
 The date and time workflow reads the processed orders and payments tables, parses Olist date columns with explicit formats, derives vectorized calendar features, calculates customer recency, aggregates weekly and day/hour activity, and writes derived files to `data/processed/temporal/`. Reports and figures are saved under `output/datetime/`. Because Olist source timestamps do not include timezone offsets, they remain timezone-naive and are not assumed to be UTC.
 
-The merge-validation workflow reads from `data/processed/`, validates the one-to-one customer/order left join on `customer_id`, compares all four join types, exports unmatched records, and writes decisions under `output/merge_validation/`. It aggregates the many-side payment table by `order_id` before joining to the order-level data. Integrated outputs are written to `data/processed/integrated/`; source datasets are not modified.
+The merge-validation workflow reads from `data/processed/`, validates the one-to-one customer/order left join on `customer_id`, compares all four join types, exports unmatched records, and documents key cardinality under `output/merge_validation/`. It aggregates the many-side payment table by `order_id` before joining to the order-level data. Integrated outputs are written to `data/processed/integrated/`; source datasets are not modified.
 
 The correlation workflow reads processed Olist tables, aggregates item/payment/review records to order level before joining, creates separate order- and customer-level features, calculates Pearson and Spearman matrices, and writes relationship reports and figures under `output/correlation/`. Strong correlations are flagged for interpretation or feature review, but no causal conclusions or automatic feature removal are made.
 The root-cause workflow reads processed Olist orders, payments, customers, items, and products. It parses `order_purchase_timestamp` explicitly, uses delivered status as an operational fulfillment-success proxy, isolates low-success dates and hours, analyzes payment/state/category segments, creates crosstabs and figures, and writes an evidence-limited investigation report under `output/root_cause/`. Olist has no application error logs or payment-provider incident data, so the workflow does not invent an external cause and marks external validation as unavailable unless supplied separately.
 The KPI validation workflow reads from `data/processed/`, computes six platform-wide metrics (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio), compares each against its target range, and exports full JSON validation logs, a flat CSV summary, and a KPI catalogue template under `output/kpi_report/`.
+
+The SQL filtering and grouping workflow executes queries utilizing `WHERE` (pre-aggregation row filtering), `GROUP BY` (dimensional grouping), `HAVING` (post-aggregation metric filtering), and `ORDER BY` (output sorting). It generates targeted operational insight CSVs and a JSON summary under `output/sql_filtering/`.
 
 Sample output (excerpt)
 

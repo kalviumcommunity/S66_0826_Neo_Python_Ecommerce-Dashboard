@@ -45,6 +45,7 @@ uv run python scripts/validate_merges.py
 uv run python scripts/analyze_correlations.py
 uv run python scripts/investigate_anomalies.py
 uv run python scripts/define_kpis.py
+uv run python scripts/run_sql_filtering.py
 uv run python scripts/clean_data.py
 uv run python scripts/analyze_revenue_distribution.py
 uv run python scripts/<analysis_script>.py
@@ -63,3 +64,5 @@ The `analyze_correlations.py` script builds separate order-level and customer-le
 The `investigate_anomalies.py` script performs a root-cause investigation on processed Olist data. It isolates unusual order-outcome dates and hours, analyzes payment type, customer state, product category, and order-status patterns, and writes auditable reports and figures under `output/root_cause/`. Because Olist does not include application error logs or payment-provider incidents, the workflow reports evidence and limitations without inventing a causal explanation.
 The `analyze_revenue_distribution.py` script analyzes order-level `total_payment_value`, computes descriptive statistics, skewness, excess kurtosis, percentiles, revenue concentration, order/customer segments, and writes plots and tables to `output/revenue_analysis/`.
 The `define_kpis.py` script formally defines six business KPIs (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio) — each with a documented formula, data source, target range, owner, and update frequency. It computes each KPI from the processed datasets, validates them against their target ranges, and exports a full JSON report and CSV summary under `output/kpi_report/`.
+
+The `run_sql_filtering.py` script executes SQL queries demonstrating pre-aggregation filtering (`WHERE`), dimension grouping (`GROUP BY`), post-aggregation metric thresholds (`HAVING`), and result sorting (`ORDER BY`). It exports targeted operational reports (high-volume underperforming sellers, top revenue product categories, high-volume operating months) to `output/sql_filtering/`.
