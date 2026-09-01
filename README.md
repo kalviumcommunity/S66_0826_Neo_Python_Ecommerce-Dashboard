@@ -46,6 +46,7 @@ uv run python scripts/analyze_correlations.py
 uv run python scripts/investigate_anomalies.py
 uv run python scripts/define_kpis.py
 uv run python scripts/run_sql_filtering.py
+uv run python scripts/validate_sql_joins.py
 uv run python scripts/clean_data.py
 uv run python scripts/analyze_revenue_distribution.py
 uv run python scripts/<analysis_script>.py
@@ -66,3 +67,6 @@ The `analyze_revenue_distribution.py` script analyzes order-level `total_payment
 The `define_kpis.py` script formally defines six business KPIs (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio) — each with a documented formula, data source, target range, owner, and update frequency. It computes each KPI from the processed datasets, validates them against their target ranges, and exports a full JSON report and CSV summary under `output/kpi_report/`.
 
 The `run_sql_filtering.py` script executes SQL queries demonstrating pre-aggregation filtering (`WHERE`), dimension grouping (`GROUP BY`), post-aggregation metric thresholds (`HAVING`), and result sorting (`ORDER BY`). It exports targeted operational reports (high-volume underperforming sellers, top revenue product categories, high-volume operating months) to `output/sql_filtering/`.
+
+The `validate_sql_joins.py` script executes multi-table relational joins (`INNER JOIN`, `LEFT JOIN`, and 1:N cardinality expansion) across customers, orders, items, payments, and reviews. It verifies pre- and post-join row counts, detects orphaned/unmatched keys, and writes validation reports and samples to `output/sql_joins/`.
+

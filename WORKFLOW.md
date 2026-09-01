@@ -40,6 +40,8 @@ uv run python scripts/investigate_anomalies.py
 uv run python scripts/define_kpis.py
 # execute SQL queries with WHERE, GROUP BY, HAVING, and ORDER BY
 uv run python scripts/run_sql_filtering.py
+# execute and validate multi-table relational joins and key cardinality
+uv run python scripts/validate_sql_joins.py
 
 # run the legacy/general cleaning workflow if needed
 uv run python scripts/clean_data.py
@@ -70,6 +72,8 @@ The root-cause workflow reads processed Olist orders, payments, customers, items
 The KPI validation workflow reads from `data/processed/`, computes six platform-wide metrics (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio), compares each against its target range, and exports full JSON validation logs, a flat CSV summary, and a KPI catalogue template under `output/kpi_report/`.
 
 The SQL filtering and grouping workflow executes queries utilizing `WHERE` (pre-aggregation row filtering), `GROUP BY` (dimensional grouping), `HAVING` (post-aggregation metric filtering), and `ORDER BY` (output sorting). It generates targeted operational insight CSVs and a JSON summary under `output/sql_filtering/`.
+
+The SQL join validation workflow performs relational `INNER JOIN`, `LEFT JOIN`, and 1:N cardinality expansion queries across multiple tables. It audits row count changes, validates key matches, detects unmatched/orphaned records, and saves reports and samples under `output/sql_joins/`.
 
 Sample output (excerpt)
 

@@ -1,0 +1,2 @@
+issue_type,entity_id,secondary_id,source_table
+orders_without_payments,bfbd0f9bdef84302105ad712db648a6c,86dc2ffce2dfff336de2f386a786e574,orders
