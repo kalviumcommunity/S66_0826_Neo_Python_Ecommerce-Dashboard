@@ -12,6 +12,9 @@ on:
 jobs:
   lint-build-quality:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
 
     steps:
       - name: Checkout
@@ -22,6 +25,7 @@ jobs:
         with:
           node-version: "24"
           cache: npm
+          cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -29,10 +33,10 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Built
+      - name: Build
         run: npm run build
 
-      - name: Run quality check(React docter)
+      - name: Run quality check (React Doctor)
         run: npx react-doctor@latest
 
   deploy:
@@ -44,5 +48,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy
-        run: echo "Deploy the application"
+      - name: Install Vercel CLI
+        run: npm install --global vercel
+
+      - name: Deploy to Vercel
+        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
