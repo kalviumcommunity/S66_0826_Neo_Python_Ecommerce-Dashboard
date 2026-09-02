@@ -10,6 +10,14 @@ Run commands below from `frontend`. Validate changes with `npm run lint`, `npx t
 
 ## Getting Started
 
+Use Node.js 24 and npm 11.18.0 (the version pinned in CI). To install with that npm version without changing your global npm installation:
+
+```bash
+npx --yes --package=npm@11.18.0 npm ci
+```
+
+When dependency changes require a lockfile update, use `npx --yes --package=npm@11.18.0 npm install --package-lock-only`, then verify with the clean-install command above. Older npm versions can accept incomplete optional dependency entries that newer CI rejects. Commit `package-lock.json` alongside dependency changes.
+
 First, run the development server:
 
 ```bash
