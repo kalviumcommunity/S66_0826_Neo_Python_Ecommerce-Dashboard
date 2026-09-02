@@ -8,3 +8,4 @@ output/*.pdf
 *.egg-info/
 dist/
 build/
+data/*.db
