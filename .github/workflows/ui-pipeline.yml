@@ -10,6 +10,9 @@ on:
 
 
 jobs:
+  python-ci:
+    uses: ./.github/workflows/ci-python.yml
+
   lint-build-quality:
     runs-on: ubuntu-latest
     defaults:
@@ -45,7 +48,7 @@ jobs:
         run: npx react-doctor@latest
 
   deploy:
-    needs: lint-build-quality
+    needs: [lint-build-quality, python-ci]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
