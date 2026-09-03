@@ -1,0 +1,2268 @@
+{
+  "pipeline": "Anomaly Detection & Logging",
+  "total_anomalies_detected": 226,
+  "threshold_violations": 189,
+  "statistical_anomalies": 37,
+  "anomalies": [
+    {
+      "date": "2016-10-11",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-11",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-12",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-12",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-13",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-13",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-14",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-14",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-15",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-15",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-16",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-16",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-17",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-17",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-18",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-18",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-19",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-19",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-20",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-20",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-21",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-21",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-22",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-22",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-23",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-23",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-24",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-24",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-25",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-25",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-26",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-26",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-27",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-27",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-28",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-28",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-29",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-29",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-30",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-30",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-10-31",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-10-31",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-01",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-01",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-02",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-02",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-03",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-03",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-04",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-04",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-05",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-05",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-06",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-06",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-07",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-07",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-08",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-08",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-09",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-09",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-10",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-10",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-11",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-11",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-12",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-12",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-13",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-13",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-14",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-14",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-15",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-15",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-16",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-16",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-17",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-17",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-18",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-18",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-19",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-19",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-20",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-20",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-21",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-21",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-22",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-22",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-23",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-23",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-24",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-24",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-25",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-25",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-26",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-26",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-27",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-27",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-28",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-28",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-29",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-29",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-11-30",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-11-30",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-01",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-01",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-02",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-02",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-03",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-03",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-04",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-04",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-05",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-05",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-06",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-06",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-07",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-07",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-08",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-08",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-09",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-09",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-10",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-10",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-11",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-11",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-12",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-12",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-13",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-13",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-14",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-14",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-15",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-15",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-16",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-16",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-17",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-17",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-18",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-18",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-19",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-19",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-20",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-20",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-21",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-21",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-22",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-22",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-23",
+      "metric": "order_count",
+      "observed_value": 1,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-23",
+      "metric": "revenue",
+      "observed_value": 19.62,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-24",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-24",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-25",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-25",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-26",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-26",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-27",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-27",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-28",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-28",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-29",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-29",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-30",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-30",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2016-12-31",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2016-12-31",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-01",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-01",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-02",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-02",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-03",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-03",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-04",
+      "metric": "order_count",
+      "observed_value": 0,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-04",
+      "metric": "revenue",
+      "observed_value": 0.0,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-05",
+      "metric": "revenue",
+      "observed_value": 707.27,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-06",
+      "metric": "order_count",
+      "observed_value": 4,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-06",
+      "metric": "revenue",
+      "observed_value": 988.28,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-07",
+      "metric": "order_count",
+      "observed_value": 4,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-07",
+      "metric": "revenue",
+      "observed_value": 1447.99,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Warning",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-08",
+      "metric": "order_count",
+      "observed_value": 6,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-08",
+      "metric": "revenue",
+      "observed_value": 809.63,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-09",
+      "metric": "order_count",
+      "observed_value": 5,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-09",
+      "metric": "revenue",
+      "observed_value": 774.51,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-10",
+      "metric": "order_count",
+      "observed_value": 6,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Critical",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-10",
+      "metric": "revenue",
+      "observed_value": 1571.17,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Warning",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-11",
+      "metric": "order_count",
+      "observed_value": 12,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Warning",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-12",
+      "metric": "order_count",
+      "observed_value": 13,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Warning",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-13",
+      "metric": "order_count",
+      "observed_value": 11,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Warning",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-01-14",
+      "metric": "revenue",
+      "observed_value": 1507.36,
+      "detection_method": "threshold",
+      "expected_range": ">= 2000.0",
+      "z_score": null,
+      "severity": "Warning",
+      "details": "Daily revenue fell below threshold of 2000.0 BRL."
+    },
+    {
+      "date": "2017-01-15",
+      "metric": "order_count",
+      "observed_value": 14,
+      "detection_method": "threshold",
+      "expected_range": ">= 15",
+      "z_score": null,
+      "severity": "Warning",
+      "details": "Daily orders fell below threshold of 15."
+    },
+    {
+      "date": "2017-11-24",
+      "metric": "revenue",
+      "observed_value": 178450.11,
+      "detection_method": "threshold",
+      "expected_range": "<= 120000.0",
+      "z_score": null,
+      "severity": "Warning",
+      "details": "Daily revenue exceeded high threshold of 120000.0 BRL."
+    },
+    {
+      "date": "2016-10-02",
+      "metric": "order_count",
+      "observed_value": 1,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 0.66",
+      "z_score": 3.47,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.47)."
+    },
+    {
+      "date": "2016-10-02",
+      "metric": "revenue",
+      "observed_value": 109.34,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 72.1",
+      "z_score": 3.47,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.47)."
+    },
+    {
+      "date": "2016-10-03",
+      "metric": "order_count",
+      "observed_value": 8,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 5.34",
+      "z_score": 3.45,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.45)."
+    },
+    {
+      "date": "2016-10-03",
+      "metric": "revenue",
+      "observed_value": 595.14,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 401.21",
+      "z_score": 3.42,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.42)."
+    },
+    {
+      "date": "2016-10-04",
+      "metric": "order_count",
+      "observed_value": 60,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 40.11",
+      "z_score": 3.44,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.44)."
+    },
+    {
+      "date": "2016-10-04",
+      "metric": "revenue",
+      "observed_value": 11295.48,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 7475.96",
+      "z_score": 3.47,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.47)."
+    },
+    {
+      "date": "2016-12-23",
+      "metric": "order_count",
+      "observed_value": 1,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 0.66",
+      "z_score": 3.47,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.47)."
+    },
+    {
+      "date": "2016-12-23",
+      "metric": "revenue",
+      "observed_value": 19.62,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 12.94",
+      "z_score": 3.47,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.47)."
+    },
+    {
+      "date": "2017-01-05",
+      "metric": "order_count",
+      "observed_value": 32,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 21.14",
+      "z_score": 3.47,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.47)."
+    },
+    {
+      "date": "2017-01-05",
+      "metric": "revenue",
+      "observed_value": 707.27,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 467.05",
+      "z_score": 3.47,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.47)."
+    },
+    {
+      "date": "2017-01-06",
+      "metric": "revenue",
+      "observed_value": 988.28,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 809.16",
+      "z_score": 2.77,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.77)."
+    },
+    {
+      "date": "2017-01-07",
+      "metric": "revenue",
+      "observed_value": 1447.99,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 1257.83",
+      "z_score": 2.6,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.6)."
+    },
+    {
+      "date": "2017-01-11",
+      "metric": "revenue",
+      "observed_value": 3062.33,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 2637.91",
+      "z_score": 2.67,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.67)."
+    },
+    {
+      "date": "2017-01-23",
+      "metric": "revenue",
+      "observed_value": 7553.89,
+      "detection_method": "statistical_zscore",
+      "expected_range": "185.56 to 6936.1",
+      "z_score": 2.6,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.6)."
+    },
+    {
+      "date": "2017-01-25",
+      "metric": "order_count",
+      "observed_value": 62,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 57.73",
+      "z_score": 2.52,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.52)."
+    },
+    {
+      "date": "2017-01-25",
+      "metric": "revenue",
+      "observed_value": 10340.19,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 9618.49",
+      "z_score": 2.51,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.51)."
+    },
+    {
+      "date": "2017-01-26",
+      "metric": "order_count",
+      "observed_value": 85,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 76.41",
+      "z_score": 2.64,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.64)."
+    },
+    {
+      "date": "2017-01-26",
+      "metric": "revenue",
+      "observed_value": 15111.63,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 13311.76",
+      "z_score": 2.7,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.7)."
+    },
+    {
+      "date": "2017-02-07",
+      "metric": "order_count",
+      "observed_value": 111,
+      "detection_method": "statistical_zscore",
+      "expected_range": "20.65 to 110.07",
+      "z_score": 2.25,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.25)."
+    },
+    {
+      "date": "2017-02-28",
+      "metric": "revenue",
+      "observed_value": 12582.52,
+      "detection_method": "statistical_zscore",
+      "expected_range": "3592.25 to 12365.29",
+      "z_score": 2.31,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.31)."
+    },
+    {
+      "date": "2017-03-01",
+      "metric": "order_count",
+      "observed_value": 95,
+      "detection_method": "statistical_zscore",
+      "expected_range": "22.22 to 85.64",
+      "z_score": 2.85,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.85)."
+    },
+    {
+      "date": "2017-03-01",
+      "metric": "revenue",
+      "observed_value": 14654.69,
+      "detection_method": "statistical_zscore",
+      "expected_range": "2563.99 to 14339.72",
+      "z_score": 2.32,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.32)."
+    },
+    {
+      "date": "2017-04-06",
+      "metric": "revenue",
+      "observed_value": 25242.81,
+      "detection_method": "statistical_zscore",
+      "expected_range": "3403.25 to 25131.48",
+      "z_score": 2.22,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.22)."
+    },
+    {
+      "date": "2017-05-15",
+      "metric": "order_count",
+      "observed_value": 154,
+      "detection_method": "statistical_zscore",
+      "expected_range": "75.74 to 152.97",
+      "z_score": 2.26,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.26)."
+    },
+    {
+      "date": "2017-06-21",
+      "metric": "order_count",
+      "observed_value": 35,
+      "detection_method": "statistical_zscore",
+      "expected_range": "36.9 to 172.1",
+      "z_score": -2.26,
+      "severity": "Warning",
+      "details": "Significant drop (Z-score: -2.26)."
+    },
+    {
+      "date": "2017-08-29",
+      "metric": "revenue",
+      "observed_value": 37025.7,
+      "detection_method": "statistical_zscore",
+      "expected_range": "6065.71 to 35196.82",
+      "z_score": 2.48,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.48)."
+    },
+    {
+      "date": "2017-11-06",
+      "metric": "revenue",
+      "observed_value": 33149.61,
+      "detection_method": "statistical_zscore",
+      "expected_range": "15853.25 to 31842.37",
+      "z_score": 2.56,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.56)."
+    },
+    {
+      "date": "2017-11-20",
+      "metric": "revenue",
+      "observed_value": 50074.61,
+      "detection_method": "statistical_zscore",
+      "expected_range": "14041.75 to 44471.62",
+      "z_score": 3.01,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.01)."
+    },
+    {
+      "date": "2017-11-23",
+      "metric": "order_count",
+      "observed_value": 277,
+      "detection_method": "statistical_zscore",
+      "expected_range": "115.14 to 272.14",
+      "z_score": 2.34,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.34)."
+    },
+    {
+      "date": "2017-11-24",
+      "metric": "order_count",
+      "observed_value": 1166,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 840.67",
+      "z_score": 3.44,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.44)."
+    },
+    {
+      "date": "2017-11-24",
+      "metric": "revenue",
+      "observed_value": 178450.11,
+      "detection_method": "statistical_zscore",
+      "expected_range": "0 to 130955.18",
+      "z_score": 3.39,
+      "severity": "Critical",
+      "details": "Significant spike (Z-score: 3.39)."
+    },
+    {
+      "date": "2018-01-03",
+      "metric": "revenue",
+      "observed_value": 36746.08,
+      "detection_method": "statistical_zscore",
+      "expected_range": "385.64 to 36063.96",
+      "z_score": 2.28,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.28)."
+    },
+    {
+      "date": "2018-02-26",
+      "metric": "revenue",
+      "observed_value": 50115.01,
+      "detection_method": "statistical_zscore",
+      "expected_range": "21254.84 to 50032.74",
+      "z_score": 2.21,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.21)."
+    },
+    {
+      "date": "2018-06-11",
+      "metric": "order_count",
+      "observed_value": 294,
+      "detection_method": "statistical_zscore",
+      "expected_range": "94.65 to 286.49",
+      "z_score": 2.37,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.37)."
+    },
+    {
+      "date": "2018-06-11",
+      "metric": "revenue",
+      "observed_value": 57345.56,
+      "detection_method": "statistical_zscore",
+      "expected_range": "16137.34 to 52145.31",
+      "z_score": 2.84,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.84)."
+    },
+    {
+      "date": "2018-07-18",
+      "metric": "order_count",
+      "observed_value": 305,
+      "detection_method": "statistical_zscore",
+      "expected_range": "35.21 to 292.65",
+      "z_score": 2.41,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.41)."
+    },
+    {
+      "date": "2018-08-06",
+      "metric": "revenue",
+      "observed_value": 65860.43,
+      "detection_method": "statistical_zscore",
+      "expected_range": "25490.75 to 64483.14",
+      "z_score": 2.36,
+      "severity": "Warning",
+      "details": "Significant spike (Z-score: 2.36)."
+    }
+  ]
+}

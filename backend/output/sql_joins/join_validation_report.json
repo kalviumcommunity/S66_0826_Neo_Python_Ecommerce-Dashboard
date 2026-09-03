@@ -1,0 +1,50 @@
+{
+  "pipeline": "SQL Joins & Integrity Validation",
+  "database": "/Users/abdulrahmanshihabuddin/.gemini/antigravity-ide/scratch/S66_0826_Neo_Python_Ecommerce-Dashboard/backend/data/analytics.db",
+  "base_table_row_counts": {
+    "customers_count": 99441,
+    "orders_count": 99441,
+    "order_items_count": 112650,
+    "order_payments_count": 103886,
+    "order_reviews_count": 99224
+  },
+  "join_scenarios": [
+    {
+      "join_scenario": "customers_to_orders",
+      "join_type": "INNER JOIN",
+      "result_rows": 99441,
+      "distinct_left_keys": 99441,
+      "distinct_right_keys": 99441
+    },
+    {
+      "join_scenario": "customers_to_orders",
+      "join_type": "LEFT JOIN",
+      "result_rows": 99441,
+      "distinct_left_keys": 99441,
+      "distinct_right_keys": 99441
+    },
+    {
+      "join_scenario": "orders_to_order_items",
+      "join_type": "INNER JOIN (1:N multiplicity)",
+      "result_rows": 112650,
+      "distinct_left_keys": 98666,
+      "distinct_right_keys": 21
+    },
+    {
+      "join_scenario": "orders_to_order_items",
+      "join_type": "LEFT JOIN (1:N multiplicity)",
+      "result_rows": 113425,
+      "distinct_left_keys": 99441,
+      "distinct_right_keys": 21
+    }
+  ],
+  "unmatched_records_found": 1,
+  "unmatched_breakdown": {
+    "orders_without_payments": 1
+  },
+  "cardinality_insights": {
+    "customers_to_orders": "Strict 1:1 match (99,441 rows for both INNER and LEFT joins; 0 unmatched customers).",
+    "orders_to_order_items": "1:N multiplicity (99,441 orders expand to 112,650 item rows due to multi-item orders).",
+    "orders_to_payments": "Total orders without payment records: 1."
+  }
+}
