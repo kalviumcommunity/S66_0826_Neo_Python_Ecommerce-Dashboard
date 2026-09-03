@@ -1,22 +1,21 @@
 import json
 import os
 from datetime import datetime
+from pathlib import Path
 
 import chardet
 import pandas as pd
 
 
-SAMPLE_FILE = "data/processed/olist_order_items_dataset.csv"
+BACKEND_ROOT = Path(__file__).resolve().parents[2]
+SAMPLE_FILE = str(BACKEND_ROOT / "data/processed/olist_sellers_dataset.csv")
 EXPECTED_COLUMNS = [
-    "order_id",
-    "order_item_id",
-    "product_id",
     "seller_id",
-    "shipping_limit_date",
-    "price",
-    "freight_value",
+    "seller_zip_code_prefix",
+    "seller_city",
+    "seller_state",
 ]
-OUTPUT_REPORT = "output/validation_report/olist_order_items_intake_report.json"
+OUTPUT_REPORT = str(BACKEND_ROOT / "output/validation_report/olist_sellers_intake_report.json")
 
 
 def validate_file_exists(filepath):

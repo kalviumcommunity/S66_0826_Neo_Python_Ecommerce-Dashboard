@@ -15,7 +15,10 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from scripts.ingest_data import DATASET_DTYPES
+if __package__:
+    from .ingest_data import DATASET_DTYPES
+else:  # Direct execution: python scripts/<script>.py
+    from ingest_data import DATASET_DTYPES
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]

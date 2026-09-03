@@ -1,33 +1,22 @@
 import json
 import os
 from datetime import datetime
+from pathlib import Path
 
 import chardet
 import pandas as pd
 
 
-SAMPLE_FILE = "data/processed/olist_products_dataset.csv"
+BACKEND_ROOT = Path(__file__).resolve().parents[2]
+SAMPLE_FILE = str(BACKEND_ROOT / "data/processed/olist_geolocation_dataset.csv")
 EXPECTED_COLUMNS = [
-    "product_id",
-    "product_category_name",
-    "product_name_lenght",
-    "product_description_lenght",
-    "product_photos_qty",
-    "product_weight_g",
-    "product_length_cm",
-    "product_height_cm",
-    "product_width_cm",
-    "product_category_name_missing",
-    "product_name_lenght_missing",
-    "product_description_lenght_missing",
-    "product_photos_qty_missing",
-    "product_weight_g_missing",
-    "product_length_cm_missing",
-    "product_height_cm_missing",
-    "product_width_cm_missing",
-    "product_category_name_analysis",
+    "geolocation_zip_code_prefix",
+    "geolocation_lat",
+    "geolocation_lng",
+    "geolocation_city",
+    "geolocation_state",
 ]
-OUTPUT_REPORT = "output/validation_report/olist_products_intake_report.json"
+OUTPUT_REPORT = str(BACKEND_ROOT / "output/validation_report/olist_geolocation_intake_report.json")
 
 
 def validate_file_exists(filepath):

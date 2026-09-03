@@ -1,6 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Neo — Seller Risk & Trust Dashboard
+
+Next.js port of the supplied Olist seller risk dashboard. The original components, charts, styling, and sample seller records live in `features/seller-risk`; `app/page.tsx` renders the dashboard.
+
+Includes operational overview charts, searchable/filterable seller directory, seller detail tabs, review filters, investigation flagging, and CSV/JSON exports.
+
+This is a mock-data frontend. Flags exist only in memory and reset on refresh. Flagging does not hold payouts, notify a team, or create a backend investigation, despite the reference UI's demonstration copy. Marketplace summary metrics describe the reference dataset; the directory contains 10 example sellers.
+
+Run commands below from `frontend`. Validate changes with `npm run lint`, `npx tsc --noEmit`, and `npm run build`.
 
 ## Getting Started
+
+Use Node.js 24 and npm 11.18.0 (the version pinned in CI). To install with that npm version without changing your global npm installation:
+
+```bash
+npx --yes --package=npm@11.18.0 npm ci
+```
+
+When dependency changes require a lockfile update, use `npx --yes --package=npm@11.18.0 npm install --package-lock-only`, then verify with the clean-install command above. Older npm versions can accept incomplete optional dependency entries that newer CI rejects. Commit `package-lock.json` alongside dependency changes.
 
 First, run the development server:
 
@@ -18,7 +34,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses `next/font` to self-host Inter and JetBrains Mono, matching the reference typography. The first build requires access to Google Fonts to download them.
 
 ## Learn More
 

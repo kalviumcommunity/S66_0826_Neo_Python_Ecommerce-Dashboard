@@ -5,7 +5,7 @@ Purpose
 
 Prerequisites
 - `uv` in PATH and project dependencies installed (see `pyproject.toml`).
-- Run from the repository root.
+- Run from the `backend/` directory (`cd backend` from the repository root).
 - Recommended: use the pinned Python runtime (3.14).
 
 Quick commands
@@ -80,7 +80,7 @@ Sample output (excerpt)
 ```
 Starting data cleaning workflow...
 Processing olist_customers_dataset.csv...
-✓ Saved 99441 records to /path/to/project/output/olist_customers_dataset.csv
+✓ Saved 99441 records to /path/to/project/backend/output/olist_customers_dataset.csv
 ...
 Workflow completed successfully.
 ```
@@ -92,7 +92,7 @@ Troubleshooting
 uv run python -c "import pandas; import numpy; print(pandas.__version__, numpy.__version__)"
 ```
 
-- Segfaults/import crashes: pin to 3.13 and `uv sync`.
+- Segfaults/import crashes: recreate the backend environment with the project's required Python 3.14 runtime.
 - No output files: confirm `data/ingested/` contains CSVs and run `scripts/ingest_data.py` first.
 
 Save sample output
