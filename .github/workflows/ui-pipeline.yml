@@ -59,5 +59,33 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel
 
+      - name: Verify Vercel project access (read-only)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          for name in VERCEL_TOKEN VERCEL_ORG_ID VERCEL_PROJECT_ID; do
+            if [ -z "${!name}" ]; then
+              echo "::error::$name is missing or empty."
+              exit 1
+            fi
+          done
+
+          status=$(curl --silent --show-error --output /dev/null \
+            --connect-timeout 15 --max-time 60 \
+            --write-out "%{http_code}" \
+            --header "Authorization: Bearer $VERCEL_TOKEN" \
+            "https://api.vercel.com/v9/projects/${VERCEL_PROJECT_ID}?teamId=${VERCEL_ORG_ID}")
+          echo "Vercel project access: HTTP $status"
+          if [ "$status" != "200" ]; then
+            echo "::error::Vercel project access failed; deployment has been stopped."
+            exit 1
+          fi
+
       - name: Deploy to Vercel
-        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel --prod --yes --token="$VERCEL_TOKEN"
