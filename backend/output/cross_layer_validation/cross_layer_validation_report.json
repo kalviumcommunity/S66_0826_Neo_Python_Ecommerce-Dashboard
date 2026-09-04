@@ -1,0 +1,335 @@
+{
+  "validation_timestamp": "2026-09-04T08:32:38.403712+00:00",
+  "overall_status": "PASSED",
+  "tolerance_specifications": {
+    "count_tolerance": 0,
+    "financial_amount_tolerance": 0.05,
+    "ratio_tolerance": 0.001
+  },
+  "tests": [
+    {
+      "test_name": "Order Status Distribution",
+      "passed": true,
+      "max_absolute_drift": 0,
+      "status_categories_checked": 8,
+      "discrepancies": [],
+      "comparison_sample": [
+        {
+          "order_status": "delivered",
+          "order_count_sql": 96478,
+          "order_count_python": 96478,
+          "discrepancy": 0
+        },
+        {
+          "order_status": "shipped",
+          "order_count_sql": 1107,
+          "order_count_python": 1107,
+          "discrepancy": 0
+        },
+        {
+          "order_status": "canceled",
+          "order_count_sql": 625,
+          "order_count_python": 625,
+          "discrepancy": 0
+        },
+        {
+          "order_status": "unavailable",
+          "order_count_sql": 609,
+          "order_count_python": 609,
+          "discrepancy": 0
+        },
+        {
+          "order_status": "invoiced",
+          "order_count_sql": 314,
+          "order_count_python": 314,
+          "discrepancy": 0
+        },
+        {
+          "order_status": "processing",
+          "order_count_sql": 301,
+          "order_count_python": 301,
+          "discrepancy": 0
+        },
+        {
+          "order_status": "created",
+          "order_count_sql": 5,
+          "order_count_python": 5,
+          "discrepancy": 0
+        },
+        {
+          "order_status": "approved",
+          "order_count_sql": 2,
+          "order_count_python": 2,
+          "discrepancy": 0
+        }
+      ]
+    },
+    {
+      "test_name": "Monthly Revenue & Order Volume",
+      "passed": true,
+      "max_order_drift": 0,
+      "max_revenue_drift": 0.0,
+      "months_evaluated": 24,
+      "discrepancies": [],
+      "comparison_sample": [
+        {
+          "order_month": "2016-09",
+          "total_orders_sql": 2,
+          "total_revenue_sql": 136.23,
+          "avg_payment_value_sql": 68.11,
+          "total_orders_python": 2,
+          "total_revenue_python": 136.23,
+          "avg_payment_value_python": 68.11,
+          "order_diff": 0,
+          "revenue_diff": 0.0,
+          "avg_payment_diff": 0.0
+        },
+        {
+          "order_month": "2016-10",
+          "total_orders_sql": 300,
+          "total_revenue_sql": 53915.5,
+          "avg_payment_value_sql": 179.72,
+          "total_orders_python": 300,
+          "total_revenue_python": 53915.5,
+          "avg_payment_value_python": 179.72,
+          "order_diff": 0,
+          "revenue_diff": 0.0,
+          "avg_payment_diff": 0.0
+        },
+        {
+          "order_month": "2016-12",
+          "total_orders_sql": 1,
+          "total_revenue_sql": 19.62,
+          "avg_payment_value_sql": 19.62,
+          "total_orders_python": 1,
+          "total_revenue_python": 19.62,
+          "avg_payment_value_python": 19.62,
+          "order_diff": 0,
+          "revenue_diff": 0.0,
+          "avg_payment_diff": 0.0
+        },
+        {
+          "order_month": "2017-01",
+          "total_orders_sql": 797,
+          "total_revenue_sql": 138119.76,
+          "avg_payment_value_sql": 173.3,
+          "total_orders_python": 797,
+          "total_revenue_python": 138119.76,
+          "avg_payment_value_python": 173.3,
+          "order_diff": 0,
+          "revenue_diff": 0.0,
+          "avg_payment_diff": 0.0
+        },
+        {
+          "order_month": "2017-02",
+          "total_orders_sql": 1763,
+          "total_revenue_sql": 289081.01,
+          "avg_payment_value_sql": 163.97,
+          "total_orders_python": 1763,
+          "total_revenue_python": 289081.01,
+          "avg_payment_value_python": 163.97,
+          "order_diff": 0,
+          "revenue_diff": 0.0,
+          "avg_payment_diff": 0.0
+        },
+        {
+          "order_month": "2017-03",
+          "total_orders_sql": 2649,
+          "total_revenue_sql": 442406.37,
+          "avg_payment_value_sql": 167.01,
+          "total_orders_python": 2649,
+          "total_revenue_python": 442406.37,
+          "avg_payment_value_python": 167.01,
+          "order_diff": 0,
+          "revenue_diff": 0.0,
+          "avg_payment_diff": 0.0
+        },
+        {
+          "order_month": "2017-04",
+          "total_orders_sql": 2386,
+          "total_revenue_sql": 409846.01,
+          "avg_payment_value_sql": 171.77,
+          "total_orders_python": 2386,
+          "total_revenue_python": 409846.01,
+          "avg_payment_value_python": 171.77,
+          "order_diff": 0,
+          "revenue_diff": 0.0,
+          "avg_payment_diff": 0.0
+        },
+        {
+          "order_month": "2017-05",
+          "total_orders_sql": 3671,
+          "total_revenue_sql": 588529.96,
+          "avg_payment_value_sql": 160.32,
+          "total_orders_python": 3671,
+          "total_revenue_python": 588529.96,
+          "avg_payment_value_python": 160.32,
+          "order_diff": 0,
+          "revenue_diff": 0.0,
+          "avg_payment_diff": 0.0
+        },
+        {
+          "order_month": "2017-06",
+          "total_orders_sql": 3229,
+          "total_revenue_sql": 507302.62,
+          "avg_payment_value_sql": 157.11,
+          "total_orders_python": 3229,
+          "total_revenue_python": 507302.62,
+          "avg_payment_value_python": 157.11,
+          "order_diff": 0,
+          "revenue_diff": 0.0,
+          "avg_payment_diff": 0.0
+        },
+        {
+          "order_month": "2017-07",
+          "total_orders_sql": 3998,
+          "total_revenue_sql": 585331.36,
+          "avg_payment_value_sql": 146.41,
+          "total_orders_python": 3998,
+          "total_revenue_python": 585331.36,
+          "avg_payment_value_python": 146.41,
+          "order_diff": 0,
+          "revenue_diff": 0.0,
+          "avg_payment_diff": 0.0
+        }
+      ]
+    },
+    {
+      "test_name": "Seller KPIs (Orders, Sales, Reviews)",
+      "passed": true,
+      "max_order_drift": 0,
+      "max_sales_drift": 0.0,
+      "max_review_score_drift": 0.0,
+      "sellers_evaluated": 200,
+      "discrepancies": [],
+      "comparison_sample": [
+        {
+          "seller_id": "6560211a19b47992c3666cc44a7e94c0",
+          "total_orders_sql": 1819,
+          "total_sales_sql": 120702.83,
+          "avg_review_score_sql": 3.95,
+          "total_orders_python": 1819,
+          "total_sales_python": 120702.83,
+          "avg_review_score_python": 3.95,
+          "order_diff": 0,
+          "sales_diff": 0.0,
+          "review_diff": 0.0
+        },
+        {
+          "seller_id": "4a3ca9315b744ce9f8e9374361493884",
+          "total_orders_sql": 1772,
+          "total_sales_sql": 196882.12,
+          "avg_review_score_sql": 3.83,
+          "total_orders_python": 1772,
+          "total_sales_python": 196882.12,
+          "avg_review_score_python": 3.83,
+          "order_diff": 0,
+          "sales_diff": 0.0,
+          "review_diff": 0.0
+        },
+        {
+          "seller_id": "cc419e0650a3c5ba77189a1882b7556a",
+          "total_orders_sql": 1651,
+          "total_sales_sql": 101090.96,
+          "avg_review_score_sql": 4.14,
+          "total_orders_python": 1651,
+          "total_sales_python": 101090.96,
+          "avg_review_score_python": 4.14,
+          "order_diff": 0,
+          "sales_diff": 0.0,
+          "review_diff": 0.0
+        },
+        {
+          "seller_id": "1f50f920176fa81dab994f9023523100",
+          "total_orders_sql": 1399,
+          "total_sales_sql": 106655.71,
+          "avg_review_score_sql": 3.99,
+          "total_orders_python": 1399,
+          "total_sales_python": 106655.71,
+          "avg_review_score_python": 3.99,
+          "order_diff": 0,
+          "sales_diff": 0.0,
+          "review_diff": 0.0
+        },
+        {
+          "seller_id": "da8622b14eb17ae2831f4ac5b9dab84a",
+          "total_orders_sql": 1311,
+          "total_sales_sql": 159816.87,
+          "avg_review_score_sql": 4.07,
+          "total_orders_python": 1311,
+          "total_sales_python": 159816.87,
+          "avg_review_score_python": 4.07,
+          "order_diff": 0,
+          "sales_diff": 0.0,
+          "review_diff": 0.0
+        },
+        {
+          "seller_id": "955fee9216a65b617aa5c0531780ce60",
+          "total_orders_sql": 1261,
+          "total_sales_sql": 131836.71,
+          "avg_review_score_sql": 4.09,
+          "total_orders_python": 1261,
+          "total_sales_python": 131836.71,
+          "avg_review_score_python": 4.09,
+          "order_diff": 0,
+          "sales_diff": 0.0,
+          "review_diff": 0.0
+        },
+        {
+          "seller_id": "7a67c85e85bb2ce8582c35f2203ad736",
+          "total_orders_sql": 1145,
+          "total_sales_sql": 139658.69,
+          "avg_review_score_sql": 4.27,
+          "total_orders_python": 1145,
+          "total_sales_python": 139658.69,
+          "avg_review_score_python": 4.27,
+          "order_diff": 0,
+          "sales_diff": 0.0,
+          "review_diff": 0.0
+        },
+        {
+          "seller_id": "ea8482cd71df3c1969d7b9473ff13abc",
+          "total_orders_sql": 1132,
+          "total_sales_sql": 36696.76,
+          "avg_review_score_sql": 3.98,
+          "total_orders_python": 1132,
+          "total_sales_python": 36696.76,
+          "avg_review_score_python": 3.98,
+          "order_diff": 0,
+          "sales_diff": 0.0,
+          "review_diff": 0.0
+        },
+        {
+          "seller_id": "4869f7a5dfa277a7dca6462dcf3b52b2",
+          "total_orders_sql": 1124,
+          "total_sales_sql": 226987.93,
+          "avg_review_score_sql": 4.14,
+          "total_orders_python": 1124,
+          "total_sales_python": 226987.93,
+          "avg_review_score_python": 4.14,
+          "order_diff": 0,
+          "sales_diff": 0.0,
+          "review_diff": 0.0
+        },
+        {
+          "seller_id": "3d871de0142ce09b7081e2b9d1733cb1",
+          "total_orders_sql": 1064,
+          "total_sales_sql": 93407.4,
+          "avg_review_score_sql": 4.15,
+          "total_orders_python": 1064,
+          "total_sales_python": 93407.4,
+          "avg_review_score_python": 4.15,
+          "order_diff": 0,
+          "sales_diff": 0.0,
+          "review_diff": 0.0
+        }
+      ]
+    }
+  ],
+  "drift_mitigation_guidance": [
+    "Cardianlity Multiplicity: Always pre-aggregate payments and reviews before joining to orders to avoid duplicated transaction sums.",
+    "NULL vs NaN: SQL SUM ignores NULL while Python nan/None requires explicit .fillna(0.0) or np.nansum.",
+    "Date Truncation: Use consistent string slicing (YYYY-MM) across both SQL strftime and Python str.slice.",
+    "Status Inclusion: Verify delivered vs. canceled status filters are identically implemented."
+  ]
+}

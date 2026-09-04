@@ -53,6 +53,7 @@ uv run python scripts/detect_anomalies.py
 uv run python scripts/database_integration.py
 uv run python scripts/run_sql_filtering.py
 uv run python scripts/validate_sql_joins.py
+uv run python scripts/validate_cross_layer_computation.py
 uv run python scripts/clean_data.py
 uv run python scripts/analyze_revenue_distribution.py
 uv run python scripts/<analysis_script>.py
@@ -82,3 +83,5 @@ The `database_integration.py` script writes all cleaned, processed Olist CSVs in
 The `run_sql_filtering.py` script executes SQL queries demonstrating pre-aggregation filtering (`WHERE`), dimension grouping (`GROUP BY`), post-aggregation metric thresholds (`HAVING`), and result sorting (`ORDER BY`). It exports targeted operational reports (high-volume underperforming sellers, top revenue product categories, high-volume operating months) to `output/sql_filtering/`.
 
 The `validate_sql_joins.py` script executes relational multi-table JOIN queries, audits row counts and key matches between INNER JOIN and LEFT JOIN, inspects 1:N cardinality expansion, detects orphaned records, and saves reports and samples under `output/sql_joins/`.
+
+The `validate_cross_layer_computation.py` script executes cross-layer validation between SQL queries and Python/Pandas logic across categorical distributions, monthly revenues, and seller performance metrics. It audits definition mismatches, schema/null handling, and floating-point rounding within configurable tolerances, logging reports to `output/cross_layer_validation/`.

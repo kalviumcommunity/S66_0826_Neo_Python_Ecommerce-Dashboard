@@ -62,3 +62,11 @@ def test_ingestion_preserves_identifier_and_writes_to_requested_directory(tmp_pa
     assert summary == [("olist_sellers_dataset.csv", 1, 4)]
     result = pd.read_csv(output / "olist_sellers_dataset.csv", dtype="string")
     assert result.loc[0, "seller_zip_code_prefix"] == "01234"
+
+
+def test_cross_layer_validation_pipeline_runs_successfully():
+    from scripts import validate_cross_layer_computation
+
+    assert validate_cross_layer_computation.TOLERANCE_ABSOLUTE_COUNT == 0
+    assert validate_cross_layer_computation.TOLERANCE_FINANCIAL_ABS == 0.05
+

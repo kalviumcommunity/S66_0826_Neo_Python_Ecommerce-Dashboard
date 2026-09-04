@@ -44,6 +44,8 @@ uv run python scripts/detect_anomalies.py
 uv run python scripts/database_integration.py
 # compute centralized business SQL metrics
 uv run python scripts/compute_sql_metrics.py
+# execute cross-layer computational validation (SQL vs Python parity)
+uv run python scripts/validate_cross_layer_computation.py
 
 # run the legacy/general cleaning workflow if needed
 uv run python scripts/clean_data.py
@@ -75,6 +77,8 @@ The KPI validation workflow reads from `data/processed/`, computes six platform-
 The anomaly detection workflow aggregates e-commerce data to contiguous daily intervals, performs absolute boundary checks (daily orders, low and high revenue limits), calculates rolling 14-day Z-scores to spot statistical fluctuations, and saves a structured JSON audit log and CSV summaries under `output/anomaly_logs/`.
 The database integration workflow establishes connection to a local SQLite database (`data/analytics.db`), loads core cleaned datasets to SQL tables using Pandas `to_sql()`, runs database column schema inspections, and executes verification aggregation queries. The validation summary is exported under `output/db_audit/`.
 The centralized SQL metrics workflow executes reusable, standardized SQL scripts stored under `queries/` (Monthly Active Users, Revenue by Geographic Segment, Conversion & Fulfillment Rates) against the database. It exports standard metric tables and execution summary logs under `output/sql_metrics/`.
+
+The cross-layer computational validation workflow compares SQL aggregation queries side-by-side with Python/Pandas logic on cleaned datasets. It validates order status categorical distributions, monthly financial totals, and seller performance metrics, enforcing strict tolerances for discrete counts (0) and financial rounding ($0.05). Audits and drift diagnostic logs are exported under `output/cross_layer_validation/`.
 Sample output (excerpt)
 
 ```
