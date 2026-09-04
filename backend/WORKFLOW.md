@@ -42,6 +42,8 @@ uv run python scripts/define_kpis.py
 uv run python scripts/detect_anomalies.py
 # load processed files into SQLite database and audit schema
 uv run python scripts/database_integration.py
+# compute centralized business SQL metrics
+uv run python scripts/compute_sql_metrics.py
 
 # run the legacy/general cleaning workflow if needed
 uv run python scripts/clean_data.py
@@ -72,7 +74,7 @@ The root-cause workflow reads processed Olist orders, payments, customers, items
 The KPI validation workflow reads from `data/processed/`, computes six platform-wide metrics (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio), compares each against its target range, and exports full JSON validation logs, a flat CSV summary, and a KPI catalogue template under `output/kpi_report/`.
 The anomaly detection workflow aggregates e-commerce data to contiguous daily intervals, performs absolute boundary checks (daily orders, low and high revenue limits), calculates rolling 14-day Z-scores to spot statistical fluctuations, and saves a structured JSON audit log and CSV summaries under `output/anomaly_logs/`.
 The database integration workflow establishes connection to a local SQLite database (`data/analytics.db`), loads core cleaned datasets to SQL tables using Pandas `to_sql()`, runs database column schema inspections, and executes verification aggregation queries. The validation summary is exported under `output/db_audit/`.
-
+The centralized SQL metrics workflow executes reusable, standardized SQL scripts stored under `queries/` (Monthly Active Users, Revenue by Geographic Segment, Conversion & Fulfillment Rates) against the database. It exports standard metric tables and execution summary logs under `output/sql_metrics/`.
 Sample output (excerpt)
 
 ```
