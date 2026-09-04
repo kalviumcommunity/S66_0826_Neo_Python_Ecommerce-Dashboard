@@ -536,21 +536,21 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
                 </div>
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={() => onNavigateToDirectoryWithFilter?.('Delivery Delays')}
+                    onClick={() => onNavigateToDirectoryWithFilter?.('Late Delivery')}
                     className="px-2.5 py-1.5 text-xs font-medium rounded-lg bg-orange-50 text-orange-700 border border-orange-200 hover:bg-orange-100 flex items-center space-x-1 transition-colors cursor-pointer"
                   >
                     <Truck className="w-3 h-3" />
                     <span>Filter: Late Deliveries</span>
                   </button>
                   <button
-                    onClick={() => onNavigateToDirectoryWithFilter?.('Negative Reviews')}
+                    onClick={() => onNavigateToDirectoryWithFilter?.('Low Reviews')}
                     className="px-2.5 py-1.5 text-xs font-medium rounded-lg bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 flex items-center space-x-1 transition-colors cursor-pointer"
                   >
                     <Star className="w-3 h-3" />
                     <span>Filter: Bad Reviews</span>
                   </button>
                   <button
-                    onClick={() => onNavigateToDirectoryWithFilter?.('Order Cancellations')}
+                    onClick={() => onNavigateToDirectoryWithFilter?.('High Cancellations')}
                     className="px-2.5 py-1.5 text-xs font-medium rounded-lg bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 flex items-center space-x-1 transition-colors cursor-pointer"
                   >
                     <AlertTriangle className="w-3 h-3" />
