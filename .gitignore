@@ -12,7 +12,9 @@ dist/
 build/
 data/*.db
 backend/data/*.db
-*.db
+data/*.db
+output/*.csv
+output/*.pdf
 .vercel
 .env*
 
