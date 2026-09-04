@@ -27,6 +27,8 @@ cd backend
 uv sync --locked
 uv run pytest
 uv run python scripts/ingest_data.py
+uv run python scripts/run_sql_filtering.py
+uv run python scripts/validate_sql_joins.py
 uv run python scripts/benchmark_sql_optimization.py
 ```
 

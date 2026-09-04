@@ -1,0 +1,405 @@
+{
+  "pipeline": "Database Integration & Schema Validation",
+  "database_path": "/Users/abdulrahmanshihabuddin/.gemini/antigravity-ide/scratch/S66_0826_Neo_Python_Ecommerce-Dashboard/data/analytics.db",
+  "loaded_tables_count": 8,
+  "table_row_counts": {
+    "orders": 99441,
+    "order_items": 112650,
+    "order_payments": 103886,
+    "customers": 99441,
+    "sellers": 3095,
+    "order_reviews": 99224,
+    "products": 32951,
+    "product_category_name_translation": 71
+  },
+  "schema_validation": {
+    "orders": {
+      "table_name": "orders",
+      "total_columns": 11,
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "customer_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "order_status",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "order_purchase_timestamp",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "order_approved_at",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "order_delivered_carrier_date",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "order_delivered_customer_date",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "order_estimated_delivery_date",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "order_approved_at_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        },
+        {
+          "name": "order_delivered_carrier_date_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        },
+        {
+          "name": "order_delivered_customer_date_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        }
+      ]
+    },
+    "order_items": {
+      "table_name": "order_items",
+      "total_columns": 7,
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "order_item_id",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "product_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "seller_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "shipping_limit_date",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "price",
+          "type": "FLOAT",
+          "nullable": true
+        },
+        {
+          "name": "freight_value",
+          "type": "FLOAT",
+          "nullable": true
+        }
+      ]
+    },
+    "order_payments": {
+      "table_name": "order_payments",
+      "total_columns": 5,
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "payment_sequential",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "payment_type",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "payment_installments",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "payment_value",
+          "type": "FLOAT",
+          "nullable": true
+        }
+      ]
+    },
+    "customers": {
+      "table_name": "customers",
+      "total_columns": 5,
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "customer_unique_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "customer_zip_code_prefix",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "customer_city",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "customer_state",
+          "type": "TEXT",
+          "nullable": true
+        }
+      ]
+    },
+    "sellers": {
+      "table_name": "sellers",
+      "total_columns": 4,
+      "columns": [
+        {
+          "name": "seller_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "seller_zip_code_prefix",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "seller_city",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "seller_state",
+          "type": "TEXT",
+          "nullable": true
+        }
+      ]
+    },
+    "order_reviews": {
+      "table_name": "order_reviews",
+      "total_columns": 9,
+      "columns": [
+        {
+          "name": "review_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "review_score",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "review_comment_title",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "review_comment_message",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "review_creation_date",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "review_answer_timestamp",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "review_comment_title_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        },
+        {
+          "name": "review_comment_message_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        }
+      ]
+    },
+    "products": {
+      "table_name": "products",
+      "total_columns": 18,
+      "columns": [
+        {
+          "name": "product_id",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "product_category_name",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "product_name_lenght",
+          "type": "FLOAT",
+          "nullable": true
+        },
+        {
+          "name": "product_description_lenght",
+          "type": "FLOAT",
+          "nullable": true
+        },
+        {
+          "name": "product_photos_qty",
+          "type": "FLOAT",
+          "nullable": true
+        },
+        {
+          "name": "product_weight_g",
+          "type": "FLOAT",
+          "nullable": true
+        },
+        {
+          "name": "product_length_cm",
+          "type": "FLOAT",
+          "nullable": true
+        },
+        {
+          "name": "product_height_cm",
+          "type": "FLOAT",
+          "nullable": true
+        },
+        {
+          "name": "product_width_cm",
+          "type": "FLOAT",
+          "nullable": true
+        },
+        {
+          "name": "product_category_name_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        },
+        {
+          "name": "product_name_lenght_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        },
+        {
+          "name": "product_description_lenght_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        },
+        {
+          "name": "product_photos_qty_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        },
+        {
+          "name": "product_weight_g_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        },
+        {
+          "name": "product_length_cm_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        },
+        {
+          "name": "product_height_cm_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        },
+        {
+          "name": "product_width_cm_missing",
+          "type": "BOOLEAN",
+          "nullable": true
+        },
+        {
+          "name": "product_category_name_analysis",
+          "type": "TEXT",
+          "nullable": true
+        }
+      ]
+    },
+    "product_category_name_translation": {
+      "table_name": "product_category_name_translation",
+      "total_columns": 2,
+      "columns": [
+        {
+          "name": "product_category_name",
+          "type": "TEXT",
+          "nullable": true
+        },
+        {
+          "name": "product_category_name_english",
+          "type": "TEXT",
+          "nullable": true
+        }
+      ]
+    }
+  },
+  "verification_queries": {
+    "database_row_counts": {
+      "orders_count": 99441,
+      "payments_count": 103886,
+      "items_count": 112650,
+      "customers_count": 99441
+    },
+    "top_5_states_revenue": [
+      {
+        "customer_state": "sp",
+        "order_count": 40500,
+        "total_revenue": 5770266.19
+      },
+      {
+        "customer_state": "rj",
+        "order_count": 12350,
+        "total_revenue": 2055690.45
+      },
+      {
+        "customer_state": "mg",
+        "order_count": 11354,
+        "total_revenue": 1819277.61
+      },
+      {
+        "customer_state": "rs",
+        "order_count": 5345,
+        "total_revenue": 861802.4
+      },
+      {
+        "customer_state": "pr",
+        "order_count": 4923,
+        "total_revenue": 781919.55
+      }
+    ]
+  }
+}

@@ -3,12 +3,18 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+output/*.csv
+output/*.pdf
 backend/output/*.csv
 backend/output/*.pdf
 *.egg-info/
 dist/
 build/
+data/*.db
 backend/data/*.db
+data/*.db
+output/*.csv
+output/*.pdf
 .vercel
 .env*
 

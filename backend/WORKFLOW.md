@@ -42,6 +42,8 @@ uv run python scripts/define_kpis.py
 uv run python scripts/detect_anomalies.py
 # load processed files into SQLite database and audit schema
 uv run python scripts/database_integration.py
+# compute centralized business SQL metrics
+uv run python scripts/compute_sql_metrics.py
 # benchmark and validate SQL query optimizations (explicit columns, early filtering, CTEs)
 uv run python scripts/benchmark_sql_optimization.py
 
@@ -67,18 +69,16 @@ The deduplication workflow reads `data/processed/`, writes the confirmed geoloca
 
 The date and time workflow reads the processed orders and payments tables, parses Olist date columns with explicit formats, derives vectorized calendar features, calculates customer recency, aggregates weekly and day/hour activity, and writes derived files to `data/processed/temporal/`. Reports and figures are saved under `output/datetime/`. Because Olist source timestamps do not include timezone offsets, they remain timezone-naive and are not assumed to be UTC.
 
-The merge-validation workflow reads from `data/processed/`, validates the one-to-one customer/order left join on `customer_id`, compares all four join types, exports unmatched records, and writes decisions under `output/merge_validation/`. It aggregates the many-side payment table by `order_id` before joining to the order-level data. Integrated outputs are written to `data/processed/integrated/`; source datasets are not modified.
+The merge-validation workflow reads from `data/processed/`, validates the one-to-one customer/order left join on `customer_id`, compares all four join types, exports unmatched records, and documents key cardinality under `output/merge_validation/`. It aggregates the many-side payment table by `order_id` before joining to the order-level data. Integrated outputs are written to `data/processed/integrated/`; source datasets are not modified.
 
 The correlation workflow reads processed Olist tables, aggregates item/payment/review records to order level before joining, creates separate order- and customer-level features, calculates Pearson and Spearman matrices, and writes relationship reports and figures under `output/correlation/`. Strong correlations are flagged for interpretation or feature review, but no causal conclusions or automatic feature removal are made.
 The root-cause workflow reads processed Olist orders, payments, customers, items, and products. It parses `order_purchase_timestamp` explicitly, uses delivered status as an operational fulfillment-success proxy, isolates low-success dates and hours, analyzes payment/state/category segments, creates crosstabs and figures, and writes an evidence-limited investigation report under `output/root_cause/`. Olist has no application error logs or payment-provider incident data, so the workflow does not invent an external cause and marks external validation as unavailable unless supplied separately.
 The KPI validation workflow reads from `data/processed/`, computes six platform-wide metrics (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio), compares each against its target range, and exports full JSON validation logs, a flat CSV summary, and a KPI catalogue template under `output/kpi_report/`.
-
 The anomaly detection workflow aggregates e-commerce data to contiguous daily intervals, performs absolute boundary checks (daily orders, low and high revenue limits), calculates rolling 14-day Z-scores to spot statistical fluctuations, and saves a structured JSON audit log and CSV summaries under `output/anomaly_logs/`.
-
 The database integration workflow establishes connection to a local SQLite database (`data/analytics.db`), loads core cleaned datasets to SQL tables using Pandas `to_sql()`, runs database column schema inspections, and executes verification aggregation queries. The validation summary is exported under `output/db_audit/`.
+The centralized SQL metrics workflow executes reusable, standardized SQL scripts stored under `queries/` (Monthly Active Users, Revenue by Geographic Segment, Conversion & Fulfillment Rates) against the database. It exports standard metric tables and execution summary logs under `output/sql_metrics/`.
 
 The SQL query optimization workflow benchmarks unoptimized baseline queries (`SELECT *`, late join-filtering) against optimized patterns using explicit column selection, early filtering (`WHERE` before `JOIN`), and Common Table Expressions (CTEs). It captures `EXPLAIN QUERY PLAN` logs, measures execution speedups and memory payload reductions, and writes audit reports under `output/sql_optimization/`.
-
 Sample output (excerpt)
 
 ```
