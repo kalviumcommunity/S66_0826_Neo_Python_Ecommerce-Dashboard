@@ -1,0 +1,5 @@
+join_scenario,join_type,result_rows,distinct_left_keys,distinct_right_keys
+customers_to_orders,INNER JOIN,99441,99441,99441
+customers_to_orders,LEFT JOIN,99441,99441,99441
+orders_to_order_items,INNER JOIN (1:N multiplicity),112650,98666,21
+orders_to_order_items,LEFT JOIN (1:N multiplicity),113425,99441,21
