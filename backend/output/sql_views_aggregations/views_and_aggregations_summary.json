@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-09-04T08:29:45.156243+00:00",
+  "views_created": [
+    {
+      "name": "vw_monthly_revenue",
+      "purpose": "Single authoritative source for monthly financial metrics and order counts",
+      "row_count": 24
+    },
+    {
+      "name": "vw_active_customers",
+      "purpose": "Centralized definition of active customer engagement by state and month",
+      "sample_row_count": 100
+    }
+  ],
+  "tables_aggregated": [
+    {
+      "name": "agg_daily_revenue",
+      "purpose": "Precomputed daily revenue and volume rollup for rapid dashboard loading",
+      "row_count": 614,
+      "has_updated_at": true
+    },
+    {
+      "name": "agg_seller_performance",
+      "purpose": "Precomputed seller risk, order volume, and late delivery counts",
+      "sample_row_count": 100,
+      "has_updated_at": true
+    }
+  ],
+  "performance_benchmark": {
+    "metric": "Daily Revenue Aggregation",
+    "raw_join_duration_ms": 206.862,
+    "precomputed_table_duration_ms": 0.174,
+    "speedup_factor": "1188.86x"
+  },
+  "refresh_strategy": {
+    "mode": "full",
+    "recommended_cadence": "Scheduled batch cron (e.g. nightly or hourly) with updated_at freshness tracking",
+    "version_control": "SQL DDL queries version-controlled in backend/queries/"
+  }
+}
