@@ -1,71 +1,90 @@
-# Seller Trust & Safety Analysis
+# Seller Trust & Safety Dashboard
 
-Combines seller performance, returns, and reviews into a weekly view to identify sustained trust-damaging patterns earlier.
+This repository contains independently managed Python analysis and Next.js frontend projects.
 
-## Setup
-
-1. Clone the repository:
-
-   ```bash
-   git clone <repository-url>
-   cd <project-directory>
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   uv sync
-   ```
-
-3. Configure environment variables:
-
-   ```bash
-   copy .env.example .env
-   ```
-
-## Project Structure
+## Structure
 
 ```text
-data/raw/        Source data
-data/ingested/   Re-exported data after ingestion
-data/processed/  Cleaned data
-notebooks/       Jupyter analysis
-scripts/         Python scripts
-output/          Generated reports and figures
+backend/
+  data/              Raw, ingested, and processed datasets
+  docs/              Data dictionary
+  output/            Existing analysis reports and figures
+  scripts/           Python analysis and validation pipelines
+  src/               Installable Python package
+  tests/             Python tests
+  pyproject.toml     Python dependencies and project configuration
+  uv.lock            Locked Python dependencies
+frontend/            Next.js dashboard and its npm dependencies
+.github/workflows/   Python CI and frontend CI/deployment
 ```
 
-## Running the Analysis
+## Backend
+
+Requires uv and Python 3.14:
 
 ```bash
+cd backend
+uv sync --locked
+uv run pytest
 uv run python scripts/ingest_data.py
-uv run python scripts/handle_missing.py
-uv run python scripts/deduplicate_data.py
-uv run python scripts/transform_datetime.py
-uv run python scripts/validate_merges.py
-uv run python scripts/analyze_correlations.py
-uv run python scripts/investigate_anomalies.py
-uv run python scripts/define_kpis.py
-uv run python scripts/database_integration.py
-uv run python scripts/compute_sql_metrics.py
-uv run python scripts/clean_data.py
-uv run python scripts/analyze_revenue_distribution.py
-uv run python scripts/<analysis_script>.py
-uv run jupyter notebook
 ```
 
-`handle_missing.py` reads the validated CSVs from `data/ingested/`, preserves meaningful Olist nulls, adds missingness indicators, writes outputs to `data/processed/`, and generates treatment reports in `output/missing_data/` plus `output/imputation_decisions.json`.
+See [backend setup and analysis commands](backend/README.md), [workflow guide](backend/WORKFLOW.md), and [data dictionary](backend/docs/DATA_DICTIONARY.md).
+From the repository root, use `uv run --directory backend pytest` or `uv run --directory backend python scripts/<script>.py`.
 
-The `deduplicate_data.py` script analyzes all processed CSVs, removes only confirmed exact duplicate rows from geolocation by default, reports near-duplicate key groups without deleting them, writes the deduplicated geolocation file to `data/processed/deduplicated/`, and creates audit reports under `output/deduplication/`.
+The Python project currently provides batch analysis pipelines, not a web API. Its data and output paths resolve inside `backend/`.
 
-The `transform_datetime.py` script parses Olist order event dates with explicit formats, derives purchase day/hour/week/month features, calculates reproducible customer recency, creates weekly and day/hour aggregations, and saves temporal CSVs under `data/processed/temporal/` plus reports and figures under `output/datetime/`. Olist timestamps are timezone-naive in the source, so the workflow does not silently treat them as UTC.
+## Frontend
 
-The `validate_merges.py` script validates the processed customer/order integration with an explicit one-to-one left join on `customer_id`, compares inner/left/right/outer row counts, exports unmatched records, and documents key cardinality under `output/merge_validation/`. Payment rows are aggregated by `order_id` before being joined to orders so payment multiplicity cannot create duplicate order rows or double-count revenue. Integrated views are written under `data/processed/integrated/`.
+Requires Node.js 24:
 
-The `analyze_correlations.py` script builds separate order-level and customer-level analytical tables, aggregates one-to-many items/payments/reviews before joining, calculates Pearson and Spearman correlations, flags strong and potentially redundant relationships, and writes matrices, pair reports, and figures under `output/correlation/`. Correlations are documented as associations rather than proof of causation.
-The `investigate_anomalies.py` script performs a root-cause investigation on processed Olist data. It isolates unusual order-outcome dates and hours, analyzes payment type, customer state, product category, and order-status patterns, and writes auditable reports and figures under `output/root_cause/`. Because Olist does not include application error logs or payment-provider incidents, the workflow reports evidence and limitations without inventing a causal explanation.
-The `analyze_revenue_distribution.py` script analyzes order-level `total_payment_value`, computes descriptive statistics, skewness, excess kurtosis, percentiles, revenue concentration, order/customer segments, and writes plots and tables to `output/revenue_analysis/`.
-The `define_kpis.py` script formally defines six business KPIs (Revenue Per Customer, Order Fulfillment Rate, Average Review Score, Late Delivery Rate, Seller Activity Rate, Freight Cost Ratio) — each with a documented formula, data source, target range, owner, and update frequency. It computes each KPI from the processed datasets, validates them against their target ranges, and exports a full JSON report and CSV summary under `output/kpi_report/`.
+```bash
+cd frontend
+npm ci
+npm run dev
+```
 
-The `database_integration.py` script writes all cleaned, processed Olist CSVs into structured SQLite tables in `data/analytics.db` using SQLAlchemy and Pandas. It validates table column schemas via sqlalchemy.inspect and executes verification aggregation queries, writing the audit details under `output/db_audit/`.
+See [frontend documentation](frontend/README.md). The dashboard currently uses mock data and is not connected to the Python pipelines.
 
-The `compute_sql_metrics.py` script executes centralized, reusable SQL queries defined in `queries/` (Monthly Active Users, Revenue by Geographic Segment, Conversion & Fulfillment Rates) against the SQLite database. It exports standard metric CSVs and summary reports to `output/sql_metrics/`.
+## Checks
+
+```bash
+cd backend
+uv run pytest
+cd ../frontend
+npm run lint
+npm run build
+```
+
+GitHub Actions runs each project's commands from its own directory. The existing Vercel deployment step remains at repository root; configure the Vercel project's Root Directory as `frontend` and provide its deployment credentials in GitHub settings.
+
+## Local files after restructuring
+
+### Teammates pulling the folder migration
+
+Commit or stash any local work before pulling. Once the migration is committed and merged, pull the updated branch, then open a new terminal at the repository root (or run `deactivate` if an old Python virtual environment is active).
+
+Install Node.js 24 and uv if they are not already available. Run these commands on Windows, macOS, or Linux:
+
+```bash
+cd backend
+uv sync --locked
+uv run --locked pytest
+cd ../frontend
+npm ci
+npm run lint
+npm run build
+npm run dev
+```
+
+uv uses `backend/.python-version` to select Python 3.14 and can download it if needed. The lockfiles must be committed with the migration; do not regenerate them just to set up a teammate's machine. `npm ci` recreates `frontend/node_modules` from its lockfile. Internet access is needed for uncached dependencies, Python downloads, and the frontend's build-time Google Fonts downloads.
+
+No API keys or Vercel credentials are required to run the current mock-data dashboard or the existing Python tests. Existing private environment files are not moved by Git. If you have custom backend environment variables or untracked datasets, copy them to the corresponding location inside `backend/` yourself without overwriting the tracked datasets. Next.js-specific local variables belong in `frontend/.env.local`; a repository-root `.env.local` is not automatically loaded by the frontend.
+
+Update IDE Python interpreter settings to `backend/.venv/Scripts/python.exe` on Windows or `backend/.venv/bin/python` on macOS/Linux. Update custom run configurations to use `backend` as their working directory. Old root-level commands such as `uv run python scripts/ingest_data.py` must now run inside `backend/`, or use `uv run --directory backend python scripts/ingest_data.py` from the root.
+
+Python CI installs from the lockfile and runs tests on Windows, macOS, and Linux. Frontend CI performs a clean install, lint, and production build on Linux. These remote checks must pass on the pull request before merging; local checks alone do not guarantee every teammate's machine configuration.
+
+An existing root `.venv/` is left untouched because virtual environments are not portable. Run `uv sync --locked` inside `backend/` to create `backend/.venv/`. Do not move the old environment manually.
+
+Root `.env.local` and `.vercel/` settings remain untouched. Put backend-specific variables in `backend/.env` when needed; never commit secrets. The root `.gitignore` covers both projects.
