@@ -9,6 +9,9 @@ backend/output/*.pdf
 dist/
 build/
 backend/data/*.db
+data/*.db
+output/*.csv
+output/*.pdf
 .vercel
 .env*
 
