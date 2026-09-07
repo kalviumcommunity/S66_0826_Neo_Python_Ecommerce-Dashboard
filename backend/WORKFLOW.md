@@ -44,8 +44,8 @@ uv run python scripts/detect_anomalies.py
 uv run python scripts/database_integration.py
 # compute centralized business SQL metrics
 uv run python scripts/compute_sql_metrics.py
-# benchmark and validate SQL query optimizations (explicit columns, early filtering, CTEs)
-uv run python scripts/benchmark_sql_optimization.py
+# create and refresh SQL views and pre-aggregated tables
+uv run python scripts/build_sql_views_and_aggregations.py
 
 # run the legacy/general cleaning workflow if needed
 uv run python scripts/clean_data.py
@@ -78,7 +78,7 @@ The anomaly detection workflow aggregates e-commerce data to contiguous daily in
 The database integration workflow establishes connection to a local SQLite database (`data/analytics.db`), loads core cleaned datasets to SQL tables using Pandas `to_sql()`, runs database column schema inspections, and executes verification aggregation queries. The validation summary is exported under `output/db_audit/`.
 The centralized SQL metrics workflow executes reusable, standardized SQL scripts stored under `queries/` (Monthly Active Users, Revenue by Geographic Segment, Conversion & Fulfillment Rates) against the database. It exports standard metric tables and execution summary logs under `output/sql_metrics/`.
 
-The SQL query optimization workflow benchmarks unoptimized baseline queries (`SELECT *`, late join-filtering) against optimized patterns using explicit column selection, early filtering (`WHERE` before `JOIN`), and Common Table Expressions (CTEs). It captures `EXPLAIN QUERY PLAN` logs, measures execution speedups and memory payload reductions, and writes audit reports under `output/sql_optimization/`.
+The SQL views and aggregations workflow establishes single source of truth views (`vw_monthly_revenue`, `vw_active_customers`) and creates indexed pre-aggregated tables (`agg_daily_revenue`, `agg_seller_performance`) with `updated_at` timestamps for sub-millisecond dashboard query speeds. Audits, row counts, and benchmark comparisons are exported to `output/sql_views_aggregations/`.
 Sample output (excerpt)
 
 ```
