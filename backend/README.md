@@ -52,7 +52,7 @@ uv run python scripts/define_kpis.py
 uv run python scripts/detect_anomalies.py
 uv run python scripts/run_sql_filtering.py
 uv run python scripts/validate_sql_joins.py
-uv run python scripts/build_sql_views_and_aggregations.py
+uv run python scripts/validate_cross_layer_computation.py
 uv run python scripts/clean_data.py
 uv run python scripts/analyze_revenue_distribution.py
 uv run python scripts/<analysis_script>.py
@@ -83,4 +83,4 @@ The `run_sql_filtering.py` script executes SQL queries demonstrating pre-aggrega
 
 The `validate_sql_joins.py` script executes relational multi-table JOIN queries, audits row counts and key matches between INNER JOIN and LEFT JOIN, inspects 1:N cardinality expansion, detects orphaned records, and saves reports and samples under `output/sql_joins/`.
 
-The `build_sql_views_and_aggregations.py` script centralizes single source of truth metric definitions as SQL views (`vw_monthly_revenue`, `vw_active_customers`) and generates high-performance pre-aggregated summary tables (`agg_daily_revenue`, `agg_seller_performance`) with `updated_at` freshness timestamps. It exports audit logs and benchmark measurements to `output/sql_views_aggregations/`.
+The `validate_cross_layer_computation.py` script executes cross-layer validation between SQL queries and Python/Pandas logic across categorical distributions, monthly revenues, and seller performance metrics. It audits definition mismatches, schema/null handling, and floating-point rounding within configurable tolerances, logging reports to `output/cross_layer_validation/`.
