@@ -29,6 +29,7 @@ uv run pytest
 uv run python scripts/ingest_data.py
 uv run python scripts/run_sql_filtering.py
 uv run python scripts/validate_sql_joins.py
+uv run python scripts/benchmark_sql_optimization.py
 ```
 
 See [backend setup and analysis commands](backend/README.md), [workflow guide](backend/WORKFLOW.md), and [data dictionary](backend/docs/DATA_DICTIONARY.md).

@@ -53,6 +53,7 @@ uv run python scripts/detect_anomalies.py
 uv run python scripts/database_integration.py
 uv run python scripts/run_sql_filtering.py
 uv run python scripts/validate_sql_joins.py
+uv run python scripts/benchmark_sql_optimization.py
 uv run python scripts/clean_data.py
 uv run python scripts/analyze_revenue_distribution.py
 uv run python scripts/<analysis_script>.py
@@ -82,3 +83,5 @@ The `database_integration.py` script writes all cleaned, processed Olist CSVs in
 The `run_sql_filtering.py` script executes SQL queries demonstrating pre-aggregation filtering (`WHERE`), dimension grouping (`GROUP BY`), post-aggregation metric thresholds (`HAVING`), and result sorting (`ORDER BY`). It exports targeted operational reports (high-volume underperforming sellers, top revenue product categories, high-volume operating months) to `output/sql_filtering/`.
 
 The `validate_sql_joins.py` script executes relational multi-table JOIN queries, audits row counts and key matches between INNER JOIN and LEFT JOIN, inspects 1:N cardinality expansion, detects orphaned records, and saves reports and samples under `output/sql_joins/`.
+
+The `benchmark_sql_optimization.py` script benchmarks unoptimized SQL queries (demonstrating `SELECT *` payload bloat and late filtering antipatterns) against optimized SQL queries applying explicit column selection, early filtering (`WHERE` before `JOIN`), and Common Table Expressions (CTEs). It captures `EXPLAIN QUERY PLAN` logs, measures execution speedups and column payload reductions, and writes audit reports under `output/sql_optimization/`.
