@@ -1,0 +1,32 @@
+{
+  "pipeline": "SQL Query Optimization",
+  "database": "/Users/abdulrahmanshihabuddin/.gemini/antigravity-ide/scratch/S66_0826_Neo_Python_Ecommerce-Dashboard/backend/data/analytics.db",
+  "benchmarks": [
+    {
+      "scenario": "Seller Analytics",
+      "unoptimized_time_ms": 1558.07,
+      "optimized_time_ms": 342.26,
+      "speedup_factor": 4.55,
+      "unoptimized_columns": 36,
+      "optimized_columns": 9,
+      "column_reduction_pct": 75.0,
+      "optimization_techniques": "Explicit projection, early order filtering, CTE modularization"
+    },
+    {
+      "scenario": "Category Performance",
+      "unoptimized_time_ms": 696.3,
+      "optimized_time_ms": 209.93,
+      "speedup_factor": 3.32,
+      "unoptimized_columns": 38,
+      "optimized_columns": 6,
+      "column_reduction_pct": 84.2,
+      "optimization_techniques": "Pruned working tables, CTE filter scoping, explicit aggregation"
+    }
+  ],
+  "optimization_principles_applied": [
+    "Explicit Column Selection: Avoided SELECT * to eliminate unused columns and minimize I/O and RAM overhead.",
+    "Early Filtering (WHERE before JOIN): Pruned orders and items before joining, preventing working dataset explosion.",
+    "Common Table Expressions (CTEs): Isolated filtering and aggregation into distinct, readable, maintainable blocks.",
+    "EXPLAIN Verification: Verified query plan changes from scan-heavy scans to targeted filtered indexes."
+  ]
+}

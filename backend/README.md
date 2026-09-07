@@ -50,7 +50,6 @@ uv run python scripts/analyze_correlations.py
 uv run python scripts/investigate_anomalies.py
 uv run python scripts/define_kpis.py
 uv run python scripts/detect_anomalies.py
-uv run python scripts/database_integration.py
 uv run python scripts/run_sql_filtering.py
 uv run python scripts/validate_sql_joins.py
 uv run python scripts/validate_cross_layer_computation.py

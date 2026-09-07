@@ -1,0 +1,178 @@
+{
+  "unoptimized_seller_analytics": [
+    {
+      "id": 7,
+      "parent": 0,
+      "notused": 216,
+      "detail": "SCAN o"
+    },
+    {
+      "id": 31,
+      "parent": 0,
+      "notused": 53,
+      "detail": "SEARCH oi USING AUTOMATIC COVERING INDEX (order_id=?)"
+    },
+    {
+      "id": 47,
+      "parent": 0,
+      "notused": 53,
+      "detail": "SEARCH s USING AUTOMATIC COVERING INDEX (seller_id=?)"
+    },
+    {
+      "id": 68,
+      "parent": 0,
+      "notused": 53,
+      "detail": "SEARCH r USING AUTOMATIC COVERING INDEX (order_id=?) LEFT-JOIN"
+    },
+    {
+      "id": 88,
+      "parent": 0,
+      "notused": 53,
+      "detail": "SEARCH p USING AUTOMATIC COVERING INDEX (order_id=?) LEFT-JOIN"
+    }
+  ],
+  "optimized_seller_analytics": [
+    {
+      "id": 2,
+      "parent": 0,
+      "notused": 0,
+      "detail": "CO-ROUTINE seller_performance_aggregates"
+    },
+    {
+      "id": 5,
+      "parent": 2,
+      "notused": 0,
+      "detail": "MATERIALIZE seller_order_reviews"
+    },
+    {
+      "id": 12,
+      "parent": 5,
+      "notused": 216,
+      "detail": "SCAN order_reviews"
+    },
+    {
+      "id": 14,
+      "parent": 5,
+      "notused": 0,
+      "detail": "USE TEMP B-TREE FOR GROUP BY"
+    },
+    {
+      "id": 59,
+      "parent": 2,
+      "notused": 216,
+      "detail": "SCAN orders"
+    },
+    {
+      "id": 80,
+      "parent": 2,
+      "notused": 53,
+      "detail": "SEARCH oi USING AUTOMATIC COVERING INDEX (order_id=?)"
+    },
+    {
+      "id": 96,
+      "parent": 2,
+      "notused": 47,
+      "detail": "SEARCH sor USING AUTOMATIC COVERING INDEX (order_id=?) LEFT-JOIN"
+    },
+    {
+      "id": 103,
+      "parent": 2,
+      "notused": 0,
+      "detail": "USE TEMP B-TREE FOR GROUP BY"
+    },
+    {
+      "id": 177,
+      "parent": 2,
+      "notused": 0,
+      "detail": "USE TEMP B-TREE FOR count(DISTINCT)"
+    },
+    {
+      "id": 183,
+      "parent": 0,
+      "notused": 216,
+      "detail": "SCAN s"
+    },
+    {
+      "id": 201,
+      "parent": 0,
+      "notused": 47,
+      "detail": "SEARCH spa USING AUTOMATIC COVERING INDEX (seller_id=?)"
+    },
+    {
+      "id": 219,
+      "parent": 0,
+      "notused": 0,
+      "detail": "USE TEMP B-TREE FOR ORDER BY"
+    }
+  ],
+  "unoptimized_category_performance": [
+    {
+      "id": 7,
+      "parent": 0,
+      "notused": 216,
+      "detail": "SCAN o"
+    },
+    {
+      "id": 31,
+      "parent": 0,
+      "notused": 53,
+      "detail": "SEARCH oi USING AUTOMATIC COVERING INDEX (order_id=?)"
+    },
+    {
+      "id": 68,
+      "parent": 0,
+      "notused": 53,
+      "detail": "SEARCH p USING AUTOMATIC COVERING INDEX (product_id=?)"
+    },
+    {
+      "id": 82,
+      "parent": 0,
+      "notused": 53,
+      "detail": "SEARCH t USING AUTOMATIC COVERING INDEX (product_category_name=?)"
+    }
+  ],
+  "optimized_category_performance": [
+    {
+      "id": 12,
+      "parent": 0,
+      "notused": 216,
+      "detail": "SCAN orders"
+    },
+    {
+      "id": 33,
+      "parent": 0,
+      "notused": 53,
+      "detail": "SEARCH oi USING AUTOMATIC COVERING INDEX (order_id=?)"
+    },
+    {
+      "id": 47,
+      "parent": 0,
+      "notused": 53,
+      "detail": "SEARCH p USING AUTOMATIC COVERING INDEX (product_id=?)"
+    },
+    {
+      "id": 61,
+      "parent": 0,
+      "notused": 53,
+      "detail": "SEARCH t USING AUTOMATIC COVERING INDEX (product_category_name=?)"
+    },
+    {
+      "id": 66,
+      "parent": 0,
+      "notused": 0,
+      "detail": "USE TEMP B-TREE FOR GROUP BY"
+    },
+    {
+      "id": 133,
+      "parent": 0,
+      "notused": 0,
+      "detail": "USE TEMP B-TREE FOR count(DISTINCT)"
+    },
+    {
+      "id": 136,
+      "parent": 0,
+      "notused": 0,
+      "detail": "USE TEMP B-TREE FOR ORDER BY"
+    }
+  ]
+}
