@@ -1,2 +1,5 @@
-def main() -> None:
-    print("Hello from s66-0826-neo-python-ecommerce-dashboard!")
+"""Package initialization for s66_0826_neo_python_ecommerce_dashboard."""
+
+from s66_0826_neo_python_ecommerce_dashboard.main import app, main
+
+__all__ = ["app", "main"]

@@ -2,7 +2,7 @@
 
 Combines seller performance, returns, and reviews into a weekly view to identify sustained trust-damaging patterns earlier.
 
-All commands and data paths in this document are relative to `backend/`. This folder contains the existing Python analysis pipelines, not an HTTP API server.
+All commands and data paths in this document are relative to `backend/`. This folder contains the Python analysis pipelines and the FastAPI HTTP server powering the Seller Trust & Safety dashboard.
 
 ## Setup
 
@@ -58,6 +58,22 @@ uv run python scripts/analyze_revenue_distribution.py
 uv run python scripts/<analysis_script>.py
 uv run jupyter notebook
 ```
+
+## Running the API Server
+
+Start the local FastAPI development server:
+
+```bash
+uv run uvicorn s66_0826_neo_python_ecommerce_dashboard.main:app --reload --port 8000
+```
+
+Or run directly using the entrypoint script:
+
+```bash
+uv run s66-0826-neo-python-ecommerce-dashboard
+```
+
+Interactive OpenAPI documentation is available at `http://localhost:8000/docs`.
 
 `handle_missing.py` reads the validated CSVs from `data/ingested/`, preserves meaningful Olist nulls, adds missingness indicators, writes outputs to `data/processed/`, and generates treatment reports in `output/missing_data/` plus `output/imputation_decisions.json`.
 
