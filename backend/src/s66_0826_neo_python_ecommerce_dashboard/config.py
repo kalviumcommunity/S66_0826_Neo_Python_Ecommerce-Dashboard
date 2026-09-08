@@ -13,6 +13,8 @@ BACKEND_DIR = SRC_DIR.parent
 # Database & Data Paths
 DATA_DIR = BACKEND_DIR / "data"
 DB_PATH = DATA_DIR / "analytics.db"
+PROCESSED_DATA_DIR = DATA_DIR / "processed"
+QUERIES_DIR = BACKEND_DIR / "queries"
 OUTPUT_DIR = BACKEND_DIR / "output"
 KPI_RESULTS_FILE = OUTPUT_DIR / "kpi_report" / "kpi_results.json"
 

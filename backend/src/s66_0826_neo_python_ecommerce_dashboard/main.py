@@ -2,10 +2,20 @@
 
 from __future__ import annotations
 
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from s66_0826_neo_python_ecommerce_dashboard.database import init_db_if_needed
 from s66_0826_neo_python_ecommerce_dashboard.routers import analytics, export, sellers
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    init_db_if_needed()
+    yield
+
 
 app = FastAPI(
     title="Seller Trust & Safety Dashboard API",
@@ -15,6 +25,7 @@ app = FastAPI(
         "and PRD KPI validations."
     ),
     version="0.1.0",
+    lifespan=lifespan,
 )
 
 # CORS middleware for seamless frontend integration

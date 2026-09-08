@@ -13,6 +13,7 @@ from s66_0826_neo_python_ecommerce_dashboard.config import (
     RISK_THRESHOLD_MEDIUM,
     SPARSE_ORDER_THRESHOLD,
 )
+from s66_0826_neo_python_ecommerce_dashboard.database import init_db_if_needed, safe_read_sql
 
 _cache_lock = threading.Lock()
 _seller_cache: pd.DataFrame | None = None
@@ -22,6 +23,7 @@ _category_risk_cache: list[dict[str, Any]] | None = None
 
 def compute_seller_risk_dataset() -> tuple[pd.DataFrame, dict[str, list[dict[str, Any]]], list[dict[str, Any]]]:
     """Compute comprehensive seller metrics, composite risk scores, and category risks directly from SQLite."""
+    init_db_if_needed()
     conn = sqlite3.connect(str(DB_PATH))
 
     # 1. Primary Category per Seller
@@ -39,7 +41,7 @@ def compute_seller_risk_dataset() -> tuple[pd.DataFrame, dict[str, list[dict[str
     )
     SELECT seller_id, category FROM seller_cat WHERE rn = 1;
     """
-    df_cats = pd.read_sql(seller_cat_query, conn)
+    df_cats = safe_read_sql(seller_cat_query, conn)
 
     # 2. Seller Overall Metrics
     seller_metrics_query = """
@@ -100,7 +102,7 @@ def compute_seller_risk_dataset() -> tuple[pd.DataFrame, dict[str, list[dict[str
     LEFT JOIN seller_reviews sr ON s.seller_id = sr.seller_id
     LEFT JOIN seller_revenue srev ON s.seller_id = srev.seller_id;
     """
-    df = pd.read_sql(seller_metrics_query, conn)
+    df = safe_read_sql(seller_metrics_query, conn)
     df = df.merge(df_cats, on="seller_id", how="left")
     df["category"] = df["category"].fillna("other")
 
@@ -200,7 +202,7 @@ def compute_seller_risk_dataset() -> tuple[pd.DataFrame, dict[str, list[dict[str
     LEFT JOIN seller_monthly_reviews smr ON ma.seller_id = smr.seller_id AND ma.period = smr.period
     ORDER BY ma.period ASC;
     """
-    df_history = pd.read_sql(monthly_history_query, conn)
+    df_history = safe_read_sql(monthly_history_query, conn)
     conn.close()
 
     df_history["late_pct"] = (

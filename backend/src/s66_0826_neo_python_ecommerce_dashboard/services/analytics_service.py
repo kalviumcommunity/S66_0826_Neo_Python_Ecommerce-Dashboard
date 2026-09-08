@@ -14,6 +14,7 @@ from s66_0826_neo_python_ecommerce_dashboard.config import (
     TARGET_LATE_DELIVERY_PCT,
     TARGET_REVIEW_SCORE,
 )
+from s66_0826_neo_python_ecommerce_dashboard.database import init_db_if_needed, safe_read_sql
 from s66_0826_neo_python_ecommerce_dashboard.services.risk_service import (
     get_all_sellers_df,
     get_cached_seller_data,
@@ -22,6 +23,7 @@ from s66_0826_neo_python_ecommerce_dashboard.services.risk_service import (
 
 def get_overview_analytics() -> dict[str, Any]:
     """Calculate Level 1 Executive Overview KPIs."""
+    init_db_if_needed()
     df_sellers = get_all_sellers_df()
     _, history_dict, _ = get_cached_seller_data()
 
@@ -102,6 +104,7 @@ def get_overview_analytics() -> dict[str, Any]:
 
 def get_review_trend_analytics() -> dict[str, Any]:
     """Calculate Level 2 Longitudinal Average Review Score Trend."""
+    init_db_if_needed()
     conn = sqlite3.connect(str(DB_PATH))
     query = """
     SELECT 
@@ -115,7 +118,7 @@ def get_review_trend_analytics() -> dict[str, Any]:
     HAVING period >= '2017-01' AND period <= '2018-08'
     ORDER BY period ASC;
     """
-    df_trend = pd.read_sql(query, conn)
+    df_trend = safe_read_sql(query, conn)
     conn.close()
 
     trend_points = [
@@ -152,6 +155,7 @@ def get_risk_distribution_analytics() -> dict[str, int]:
 
 def get_review_distribution_analytics() -> dict[str, Any]:
     """Calculate Level 3 Review Star Distribution and Positive Percentage."""
+    init_db_if_needed()
     conn = sqlite3.connect(str(DB_PATH))
     query = """
     SELECT
