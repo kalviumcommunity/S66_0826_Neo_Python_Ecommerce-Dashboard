@@ -28,7 +28,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
 
       - name: Install dependencies
-        run: uv sync --locked --extra analysis
+        run: uv sync --locked
 
       - name: Run tests
         run: uv run --locked pytest
@@ -53,7 +53,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
 
       - name: Install dependencies
-        run: uv sync --locked --extra analysis
+        run: uv sync --locked
 
       - name: Test FastAPI routes
         run: uv run --locked pytest tests/test_api_endpoints.py
@@ -78,7 +78,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
 
       - name: Install dependencies
-        run: uv sync --locked --extra analysis
+        run: uv sync --locked
 
       - name: Check Python syntax
         run: uv run --locked python -m compileall -q server
