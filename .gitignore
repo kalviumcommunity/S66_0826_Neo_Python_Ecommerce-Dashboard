@@ -21,3 +21,5 @@ output/*.pdf
 !**/.env.example
 .pytest_cache/
 .ruff_cache/
+
+.ci-test-tmp
