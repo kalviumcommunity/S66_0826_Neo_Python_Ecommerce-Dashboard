@@ -2,7 +2,7 @@
 
 Combines seller performance, returns, and reviews into a weekly view to identify sustained trust-damaging patterns earlier.
 
-All commands and data paths in this document are relative to `backend/`. This folder contains the existing Python analysis pipelines, not an HTTP API server.
+All commands and data paths in this document are relative to `backend/`. This folder contains the Python analysis pipelines and the FastAPI HTTP server powering the Seller Trust & Safety dashboard.
 
 ## Setup
 
@@ -59,6 +59,22 @@ uv run python scripts/<analysis_script>.py
 uv run jupyter notebook
 ```
 
+## Running the API Server
+
+Start the local FastAPI development server:
+
+```bash
+uv run uvicorn server.main:app --reload --port 8000
+```
+
+Or run directly using the entrypoint script:
+
+```bash
+uv run s66-0826-neo-python-ecommerce-dashboard
+```
+
+Interactive OpenAPI documentation is available at `http://localhost:8000/docs`.
+
 `handle_missing.py` reads the validated CSVs from `data/ingested/`, preserves meaningful Olist nulls, adds missingness indicators, writes outputs to `data/processed/`, and generates treatment reports in `output/missing_data/` plus `output/imputation_decisions.json`.
 
 The `deduplicate_data.py` script analyzes all processed CSVs, removes only confirmed exact duplicate rows from geolocation by default, reports near-duplicate key groups without deleting them, writes the deduplicated geolocation file to `data/processed/deduplicated/`, and creates audit reports under `output/deduplication/`.
@@ -77,7 +93,7 @@ The `define_kpis.py` script formally defines six business KPIs (Revenue Per Cust
 
 The `detect_anomalies.py` script performs threshold-based boundary checks and statistical rolling Z-score detection on daily transaction count and revenue series. It flags operational anomalies and logs structured reports (value, expected range, z-score, severity) under `output/anomaly_logs/anomalies_log.json`.
 
-The `database_integration.py` script writes all cleaned, processed Olist CSVs into structured SQLite tables in `data/analytics.db` using SQLAlchemy and Pandas. It validates table column schemas via sqlalchemy.inspect and executes verification aggregation queries, writing the audit details under `output/db_audit/`.
+The `database_integration.py` script writes all cleaned, processed Olist CSVs into structured SQLite tables in `server/analytics.db` using SQLAlchemy and Pandas. It validates table column schemas via sqlalchemy.inspect and executes verification aggregation queries, writing the audit details under `output/db_audit/`.
 
 The `run_sql_filtering.py` script executes SQL queries demonstrating pre-aggregation filtering (`WHERE`), dimension grouping (`GROUP BY`), post-aggregation metric thresholds (`HAVING`), and result sorting (`ORDER BY`). It exports targeted operational reports (high-volume underperforming sellers, top revenue product categories, high-volume operating months) to `output/sql_filtering/`.
 

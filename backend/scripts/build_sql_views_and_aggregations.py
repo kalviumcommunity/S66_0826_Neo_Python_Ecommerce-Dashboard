@@ -23,7 +23,7 @@ import pandas as pd
 from sqlalchemy import create_engine, inspect, text
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DB_PATH = PROJECT_ROOT / "data" / "analytics.db"
+DB_PATH = PROJECT_ROOT / "server" / "analytics.db"
 QUERIES_DIR = PROJECT_ROOT / "queries"
 OUTPUT_DIR = PROJECT_ROOT / "output" / "sql_views_aggregations"
 PROCESSED_DATA_DIR = PROJECT_ROOT / "data" / "processed"
