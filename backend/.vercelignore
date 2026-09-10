@@ -4,6 +4,8 @@
 !pyproject.toml
 !uv.lock
 !vercel.json
+!api/
+!api/**
 !server/
 !server/**
 !queries/

@@ -48,6 +48,16 @@ def test_health_check() -> None:
     assert data["status"] == "ok"
 
 
+def test_vercel_entrypoint_serves_health_check() -> None:
+    """The standard api/index.py entrypoint must load the dashboard API."""
+    from api.index import app as vercel_app
+
+    response = TestClient(vercel_app).get("/api/health")
+
+    assert response.status_code == 200
+    assert response.json()["status"] == "ok"
+
+
 def test_analytics_overview() -> None:
     """Verify Level 1 Overview metrics endpoint returns real calculated data."""
     response = client.get("/api/analytics/overview")
