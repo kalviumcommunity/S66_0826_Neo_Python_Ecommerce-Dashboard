@@ -74,13 +74,23 @@ def init_db_if_needed() -> None:
         print(f"Database tables missing ({missing}). Initializing SQLite database from processed CSVs...")
 
         # Load CSVs
+        missing_csvs: list[str] = []
         for csv_file, table_name in TABLE_CSV_MAPPING.items():
             if table_name not in existing_tables:
                 csv_path = PROCESSED_DATA_DIR / csv_file
-                if csv_path.exists():
-                    print(f"  Loading {csv_file} -> '{table_name}'...")
-                    df = pd.read_csv(csv_path, low_memory=False)
-                    df.to_sql(table_name, engine, if_exists="replace", index=False)
+                if not csv_path.exists():
+                    missing_csvs.append(str(csv_path))
+                    continue
+
+                print(f"  Loading {csv_file} -> '{table_name}'...")
+                df = pd.read_csv(csv_path, low_memory=False)
+                df.to_sql(table_name, engine, if_exists="replace", index=False)
+
+        if missing_csvs:
+            conn.close()
+            raise FileNotFoundError(
+                "Missing processed CSV files required to initialize the database: " + ", ".join(missing_csvs)
+            )
 
         # Create Views and Pre-Aggregated Tables
         scripts = [
