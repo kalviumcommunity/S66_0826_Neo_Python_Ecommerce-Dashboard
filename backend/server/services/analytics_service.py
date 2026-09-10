@@ -6,6 +6,7 @@ import json
 from typing import Any
 
 import pandas as pd
+from fastapi import HTTPException
 from sqlalchemy import func
 
 from server.config import (
@@ -26,7 +27,6 @@ from server.services.risk_service import (
 def get_overview_analytics() -> dict[str, Any]:
     """Calculate Level 1 Executive Overview KPIs."""
     df_sellers = get_all_sellers_df()
-    _, history_dict, _ = get_cached_seller_data()
 
     # Total sellers (with at least 1 order fulfilled or registered)
     active_sellers = df_sellers[df_sellers["total_orders"] > 0]
@@ -36,16 +36,28 @@ def get_overview_analytics() -> dict[str, Any]:
     high_risk_count = int((active_sellers["risk_tier"] == "HIGH").sum())
 
     # High-Risk MoM Change: Compare the two latest active periods across all seller histories
-    monthly_high_risk: dict[str, int] = {}
-    all_periods: set[str] = set()
-    for _, history_list in history_dict.items():
-        for pt in history_list:
-            period = pt["period"]
-            all_periods.add(period)
-            if pt["risk_score"] > 70.0:
-                monthly_high_risk[period] = monthly_high_risk.get(period, 0) + 1
+    try:
+        with get_db_connection() as conn:
+            monthly_risk_df = safe_read_sql(
+                "SELECT period, SUM(CASE WHEN risk_score > 70.0 THEN 1 ELSE 0 END) AS high_risk_count "
+                "FROM api_seller_risk_history GROUP BY period ORDER BY period ASC",
+                conn,
+            )
+        monthly_high_risk = {
+            str(row["period"]): int(row["high_risk_count"])
+            for _, row in monthly_risk_df.iterrows()
+        }
+    except HTTPException:
+        # Local development can still run before the persistent cache is built.
+        _, history_dict, _ = get_cached_seller_data()
+        monthly_high_risk: dict[str, int] = {}
+        for history in history_dict.values():
+            for point in history:
+                if point["risk_score"] > 70.0:
+                    period = str(point["period"])
+                    monthly_high_risk[period] = monthly_high_risk.get(period, 0) + 1
 
-    sorted_periods = sorted(all_periods)
+    sorted_periods = list(monthly_high_risk)
     if len(sorted_periods) >= 2:
         last_period = sorted_periods[-1]
         prev_period = sorted_periods[-2]

@@ -224,7 +224,7 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                   <h4 className="font-bold text-slate-900 text-xs uppercase font-mono tracking-wider">
                     Recent Trend Breakdown
                   </h4>
-                  <p className="text-[11px] text-slate-500">Review Score vs. Delivery Delay % & Cancellation %</p>
+                  <p className="text-[11px] text-slate-500">Review score, completed deliveries, delayed deliveries, and cancelled orders</p>
                 </div>
               </div>
 
@@ -234,7 +234,7 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                     <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
                     <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
                     <YAxis yAxisId="left" domain={[1, 5]} tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis yAxisId="right" orientation="right" domain={[0, 40]} tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                    <YAxis yAxisId="right" orientation="right" allowDecimals={false} tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
                     <Tooltip
                       contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', borderColor: '#e2e8f0', fontSize: '11px' }}
                     />
@@ -251,8 +251,17 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                     <Line
                       yAxisId="right"
                       type="monotone"
-                      dataKey="deliveryDelayPct"
-                      name="Delay %"
+                      dataKey="deliveriesDone"
+                      name="Deliveries Done"
+                      stroke="#16A34A"
+                      strokeWidth={2}
+                      dot={{ r: 3 }}
+                    />
+                    <Line
+                      yAxisId="right"
+                      type="monotone"
+                      dataKey="lateDeliveryCount"
+                      name="Delayed Deliveries"
                       stroke="#EF4444"
                       strokeWidth={2}
                       dot={{ r: 3 }}
@@ -260,8 +269,8 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                     <Line
                       yAxisId="right"
                       type="monotone"
-                      dataKey="cancellationPct"
-                      name="Cancel %"
+                      dataKey="cancelledOrderCount"
+                      name="Cancelled Orders"
                       stroke="#F59E0B"
                       strokeWidth={2}
                       dot={{ r: 3 }}
@@ -274,7 +283,7 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
             {/* Risk Contribution Factors */}
             <div className="bg-white p-4 rounded-xl border border-slate-200/80 shadow-2xs space-y-3">
               <h4 className="font-bold text-slate-900 text-xs uppercase font-mono tracking-wider">
-                Risk Index Contribution Breakdown
+                Seller Performance Rates
               </h4>
               <div className="space-y-2.5">
                 {seller.riskFactorContribution.map((factor) => (

@@ -9,8 +9,8 @@ from server.database import get_db_connection, safe_read_sql
 from server.queries import load_query
 from server.services.risk_service import (
     get_all_sellers_df,
-    get_cached_seller_data,
     get_seller_history,
+    get_seller_histories,
 )
 
 
@@ -26,7 +26,6 @@ def get_sellers_directory(
 ) -> dict[str, Any]:
     """Return paginated, sorted, and filtered seller records for the directory."""
     df = get_all_sellers_df().copy()
-    _, history_dict, _ = get_cached_seller_data()
 
     # Filter out sellers with 0 orders for the active directory
     df = df[df["total_orders"] > 0]
@@ -71,6 +70,7 @@ def get_sellers_directory(
     start_idx = (page - 1) * limit
     end_idx = start_idx + limit
     page_df = df.iloc[start_idx:end_idx]
+    history_dict = get_seller_histories(page_df["seller_id"].astype(str).tolist())
 
     sellers_list = []
     for _, row in page_df.iterrows():
@@ -94,6 +94,8 @@ def get_sellers_directory(
             "is_sparse": bool(row["is_sparse"]),
             "average_rating": float(row["average_rating"]),
             "late_delivery_percentage": float(row["late_delivery_percentage"]),
+            "cancellation_rate": float(row["cancellation_rate"]),
+            "low_review_rate": float(row["low_review_rate"]),
             "risk_history": sparkline,
         })
 
@@ -120,6 +122,16 @@ def get_seller_details(seller_id: str) -> dict[str, Any] | None:
     with get_db_connection() as conn:
         deliv_df = safe_read_sql(
             load_query("seller_delivery_times.sql"),
+            conn,
+            params={"seller_id": seller_id},
+        )
+        reviews_df = safe_read_sql(
+            load_query("seller_reviews.sql"),
+            conn,
+            params={"seller_id": seller_id},
+        )
+        delay_df = safe_read_sql(
+            load_query("seller_delivery_delay_distribution.sql"),
             conn,
             params={"seller_id": seller_id},
         )
@@ -162,11 +174,38 @@ def get_seller_details(seller_id: str) -> dict[str, Any] | None:
             {
                 "period": h["period"],
                 "orders": h["orders"],
+                "delivered_orders": h["delivered_orders"],
                 "avg_review": h["avg_review"],
                 "late_deliveries": h["late_deliveries"],
+                "canceled_orders": h["canceled_orders"],
+                "cancellation_rate": h["cancellation_rate"],
+                "low_review_count": h["low_review_count"],
                 "risk_score": h["risk_score"],
             }
             for h in history
+        ],
+        "reviews": [
+            {
+                "review_id": str(review["review_id"]),
+                "order_id": str(review["order_id"]),
+                "review_score": int(review["review_score"]),
+                "review_creation_date": (
+                    str(review["review_creation_date"])
+                    if pd.notna(review["review_creation_date"])
+                    else None
+                ),
+                "review_comment_message": (
+                    str(review["review_comment_message"])
+                    if pd.notna(review["review_comment_message"])
+                    else None
+                ),
+                "product_category": str(review["product_category"]),
+            }
+            for _, review in reviews_df.iterrows()
+        ],
+        "delivery_delay_distribution": [
+            {"range": str(bucket["range"]), "count": int(bucket["count"])}
+            for _, bucket in delay_df.iterrows()
         ],
     }
 

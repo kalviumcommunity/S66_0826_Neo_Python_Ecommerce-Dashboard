@@ -1,0 +1,6 @@
+# Runtime dependencies for the Vercel FastAPI function.
+# Analysis and notebook packages remain managed by uv for local development.
+fastapi>=0.141.1
+pandas>=3.0.5
+python-dotenv>=1.2.3
+sqlalchemy>=2.0.30

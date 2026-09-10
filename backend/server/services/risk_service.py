@@ -58,6 +58,11 @@ def compute_seller_risk_dataset() -> tuple[pd.DataFrame, dict[str, list[dict[str
     ).round(2)
     df.loc[df["total_orders"] == 0, "cancellation_rate"] = 0.0
 
+    df["low_review_rate"] = (
+        (df["low_review_count"] / df["review_count"].replace(0, 1)) * 100.0
+    ).round(2)
+    df.loc[df["review_count"] == 0, "low_review_rate"] = 0.0
+
     # Bayesian Smoothed Review Rating (IMDb formula pulling small sample sizes toward 4.09 platform mean)
     df["average_rating"] = (
         (df["review_count"] * df["raw_avg_review"] + PRIOR_REVIEW_WEIGHT * PRIOR_REVIEW_SCORE)
@@ -128,8 +133,15 @@ def compute_seller_risk_dataset() -> tuple[pd.DataFrame, dict[str, list[dict[str
             {
                 "period": row["period"],
                 "orders": int(row["orders"]),
+                "delivered_orders": int(row["delivered_orders"]),
                 "avg_review": round(float(row["smoothed_rev"]), 2),
                 "late_deliveries": int(row["late_deliveries"]),
+                "canceled_orders": int(row["canceled_orders"]),
+                "cancellation_rate": round(
+                    float(row["canceled_orders"]) / max(int(row["orders"]), 1) * 100.0,
+                    2,
+                ),
+                "low_review_count": int(row["low_review_count"]),
                 "risk_score": float(row["risk_score"]),
             }
             for _, row in group.iterrows()
@@ -142,6 +154,7 @@ def compute_seller_risk_dataset() -> tuple[pd.DataFrame, dict[str, list[dict[str
             total_sellers=("seller_id", "count"),
             total_orders=("total_orders", "sum"),
             avg_risk=("risk_score", "mean"),
+            high_risk_seller_count=("risk_tier", lambda tiers: int((tiers == "HIGH").sum())),
         )
         .reset_index()
     )
@@ -151,7 +164,9 @@ def compute_seller_risk_dataset() -> tuple[pd.DataFrame, dict[str, list[dict[str
         {
             "category": row["category"],
             "risk_score": float(row["avg_risk"]),
+            "total_sellers": int(row["total_sellers"]),
             "total_orders": int(row["total_orders"]),
+            "high_risk_seller_count": int(row["high_risk_seller_count"]),
         }
         for _, row in category_summary.iterrows()
         if row["category"] != "other"
@@ -161,12 +176,29 @@ def compute_seller_risk_dataset() -> tuple[pd.DataFrame, dict[str, list[dict[str
 
 
 def get_cached_seller_data() -> tuple[pd.DataFrame, dict[str, list[dict[str, Any]]], list[dict[str, Any]]]:
-    """Retrieve or compute the cached seller analytics dataset."""
+    """Retrieve persisted seller analytics, with an in-memory cache per process."""
     global _seller_cache, _seller_history_cache, _category_risk_cache
     if _seller_cache is None or _seller_history_cache is None or _category_risk_cache is None:
         with _cache_lock:
             if _seller_cache is None or _seller_history_cache is None or _category_risk_cache is None:
-                _seller_cache, _seller_history_cache, _category_risk_cache = compute_seller_risk_dataset()
+                try:
+                    with get_db_connection() as conn:
+                        seller_df = safe_read_sql("SELECT * FROM api_seller_risk", conn)
+                        category_df = safe_read_sql("SELECT * FROM api_category_risk", conn)
+
+                    if seller_df.empty:
+                        raise ValueError("Persisted seller-risk cache is empty")
+
+                    _seller_cache = seller_df
+                    # Monthly histories are loaded only for sellers currently being
+                    # displayed. Loading all histories here made the first directory
+                    # request unnecessarily slow.
+                    _seller_history_cache = {}
+                    _category_risk_cache = category_df.to_dict(orient="records")
+                except Exception:
+                    # A missing cache never prevents local development; it is rebuilt
+                    # by scripts/build_api_cache.py after the SQLite data refresh.
+                    _seller_cache, _seller_history_cache, _category_risk_cache = compute_seller_risk_dataset()
     return _seller_cache, _seller_history_cache, _category_risk_cache
 
 
@@ -178,8 +210,37 @@ def get_all_sellers_df() -> pd.DataFrame:
 
 def get_seller_history(seller_id: str) -> list[dict[str, Any]]:
     """Return the monthly risk and order history for a specific seller."""
-    _, history_dict, _ = get_cached_seller_data()
-    return history_dict.get(seller_id, [])
+    return get_seller_histories([seller_id]).get(seller_id, [])
+
+
+def get_seller_histories(seller_ids: list[str]) -> dict[str, list[dict[str, Any]]]:
+    """Return cached monthly histories for the requested sellers only."""
+    global _seller_history_cache
+    get_cached_seller_data()
+    assert _seller_history_cache is not None
+
+    requested_ids = list(dict.fromkeys(seller_ids))
+    missing_ids = [seller_id for seller_id in requested_ids if seller_id not in _seller_history_cache]
+    if missing_ids:
+        parameters = {f"seller_{index}": seller_id for index, seller_id in enumerate(missing_ids)}
+        placeholders = ", ".join(f":seller_{index}" for index in range(len(missing_ids)))
+        with get_db_connection() as conn:
+            history_df = safe_read_sql(
+                "SELECT * FROM api_seller_risk_history "
+                f"WHERE seller_id IN ({placeholders}) ORDER BY period ASC",
+                conn,
+                params=parameters,
+            )
+
+        loaded_histories = {
+            str(seller_id): group.drop(columns="seller_id").to_dict(orient="records")
+            for seller_id, group in history_df.groupby("seller_id")
+        }
+        _seller_history_cache.update(loaded_histories)
+        for seller_id in missing_ids:
+            _seller_history_cache.setdefault(seller_id, [])
+
+    return {seller_id: _seller_history_cache[seller_id] for seller_id in requested_ids}
 
 
 def get_category_risk_data() -> list[dict[str, Any]]:

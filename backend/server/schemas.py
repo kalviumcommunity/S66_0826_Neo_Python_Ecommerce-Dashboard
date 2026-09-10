@@ -80,7 +80,9 @@ class ReviewDistributionResponse(BaseModel):
 class CategoryRiskItem(BaseModel):
     category: str = Field(..., description="Category name")
     risk_score: float = Field(..., description="Category risk score (0-100)")
+    total_sellers: int = 0
     total_orders: int | None = None
+    high_risk_seller_count: int = 0
 
 
 class CategoryRiskResponse(BaseModel):
@@ -111,6 +113,8 @@ class SellerRecord(BaseModel):
     is_sparse: bool
     average_rating: float
     late_delivery_percentage: float
+    cancellation_rate: float
+    low_review_rate: float
     risk_history: list[RiskHistoryPoint] = []
 
 
@@ -145,9 +149,27 @@ class RiskContributors(BaseModel):
 class MonthlyHistoryPoint(BaseModel):
     period: str
     orders: int
+    delivered_orders: int
     avg_review: float
     late_deliveries: int
+    canceled_orders: int
+    cancellation_rate: float
+    low_review_count: int
     risk_score: float
+
+
+class SellerReview(BaseModel):
+    review_id: str
+    order_id: str
+    review_score: int
+    review_creation_date: str | None = None
+    review_comment_message: str | None = None
+    product_category: str
+
+
+class DelayDistributionPoint(BaseModel):
+    range: str
+    count: int
 
 
 class SellerDetailResponse(BaseModel):
@@ -160,6 +182,8 @@ class SellerDetailResponse(BaseModel):
     metrics: SellerMetrics
     risk_contributors: RiskContributors
     monthly_history: list[MonthlyHistoryPoint]
+    reviews: list[SellerReview]
+    delivery_delay_distribution: list[DelayDistributionPoint]
 
 
 # ---------------------------------------------------------------------------

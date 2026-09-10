@@ -56,3 +56,31 @@ jobs:
 
       - name: Test FastAPI routes
         run: uv run --locked pytest tests/test_api_endpoints.py
+
+  build-and-quality:
+    name: Python build and quality checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: Check Python syntax
+        run: uv run --locked python -m compileall -q server
+
+      - name: Build Python package
+        run: uv build

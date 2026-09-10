@@ -89,3 +89,36 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: vercel --prod --yes --token="$VERCEL_TOKEN"
+
+  deploy-backend:
+    name: Deploy backend to Vercel
+    needs: [python-ci]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel
+
+      - name: Verify backend Vercel configuration
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_BACKEND_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_BACKEND_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_BACKEND_PROJECT_ID }}
+        run: |
+          for name in VERCEL_TOKEN VERCEL_ORG_ID VERCEL_PROJECT_ID; do
+            if [ -z "${!name}" ]; then
+              echo "::error::$name is missing or empty."
+              exit 1
+            fi
+          done
+
+      - name: Deploy backend to Vercel production
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_BACKEND_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_BACKEND_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_BACKEND_PROJECT_ID }}
+        run: vercel --cwd backend --prod --yes --token="$VERCEL_TOKEN"
