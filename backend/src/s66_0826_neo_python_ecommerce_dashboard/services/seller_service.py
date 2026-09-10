@@ -6,11 +6,13 @@ from typing import Any
 import pandas as pd
 
 from s66_0826_neo_python_ecommerce_dashboard.database import get_db_connection, safe_read_sql
+from s66_0826_neo_python_ecommerce_dashboard.queries import load_query
 from s66_0826_neo_python_ecommerce_dashboard.services.risk_service import (
     get_all_sellers_df,
     get_cached_seller_data,
     get_seller_history,
 )
+
 
 
 def get_sellers_directory(
@@ -116,17 +118,13 @@ def get_seller_details(seller_id: str) -> dict[str, Any] | None:
     history = get_seller_history(seller_id)
 
     # Compute average delivery days for this seller from orders (database agnostic)
-    query = """
-    SELECT o.order_delivered_customer_date, o.order_purchase_timestamp
-    FROM order_items oi
-    JOIN orders o ON oi.order_id = o.order_id
-    WHERE oi.seller_id = :seller_id
-      AND o.order_status = 'delivered'
-      AND o.order_delivered_customer_date IS NOT NULL
-      AND o.order_purchase_timestamp IS NOT NULL;
-    """
     with get_db_connection() as conn:
-        deliv_df = safe_read_sql(query, conn, params={"seller_id": seller_id})
+        deliv_df = safe_read_sql(
+            load_query("seller_delivery_times.sql"),
+            conn,
+            params={"seller_id": seller_id},
+        )
+
 
     if not deliv_df.empty:
         delivered_dt = pd.to_datetime(deliv_df["order_delivered_customer_date"], errors="coerce")

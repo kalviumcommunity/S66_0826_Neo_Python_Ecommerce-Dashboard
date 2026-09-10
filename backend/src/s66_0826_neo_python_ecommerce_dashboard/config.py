@@ -23,7 +23,16 @@ OUTPUT_DIR = BACKEND_DIR / "output"
 KPI_RESULTS_FILE = OUTPUT_DIR / "kpi_report" / "kpi_results.json"
 
 # Database connection string (defaults to local SQLite if DATABASE_URL is not set)
-DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{DB_PATH}")
+_raw_db_url = os.getenv("DATABASE_URL")
+if not _raw_db_url:
+    DATABASE_URL = f"sqlite:///{DB_PATH}"
+elif _raw_db_url.startswith("sqlite:///") and not _raw_db_url.startswith("sqlite:////"):
+    # Convert relative SQLite URL (e.g. sqlite:///data/analytics.db) to absolute path
+    _rel_sqlite_path = _raw_db_url.replace("sqlite:///", "", 1)
+    DATABASE_URL = f"sqlite:///{BACKEND_DIR / _rel_sqlite_path}"
+else:
+    DATABASE_URL = _raw_db_url
+
 
 # Risk Scoring Configuration adhering to DASHBOARD_THINKING.md
 RISK_THRESHOLD_LOW = 30.0

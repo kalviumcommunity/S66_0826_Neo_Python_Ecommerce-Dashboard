@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import json
 from typing import Any
+
 import pandas as pd
-from sqlalchemy import text
+from sqlalchemy import func
 
 from s66_0826_neo_python_ecommerce_dashboard.config import (
     KPI_RESULTS_FILE,
@@ -13,11 +14,14 @@ from s66_0826_neo_python_ecommerce_dashboard.config import (
     TARGET_LATE_DELIVERY_PCT,
     TARGET_REVIEW_SCORE,
 )
-from s66_0826_neo_python_ecommerce_dashboard.database import get_db_connection, safe_read_sql
+from s66_0826_neo_python_ecommerce_dashboard.database import SessionLocal, get_db_connection, safe_read_sql
+from s66_0826_neo_python_ecommerce_dashboard.models import OrderReview
+from s66_0826_neo_python_ecommerce_dashboard.queries import load_query
 from s66_0826_neo_python_ecommerce_dashboard.services.risk_service import (
     get_all_sellers_df,
     get_cached_seller_data,
 )
+
 
 
 def get_overview_analytics() -> dict[str, Any]:
@@ -52,27 +56,23 @@ def get_overview_analytics() -> dict[str, Any]:
     else:
         high_risk_change_pct = 0.0
 
-    # Macro Platform Metrics from Database via single connection manager
+    # Macro Platform Metrics: ORM for average review score, external SQL for macro aggregates
+    with SessionLocal() as db_session:
+        avg_val = (
+            db_session.query(func.avg(OrderReview.review_score))
+            .filter(OrderReview.review_score.isnot(None))
+            .scalar()
+        )
+        avg_review_score = round(float(avg_val), 2) if avg_val is not None else 4.09
+
     with get_db_connection() as conn:
-        rev_row = conn.execute(
-            text("SELECT AVG(review_score) FROM order_reviews WHERE review_score IS NOT NULL")
-        ).fetchone()
-        avg_review_score = round(float(rev_row[0]), 2) if rev_row and rev_row[0] is not None else 4.09
+        row_df = safe_read_sql(load_query("analytics_macro_overview.sql"), conn)
+        row = row_df.iloc[0]
 
-        macro_query = """
-        SELECT
-            COUNT(*) AS total_orders,
-            SUM(CASE WHEN order_status = 'delivered' THEN 1 ELSE 0 END) AS delivered_orders,
-            SUM(CASE WHEN order_status = 'delivered' AND order_delivered_customer_date > order_estimated_delivery_date THEN 1 ELSE 0 END) AS late_orders,
-            SUM(CASE WHEN order_status = 'canceled' THEN 1 ELSE 0 END) AS canceled_orders
-        FROM orders;
-        """
-        row = conn.execute(text(macro_query)).fetchone()
-
-    total_orders = row[0] or 1
-    delivered_orders = row[1] or 1
-    late_orders = row[2] or 0
-    canceled_orders = row[3] or 0
+    total_orders = int(row["total_orders"]) if pd.notna(row["total_orders"]) else 1
+    delivered_orders = int(row["delivered_orders"]) if pd.notna(row["delivered_orders"]) else 1
+    late_orders = int(row["late_orders"]) if pd.notna(row["late_orders"]) else 0
+    canceled_orders = int(row["canceled_orders"]) if pd.notna(row["canceled_orders"]) else 0
 
     late_delivery_pct = round((late_orders / delivered_orders) * 100.0, 2)
     cancellation_rate = round((canceled_orders / total_orders) * 100.0, 2)
@@ -104,20 +104,8 @@ def get_overview_analytics() -> dict[str, Any]:
 
 def get_review_trend_analytics() -> dict[str, Any]:
     """Calculate Level 2 Longitudinal Average Review Score Trend (cross-DB compatible)."""
-    query = """
-    SELECT 
-        substr(o.order_purchase_timestamp, 1, 7) AS period,
-        ROUND(AVG(r.review_score), 2) AS average_review_score,
-        COUNT(r.review_score) AS total_reviews
-    FROM orders o
-    JOIN order_reviews r ON o.order_id = r.order_id
-    WHERE o.order_purchase_timestamp IS NOT NULL
-    GROUP BY substr(o.order_purchase_timestamp, 1, 7)
-    HAVING substr(o.order_purchase_timestamp, 1, 7) >= '2017-01' AND substr(o.order_purchase_timestamp, 1, 7) <= '2018-08'
-    ORDER BY period ASC;
-    """
     with get_db_connection() as conn:
-        df_trend = safe_read_sql(query, conn)
+        df_trend = safe_read_sql(load_query("analytics_review_trend.sql"), conn)
 
     trend_points = [
         {
@@ -152,20 +140,18 @@ def get_risk_distribution_analytics() -> dict[str, int]:
 
 
 def get_review_distribution_analytics() -> dict[str, Any]:
-    """Calculate Level 3 Review Star Distribution and Positive Percentage."""
-    query = """
-    SELECT
-        review_score,
-        COUNT(*) AS cnt
-    FROM order_reviews
-    WHERE review_score IS NOT NULL
-    GROUP BY review_score
-    ORDER BY review_score ASC;
-    """
-    with get_db_connection() as conn:
-        df_rev = safe_read_sql(query, conn)
+    """Calculate Level 3 Review Star Distribution and Positive Percentage via SQLAlchemy ORM."""
+    with SessionLocal() as db_session:
+        star_counts = (
+            db_session.query(OrderReview.review_score, func.count(OrderReview.review_score))
+            .filter(OrderReview.review_score.isnot(None))
+            .group_by(OrderReview.review_score)
+            .order_by(OrderReview.review_score.asc())
+            .all()
+        )
 
-    star_map = {int(r["review_score"]): int(r["cnt"]) for _, r in df_rev.iterrows()}
+    star_map = {int(score): int(cnt) for score, cnt in star_counts}
+
     one_star = star_map.get(1, 0)
     two_star = star_map.get(2, 0)
     three_star = star_map.get(3, 0)

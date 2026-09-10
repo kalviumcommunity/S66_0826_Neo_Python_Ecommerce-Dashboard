@@ -16,6 +16,7 @@ from s66_0826_neo_python_ecommerce_dashboard.config import (
     SPARSE_ORDER_THRESHOLD,
 )
 from s66_0826_neo_python_ecommerce_dashboard.database import get_db_connection, safe_read_sql
+from s66_0826_neo_python_ecommerce_dashboard.queries import load_query
 
 _cache_lock = threading.Lock()
 _seller_cache: pd.DataFrame | None = None
@@ -27,138 +28,16 @@ def compute_seller_risk_dataset() -> tuple[pd.DataFrame, dict[str, list[dict[str
     """Compute comprehensive seller metrics, Bayesian-smoothed risk scores, and category risks from the database."""
     with get_db_connection() as conn:
         # 1. Primary Category per Seller
-        seller_cat_query = """
-        WITH seller_cat AS (
-            SELECT 
-                oi.seller_id,
-                COALESCE(t.product_category_name_english, p.product_category_name, 'other') AS category,
-                COUNT(*) as cat_count,
-                ROW_NUMBER() OVER (PARTITION BY oi.seller_id ORDER BY COUNT(*) DESC) as rn
-            FROM order_items oi
-            JOIN products p ON oi.product_id = p.product_id
-            LEFT JOIN product_category_name_translation t ON p.product_category_name = t.product_category_name
-            GROUP BY oi.seller_id, COALESCE(t.product_category_name_english, p.product_category_name, 'other')
-        )
-        SELECT seller_id, category FROM seller_cat WHERE rn = 1;
-        """
-        df_cats = safe_read_sql(seller_cat_query, conn)
+        df_cats = safe_read_sql(load_query("seller_primary_category.sql"), conn)
 
         # 2. Seller Overall Metrics
-        seller_metrics_query = """
-        WITH seller_orders AS (
-            SELECT 
-                oi.seller_id,
-                o.order_id,
-                o.order_status,
-                o.order_delivered_customer_date,
-                o.order_estimated_delivery_date,
-                CASE WHEN o.order_status = 'delivered' AND o.order_delivered_customer_date > o.order_estimated_delivery_date THEN 1 ELSE 0 END AS is_late,
-                CASE WHEN o.order_status = 'canceled' THEN 1 ELSE 0 END AS is_canceled
-            FROM order_items oi
-            JOIN orders o ON oi.order_id = o.order_id
-            GROUP BY oi.seller_id, o.order_id, o.order_status, o.order_delivered_customer_date, o.order_estimated_delivery_date
-        ),
-        seller_reviews AS (
-            SELECT 
-                oi.seller_id,
-                COUNT(r.review_score) AS review_count,
-                AVG(r.review_score) AS avg_review
-            FROM order_items oi
-            JOIN orders o ON oi.order_id = o.order_id
-            JOIN order_reviews r ON o.order_id = r.order_id
-            GROUP BY oi.seller_id
-        ),
-        seller_revenue AS (
-            SELECT
-                oi.seller_id,
-                COUNT(oi.order_item_id) AS total_items_sold,
-                SUM(oi.price) AS total_revenue
-            FROM order_items oi
-            GROUP BY oi.seller_id
-        ),
-        seller_agg AS (
-            SELECT 
-                so.seller_id,
-                COUNT(DISTINCT so.order_id) AS total_orders,
-                SUM(CASE WHEN so.order_status = 'delivered' THEN 1 ELSE 0 END) AS delivered_orders,
-                SUM(so.is_late) AS late_orders,
-                SUM(so.is_canceled) AS canceled_orders
-            FROM seller_orders so
-            GROUP BY so.seller_id
-        )
-        SELECT 
-            s.seller_id,
-            COALESCE(s.seller_city, 'unknown') AS city,
-            COALESCE(s.seller_state, 'unknown') AS state,
-            COALESCE(sa.total_orders, 0) AS total_orders,
-            COALESCE(sa.delivered_orders, 0) AS delivered_orders,
-            COALESCE(sa.late_orders, 0) AS late_orders,
-            COALESCE(sa.canceled_orders, 0) AS canceled_orders,
-            COALESCE(sr.review_count, 0) AS review_count,
-            COALESCE(sr.avg_review, 4.09) AS raw_avg_review,
-            COALESCE(srev.total_items_sold, 0) AS total_items_sold,
-            COALESCE(srev.total_revenue, 0.0) AS total_revenue
-        FROM sellers s
-        LEFT JOIN seller_agg sa ON s.seller_id = sa.seller_id
-        LEFT JOIN seller_reviews sr ON s.seller_id = sr.seller_id
-        LEFT JOIN seller_revenue srev ON s.seller_id = srev.seller_id;
-        """
-        df = safe_read_sql(seller_metrics_query, conn)
+        df = safe_read_sql(load_query("seller_risk_metrics.sql"), conn)
         df = df.merge(df_cats, on="seller_id", how="left")
         df["category"] = df["category"].fillna("other")
 
-        # 3. Monthly Risk History per Seller (using substr for cross-DB compatibility)
-        monthly_history_query = """
-        WITH seller_monthly_orders AS (
-            SELECT 
-                oi.seller_id,
-                substr(o.order_purchase_timestamp, 1, 7) AS period,
-                o.order_id,
-                o.order_status,
-                CASE WHEN o.order_status = 'delivered' AND o.order_delivered_customer_date > o.order_estimated_delivery_date THEN 1 ELSE 0 END AS is_late,
-                CASE WHEN o.order_status = 'canceled' THEN 1 ELSE 0 END AS is_canceled
-            FROM order_items oi
-            JOIN orders o ON oi.order_id = o.order_id
-            WHERE o.order_purchase_timestamp IS NOT NULL
-            GROUP BY oi.seller_id, substr(o.order_purchase_timestamp, 1, 7), o.order_id, o.order_status, o.order_delivered_customer_date, o.order_estimated_delivery_date
-        ),
-        seller_monthly_reviews AS (
-            SELECT 
-                oi.seller_id,
-                substr(o.order_purchase_timestamp, 1, 7) AS period,
-                COUNT(r.review_score) AS review_count,
-                AVG(r.review_score) AS avg_review
-            FROM order_items oi
-            JOIN orders o ON oi.order_id = o.order_id
-            JOIN order_reviews r ON o.order_id = r.order_id
-            WHERE o.order_purchase_timestamp IS NOT NULL
-            GROUP BY oi.seller_id, substr(o.order_purchase_timestamp, 1, 7)
-        ),
-        monthly_agg AS (
-            SELECT 
-                smo.seller_id,
-                smo.period,
-                COUNT(DISTINCT smo.order_id) AS orders,
-                SUM(CASE WHEN smo.order_status = 'delivered' THEN 1 ELSE 0 END) AS delivered_orders,
-                SUM(smo.is_late) AS late_deliveries,
-                SUM(smo.is_canceled) AS canceled_orders
-            FROM seller_monthly_orders smo
-            GROUP BY smo.seller_id, smo.period
-        )
-        SELECT 
-            ma.seller_id,
-            ma.period,
-            ma.orders,
-            ma.delivered_orders,
-            ma.late_deliveries,
-            ma.canceled_orders,
-            COALESCE(smr.review_count, 0) AS review_count,
-            COALESCE(smr.avg_review, 4.09) AS avg_review
-        FROM monthly_agg ma
-        LEFT JOIN seller_monthly_reviews smr ON ma.seller_id = smr.seller_id AND ma.period = smr.period
-        ORDER BY ma.period ASC;
-        """
-        df_history = safe_read_sql(monthly_history_query, conn)
+        # 3. Monthly Risk History per Seller
+        df_history = safe_read_sql(load_query("seller_monthly_history.sql"), conn)
+
 
     # 4. Bayesian Smoothing & Penalty Calculations
     # Raw late delivery rate
