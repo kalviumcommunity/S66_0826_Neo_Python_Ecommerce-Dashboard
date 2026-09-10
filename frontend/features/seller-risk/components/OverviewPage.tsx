@@ -282,9 +282,9 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-2xs space-y-3">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-slate-900 text-base">Top Categories by Risk</h3>
+              <h3 className="font-bold text-slate-900 text-base">Top 8 Categories by Risk</h3>
               <p className="text-xs text-slate-500">
-                Click any bar to filter and view sellers in that category
+                Highest average seller-risk scores. Click a bar to inspect that category.
               </p>
             </div>
             <span className="text-xs font-mono text-slate-400">Risk Meter (0-100)</span>
@@ -302,6 +302,10 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
                 <YAxis
                   dataKey="formattedCategory"
                   type="category"
+                  tickFormatter={(value) => {
+                    const label = String(value);
+                    return label.length > 18 ? `${label.slice(0, 17)}…` : label;
+                  }}
                   tick={{ fontSize: 11, fill: '#334155', cursor: 'pointer' }}
                   width={140}
                   axisLine={false}
@@ -309,11 +313,14 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
                 />
                 <Tooltip
                   contentStyle={{ backgroundColor: '#ffffff', borderRadius: '12px', borderColor: '#e2e8f0', fontSize: '12px' }}
-                  formatter={(val, _name, item) => [
-                    `${val} Avg Risk (${item.payload.highRiskSellerCount} Sellers)`,
+                  formatter={(val) => [
+                    `${val} average risk`,
                     'Category Risk',
                   ]}
-                  labelFormatter={(label) => `Category: ${label} (Click to Filter)`}
+                  labelFormatter={(label, payload) => {
+                    const category = payload[0]?.payload;
+                    return `${label} — High-risk sellers: ${category?.highRiskSellerCount ?? 0} of ${category?.totalSellerCount ?? 0}`;
+                  }}
                 />
                 <Bar
                   onClick={(_, index) => onNavigateToDirectoryWithFilter?.(undefined, categoryRiskData[index].category)}

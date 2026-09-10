@@ -5,6 +5,7 @@ import {
   ArrowUpDown,
   AlertTriangle,
   RotateCcw,
+  ChevronLeft,
   ChevronRight,
   Tag,
   Download,
@@ -23,6 +24,11 @@ interface SellerDirectoryPageProps {
   onOpenExportModal: () => void;
   initialDriverFilter?: PrimaryRiskDriver | null;
   initialCategoryFilter?: string | null;
+  totalSellers: number;
+  currentPage: number;
+  totalPages: number;
+  isPageLoading: boolean;
+  onPageChange: (page: number) => void;
 }
 
 export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
@@ -34,6 +40,11 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
   onOpenExportModal,
   initialDriverFilter = null,
   initialCategoryFilter = null,
+  totalSellers,
+  currentPage,
+  totalPages,
+  isPageLoading,
+  onPageChange,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategoryFilter || 'All');
@@ -104,6 +115,9 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
     const fname = `olist_sellers_case_export${categorySuffix}_${dateStr}`;
     exportSellersToCSV(filteredSellers, fname, true);
   };
+
+  const firstVisibleSeller = totalSellers === 0 ? 0 : (currentPage - 1) * 10 + 1;
+  const lastVisibleSeller = Math.min(currentPage * 10, totalSellers);
 
   return (
     <div className="flex h-full w-full overflow-hidden bg-[#F7F7F8]">
@@ -350,7 +364,7 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
                               e.stopPropagation();
                               setSelectedCategory(seller.category);
                             }}
-                            className="font-mono text-[11px] text-slate-700 bg-slate-100 hover:bg-amber-100 hover:text-amber-900 px-2 py-0.5 rounded border border-slate-200 transition-colors"
+                            className="block max-w-36 truncate font-mono text-[11px] text-slate-700 bg-slate-100 hover:bg-amber-100 hover:text-amber-900 px-2 py-0.5 rounded border border-slate-200 transition-colors"
                             title={`Filter strictly to ${formatCategoryName(seller.category)}`}
                           >
                             {formatCategoryName(seller.category)}
@@ -429,6 +443,31 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
             </div>
           </div>
         )}
+
+        <div className="flex flex-col gap-3 rounded-xl border border-[#E2E8F0] bg-white p-3.5 text-xs sm:flex-row sm:items-center sm:justify-between">
+          <span className="font-mono text-[#64748B]">
+            Showing {firstVisibleSeller.toLocaleString()}–{lastVisibleSeller.toLocaleString()} of {totalSellers.toLocaleString()} sellers
+          </span>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => onPageChange(currentPage - 1)}
+              disabled={currentPage === 1 || isPageLoading}
+              className="inline-flex items-center gap-1 rounded-lg border border-[#E2E8F0] px-3 py-1.5 font-semibold text-[#1E293B] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <ChevronLeft className="h-3.5 w-3.5" /> Previous
+            </button>
+            <span className="font-mono text-[#64748B]">Page {currentPage} of {totalPages}</span>
+            <button
+              type="button"
+              onClick={() => onPageChange(currentPage + 1)}
+              disabled={currentPage === totalPages || isPageLoading}
+              className="inline-flex items-center gap-1 rounded-lg bg-[#35260E] px-3 py-1.5 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {isPageLoading ? 'Loading…' : 'Next'} <ChevronRight className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Inline Seller Detail Drawer/Panel */}

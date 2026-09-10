@@ -14,13 +14,13 @@ WITH seller_orders AS (
 ),
 seller_reviews AS (
     SELECT 
-        oi.seller_id,
-        COUNT(r.review_score) AS review_count,
-        AVG(r.review_score) AS avg_review
-    FROM order_items oi
-    JOIN orders o ON oi.order_id = o.order_id
-    JOIN order_reviews r ON o.order_id = r.order_id
-    GROUP BY oi.seller_id
+        so.seller_id,
+        COUNT(DISTINCT r.review_id) AS review_count,
+        AVG(r.review_score) AS avg_review,
+        SUM(CASE WHEN r.review_score IN (1, 2) THEN 1 ELSE 0 END) AS low_review_count
+    FROM seller_orders so
+    JOIN order_reviews r ON so.order_id = r.order_id
+    GROUP BY so.seller_id
 ),
 seller_revenue AS (
     SELECT 
@@ -50,6 +50,7 @@ SELECT
     COALESCE(sa.canceled_orders, 0) AS canceled_orders,
     COALESCE(sr.review_count, 0) AS review_count,
     COALESCE(sr.avg_review, 4.09) AS raw_avg_review,
+    COALESCE(sr.low_review_count, 0) AS low_review_count,
     COALESCE(srev.total_items_sold, 0) AS total_items_sold,
     COALESCE(srev.total_revenue, 0.0) AS total_revenue
 FROM sellers s

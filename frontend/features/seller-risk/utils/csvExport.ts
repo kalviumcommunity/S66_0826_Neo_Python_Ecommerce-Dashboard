@@ -149,9 +149,9 @@ export function exportSingleSellerCaseToCSV(seller: Seller): void {
   // Section 3: Monthly Breakdown
   if (seller.monthlyPerformance && seller.monthlyPerformance.length > 0) {
     lines.push('=== MONTHLY PERFORMANCE TREND ===');
-    lines.push('Month,Order Volume,Review Score,Low Review Count (1-2★),Delivery Delay %,Cancellation %');
+    lines.push('Month,Order Volume,Deliveries Done,Review Score,Low Review Count (1-2★),Delayed Deliveries,Cancelled Orders');
     seller.monthlyPerformance.forEach((m) => {
-      lines.push(`${escapeCSV(m.month)},${escapeCSV(m.orderVolume)},${escapeCSV(m.reviewScore)},${escapeCSV(m.lowReviewCount)},${escapeCSV(m.deliveryDelayPct)}%,${escapeCSV(m.cancellationPct)}%`);
+      lines.push(`${escapeCSV(m.month)},${escapeCSV(m.orderVolume)},${escapeCSV(m.deliveriesDone)},${escapeCSV(m.reviewScore)},${escapeCSV(m.lowReviewCount)},${escapeCSV(m.lateDeliveryCount)},${escapeCSV(m.cancelledOrderCount)}`);
     });
     lines.push('');
   }

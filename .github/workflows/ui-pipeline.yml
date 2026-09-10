@@ -1,4 +1,4 @@
-name: UI-Pipeline
+name: CI and CD
 
 on:
   push:
@@ -10,10 +10,12 @@ on:
 
 
 jobs:
-  python-ci:
+  backend-ci:
+    name: Backend CI
     uses: ./.github/workflows/ci-python.yml
 
-  lint-build-quality:
+  frontend-ci:
+    name: Frontend CI
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -47,8 +49,9 @@ jobs:
       - name: Run quality check (React Doctor)
         run: npx react-doctor@latest
 
-  deploy:
-    needs: [lint-build-quality, python-ci]
+  deploy-frontend-production:
+    name: CD - Deploy frontend to Vercel
+    needs: [frontend-ci, backend-ci]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
@@ -89,3 +92,36 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: vercel --prod --yes --token="$VERCEL_TOKEN"
+
+  deploy-backend-production:
+    name: CD - Deploy backend to Vercel
+    needs: [backend-ci]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel
+
+      - name: Verify backend Vercel configuration
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_BACKEND_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_BACKEND_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_BACKEND_PROJECT_ID }}
+        run: |
+          for name in VERCEL_TOKEN VERCEL_ORG_ID VERCEL_PROJECT_ID; do
+            if [ -z "${!name}" ]; then
+              echo "::error::$name is missing or empty."
+              exit 1
+            fi
+          done
+
+      - name: Deploy backend to Vercel production
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_BACKEND_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_BACKEND_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_BACKEND_PROJECT_ID }}
+        run: vercel --cwd backend --prod --yes --token="$VERCEL_TOKEN"

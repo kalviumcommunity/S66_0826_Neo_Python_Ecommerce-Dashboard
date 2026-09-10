@@ -185,6 +185,8 @@ def test_sellers_directory_and_filters() -> None:
     assert "is_sparse" in seller
     assert "average_rating" in seller
     assert "late_delivery_percentage" in seller
+    assert "cancellation_rate" in seller
+    assert "low_review_rate" in seller
     assert "risk_history" in seller
 
     # 3. Filtering by risk tier
@@ -217,6 +219,12 @@ def test_seller_details() -> None:
     assert "avg_delivery_days" in detail["metrics"]
     assert "risk_contributors" in detail
     assert "monthly_history" in detail
+    assert "reviews" in detail
+    assert "delivery_delay_distribution" in detail
+
+    if detail["monthly_history"]:
+        assert "low_review_count" in detail["monthly_history"][0]
+        assert "cancellation_rate" in detail["monthly_history"][0]
 
     # 404 for non-existent seller
     not_found = client.get("/api/sellers/non_existent_seller_123456789")

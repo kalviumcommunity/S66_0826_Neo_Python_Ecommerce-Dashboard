@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
-from sqlalchemy import create_engine, inspect
+from sqlalchemy import create_engine, inspect, text
 
 try:
     dataset_dtypes = import_module("scripts.ingest_data").DATASET_DTYPES
@@ -38,6 +38,24 @@ TABLE_MAPPING = {
     "olist_products_dataset.csv": "products",
     "product_category_name_translation.csv": "product_category_name_translation",
 }
+
+# Supports the joins used by the Seller Directory and detail APIs.
+API_INDEXES = (
+    "CREATE INDEX IF NOT EXISTS idx_order_items_seller_order ON order_items(seller_id, order_id)",
+    "CREATE INDEX IF NOT EXISTS idx_order_items_order ON order_items(order_id)",
+    "CREATE INDEX IF NOT EXISTS idx_orders_order ON orders(order_id)",
+    "CREATE INDEX IF NOT EXISTS idx_order_reviews_order ON order_reviews(order_id)",
+    "CREATE INDEX IF NOT EXISTS idx_products_product ON products(product_id)",
+    "CREATE INDEX IF NOT EXISTS idx_category_translation_name ON product_category_name_translation(product_category_name)",
+)
+
+
+def create_api_indexes(db_url: str) -> None:
+    """Create indexes required by the SQLite-backed dashboard API."""
+    engine = create_engine(db_url)
+    with engine.begin() as conn:
+        for statement in API_INDEXES:
+            conn.execute(text(statement))
 
 
 def load_datasets_to_db(db_url: str, processed_dir: Path) -> dict[str, int]:
@@ -146,6 +164,17 @@ def main() -> None:
     # 1. Load data to database
     row_counts = load_datasets_to_db(db_url, args.processed_dir)
     print("✓ Cleaned datasets loaded successfully to SQL tables.")
+
+    create_api_indexes(db_url)
+    print("✓ Dashboard API indexes created successfully.")
+
+    # The dashboard reads these precomputed tables so opening the seller directory
+    # does not recalculate metrics for every seller.
+    if args.db_file.resolve() == (DB_DIR / "analytics.db").resolve():
+        from build_api_cache import refresh_api_cache
+
+        refresh_api_cache()
+        print("✓ Dashboard API cache refreshed successfully.")
 
     # 2. Validate table schemas
     schema_report = validate_schema(db_url)

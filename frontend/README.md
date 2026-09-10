@@ -4,7 +4,9 @@ Next.js port of the supplied Olist seller risk dashboard. The original component
 
 Includes operational overview charts, searchable/filterable seller directory, seller detail tabs, review filters, investigation flagging, and CSV/JSON exports.
 
-This is a mock-data frontend. Flags exist only in memory and reset on refresh. Flagging does not hold payouts, notify a team, or create a backend investigation, despite the reference UI's demonstration copy. Marketplace summary metrics describe the reference dataset; the directory contains 10 example sellers.
+The dashboard loads marketplace metrics, seller records, seller details, reviews, and delivery-risk data from the FastAPI backend. Flags still exist only in browser memory and reset on refresh; flagging does not create a backend investigation.
+
+Before starting the frontend, copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_API_URL` to the FastAPI URL. For local development, use `http://localhost:8000`.
 
 Run commands below from `frontend`. Validate changes with `npm run lint`, `npx tsc --noEmit`, and `npm run build`.
 
@@ -50,3 +52,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Frontend
+
+The dashboard reads data from the FastAPI backend. Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_API_URL` to the backend address before starting the app.
+
+```bash
+npm run dev
+```

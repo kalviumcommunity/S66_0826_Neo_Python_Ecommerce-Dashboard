@@ -24,10 +24,11 @@ export interface Seller {
   monthlyPerformance: {
     month: string; // e.g. "Jan", "Feb"
     orderVolume: number;
+    deliveriesDone: number;
     lowReviewCount: number;
     reviewScore: number;
-    deliveryDelayPct: number;
-    cancellationPct: number;
+    lateDeliveryCount: number;
+    cancelledOrderCount: number;
   }[];
   riskFactorContribution: {
     factor: string;
@@ -78,6 +79,7 @@ export interface MarketplaceMetrics {
   topCategoriesByRisk: {
     category: string;
     avgRiskScore: number;
+    totalSellerCount: number;
     highRiskSellerCount: number;
   }[];
 

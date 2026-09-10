@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
-import { PageView, PrimaryRiskDriver, Seller } from './types';
-import { marketplaceMetrics, mockSellers } from './data/mockOlistData';
+import React, { useEffect, useState } from 'react';
+import { MarketplaceMetrics, PageView, PrimaryRiskDriver, Seller } from './types';
+import { loadDashboard, loadSellerDetail, loadSellerPage } from './data/api';
 import { Sidebar } from './components/Sidebar';
 import { OverviewPage } from './components/OverviewPage';
 import { SellerDirectoryPage } from './components/SellerDirectoryPage';
@@ -11,7 +11,13 @@ import { FlagModal } from './components/FlagModal';
 
 export default function App() {
   const [activePage, setActivePage] = useState<PageView>('Overview');
-  const [sellers, setSellers] = useState<Seller[]>(mockSellers);
+  const [sellers, setSellers] = useState<Seller[]>([]);
+  const [metrics, setMetrics] = useState<MarketplaceMetrics | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [sellerTotal, setSellerTotal] = useState(0);
+  const [sellerPage, setSellerPage] = useState(1);
+  const [sellerTotalPages, setSellerTotalPages] = useState(1);
+  const [isSellerPageLoading, setIsSellerPageLoading] = useState(false);
 
   // Selected seller in Directory (null by default so panel only opens on selection)
   const [selectedSellerId, setSelectedSellerId] = useState<string | null>(null);
@@ -25,6 +31,28 @@ export default function App() {
   const [isFlagModalOpen, setIsFlagModalOpen] = useState(false);
   const [flagTargetSeller, setFlagTargetSeller] = useState<Seller | null>(null);
 
+  useEffect(() => {
+    let isCurrent = true;
+
+    loadDashboard()
+      .then((dashboard) => {
+        if (!isCurrent) return;
+        setMetrics(dashboard.metrics);
+        setSellers(dashboard.sellers);
+        setSellerTotal(dashboard.sellerTotal);
+        setSellerPage(dashboard.sellerPage);
+        setSellerTotalPages(dashboard.sellerTotalPages);
+      })
+      .catch((error: unknown) => {
+        if (!isCurrent) return;
+        setLoadError(error instanceof Error ? error.message : 'Unable to load dashboard data.');
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
+
   // Calculate high risk count dynamically
   const highRiskCount = sellers.filter((s) => s.riskScore >= 70).length;
 
@@ -37,6 +65,34 @@ export default function App() {
   const handleOpenFlagModal = (seller: Seller) => {
     setFlagTargetSeller(seller);
     setIsFlagModalOpen(true);
+  };
+
+  const handleSelectSeller = async (seller: Seller) => {
+    setSelectedSellerId(seller.id);
+    try {
+      const detailedSeller = await loadSellerDetail(seller);
+      setSellers((current) => current.map((item) => (item.id === seller.id ? detailedSeller : item)));
+    } catch (error) {
+      console.error('Unable to load seller detail', error);
+    }
+  };
+
+  const handleSellerPageChange = async (page: number) => {
+    if (page < 1 || page > sellerTotalPages || isSellerPageLoading) return;
+
+    setIsSellerPageLoading(true);
+    setSelectedSellerId(null);
+    try {
+      const result = await loadSellerPage(page);
+      setSellers(result.sellers);
+      setSellerTotal(result.total);
+      setSellerPage(result.page);
+      setSellerTotalPages(result.totalPages);
+    } catch (error) {
+      console.error('Unable to load seller page', error);
+    } finally {
+      setIsSellerPageLoading(false);
+    }
   };
 
   const handleConfirmFlag = (sellerId: string, reason: string) => {
@@ -56,6 +112,24 @@ export default function App() {
 
   const activeSelectedSeller = sellers.find((s) => s.id === selectedSellerId) || null;
 
+  if (!metrics) {
+    return (
+      <main className="grid min-h-screen place-items-center bg-[#F7F7F8] p-6 text-center">
+        <div className="max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xs">
+          <h1 className="text-lg font-bold text-slate-900">Loading dashboard data…</h1>
+          <p className="mt-2 text-sm text-slate-500">
+            {loadError ?? 'Connecting to the Seller Trust & Safety API.'}
+          </p>
+          {loadError && (
+            <p className="mt-4 text-xs text-slate-400">
+              Set <code>NEXT_PUBLIC_API_URL</code> to your deployed API URL, or start the API locally on port 8000.
+            </p>
+          )}
+        </div>
+      </main>
+    );
+  }
+
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-[#F7F7F8] font-sans antialiased text-[#1E293B]">
       {/* Sidebar */}
@@ -69,17 +143,14 @@ export default function App() {
           }
         }}
         highRiskCount={highRiskCount}
-        totalSellersCount={marketplaceMetrics.totalSellers}
+        totalSellersCount={metrics.totalSellers}
       />
 
       {/* Main View Area */}
       <main className="flex-1 overflow-y-auto min-w-0">
         {activePage === 'Overview' && (
           <OverviewPage
-            metrics={{
-              ...marketplaceMetrics,
-              highRiskSellers: highRiskCount,
-            }}
+            metrics={{ ...metrics, highRiskSellers: highRiskCount }}
             onNavigateToDirectoryWithFilter={handleNavigateToDirectoryWithFilter}
             onOpenExportModal={() => setIsExportModalOpen(true)}
           />
@@ -89,12 +160,17 @@ export default function App() {
           <SellerDirectoryPage
             sellers={sellers}
             selectedSellerId={selectedSellerId}
-            onSelectSeller={(seller) => setSelectedSellerId(seller.id)}
+            onSelectSeller={handleSelectSeller}
             onCloseInlinePanel={() => setSelectedSellerId(null)}
             onOpenFlagModal={handleOpenFlagModal}
             onOpenExportModal={() => setIsExportModalOpen(true)}
             initialDriverFilter={initialDriverFilter}
             initialCategoryFilter={initialCategoryFilter}
+            totalSellers={sellerTotal}
+            currentPage={sellerPage}
+            totalPages={sellerTotalPages}
+            isPageLoading={isSellerPageLoading}
+            onPageChange={handleSellerPageChange}
           />
         )}
       </main>

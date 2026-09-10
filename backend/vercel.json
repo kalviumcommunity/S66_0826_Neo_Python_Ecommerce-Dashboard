@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "python -m pip install --disable-pip-version-check -r requirements.txt",
+  "functions": {
+    "server/main.py": {
+      "excludeFiles": "{tests/**,data/**,docs/**,output/**,scripts/**,notebooks/**}"
+    }
+  }
+}
