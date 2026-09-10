@@ -20,7 +20,7 @@ All commands and data paths in this document are relative to `backend/`. This fo
    uv sync
 
    # Include notebooks and data-analysis scripts:
-   uv sync --all-groups
+   uv sync --extra analysis
    ```
 
 3. Configure environment variables:
