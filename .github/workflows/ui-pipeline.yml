@@ -124,4 +124,4 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_BACKEND_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_BACKEND_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_BACKEND_PROJECT_ID }}
-        run: vercel --cwd backend --prod --yes --token="$VERCEL_TOKEN"
+        run: vercel --prod --yes --token="$VERCEL_TOKEN"
