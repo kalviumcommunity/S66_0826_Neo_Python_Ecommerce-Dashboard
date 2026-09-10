@@ -26,9 +26,6 @@ build-backend = "uv_build"
 module-name = "server"
 module-root = ""
 
-[tool.vercel]
-entrypoint = "server.main:app"
-
 [dependency-groups]
 dev = [
     "httpx>=0.28.1",
