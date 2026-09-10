@@ -1,0 +1,14 @@
+# Offline analysis assets are not needed by the deployed FastAPI service.
+# Keep server/, queries/, pyproject.toml, uv.lock, and .python-version: the API
+# needs them to start and to query its bundled SQLite database.
+data/
+docs/
+output/
+scripts/
+dist/
+notebooks/
+*.ipynb
+.pytest_cache/
+.ci-test-tmp/
+.venv/
+__pycache__/
