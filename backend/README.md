@@ -64,7 +64,7 @@ uv run jupyter notebook
 Start the local FastAPI development server:
 
 ```bash
-uv run uvicorn s66_0826_neo_python_ecommerce_dashboard.main:app --reload --port 8000
+uv run uvicorn server.main:app --reload --port 8000
 ```
 
 Or run directly using the entrypoint script:
@@ -93,7 +93,7 @@ The `define_kpis.py` script formally defines six business KPIs (Revenue Per Cust
 
 The `detect_anomalies.py` script performs threshold-based boundary checks and statistical rolling Z-score detection on daily transaction count and revenue series. It flags operational anomalies and logs structured reports (value, expected range, z-score, severity) under `output/anomaly_logs/anomalies_log.json`.
 
-The `database_integration.py` script writes all cleaned, processed Olist CSVs into structured SQLite tables in `data/analytics.db` using SQLAlchemy and Pandas. It validates table column schemas via sqlalchemy.inspect and executes verification aggregation queries, writing the audit details under `output/db_audit/`.
+The `database_integration.py` script writes all cleaned, processed Olist CSVs into structured SQLite tables in `server/analytics.db` using SQLAlchemy and Pandas. It validates table column schemas via sqlalchemy.inspect and executes verification aggregation queries, writing the audit details under `output/db_audit/`.
 
 The `run_sql_filtering.py` script executes SQL queries demonstrating pre-aggregation filtering (`WHERE`), dimension grouping (`GROUP BY`), post-aggregation metric thresholds (`HAVING`), and result sorting (`ORDER BY`). It exports targeted operational reports (high-volume underperforming sellers, top revenue product categories, high-volume operating months) to `output/sql_filtering/`.
 

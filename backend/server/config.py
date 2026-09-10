@@ -9,17 +9,13 @@ from dotenv import load_dotenv
 # Base directories
 SERVER_DIR = Path(__file__).resolve().parent
 BACKEND_DIR = SERVER_DIR.parent
-DATA_DIR = BACKEND_DIR / "data"
 
 # Load environment variables from backend/.env if present
 load_dotenv(BACKEND_DIR / ".env")
 
-# Database & Data Paths
+# Database path. The deployed API uses this versioned, read-only SQLite file;
+# CSVs are analysis inputs for scripts and are never a runtime fallback.
 DB_PATH = SERVER_DIR / "analytics.db"
-if not DB_PATH.exists() and (DATA_DIR / "analytics.db").exists():
-    DB_PATH = DATA_DIR / "analytics.db"
-
-PROCESSED_DATA_DIR = DATA_DIR / "processed"
 QUERIES_DIR = BACKEND_DIR / "queries"
 OUTPUT_DIR = BACKEND_DIR / "output"
 KPI_RESULTS_FILE = OUTPUT_DIR / "kpi_report" / "kpi_results.json"

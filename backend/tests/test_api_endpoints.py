@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 from fastapi.testclient import TestClient
 
-from s66_0826_neo_python_ecommerce_dashboard.main import app
+from server.main import app
 
 client = TestClient(app)
 
@@ -220,9 +220,9 @@ def test_export_endpoints() -> None:
 
 def test_sqlalchemy_orm_models_and_queries() -> None:
     """Verify SQLAlchemy ORM models query correctly and queries are loaded from .sql files."""
-    from s66_0826_neo_python_ecommerce_dashboard.database import SessionLocal
-    from s66_0826_neo_python_ecommerce_dashboard.models import Order, OrderItem, OrderReview, Seller
-    from s66_0826_neo_python_ecommerce_dashboard.queries import load_query
+    from server.database import SessionLocal
+    from server.models import Order, OrderItem, OrderReview, Seller
+    from server.queries import load_query
 
     # Verify query loader
     query_text = load_query("analytics_macro_overview.sql")
@@ -240,4 +240,3 @@ def test_sqlalchemy_orm_models_and_queries() -> None:
         review_sample = session.query(OrderReview).first()
         assert review_sample is not None
         assert hasattr(review_sample, "review_score")
-

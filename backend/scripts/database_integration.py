@@ -24,7 +24,7 @@ DATASET_DTYPES = dataset_dtypes
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 PROCESSED_DATA_DIR = PROJECT_ROOT / "data" / "processed"
-DB_DIR = PROJECT_ROOT / "data"
+DB_DIR = PROJECT_ROOT / "server"
 OUTPUT_DIR = PROJECT_ROOT / "output" / "db_audit"
 
 # Maps processed filename to database table name

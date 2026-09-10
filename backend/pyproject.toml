@@ -25,11 +25,15 @@ dependencies = [
 ]
 
 [project.scripts]
-s66-0826-neo-python-ecommerce-dashboard = "s66_0826_neo_python_ecommerce_dashboard:main"
+s66-0826-neo-python-ecommerce-dashboard = "server.main:main"
 
 [build-system]
 requires = ["uv_build>=0.12.5,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "server"
+module-root = ""
 
 [dependency-groups]
 dev = [
