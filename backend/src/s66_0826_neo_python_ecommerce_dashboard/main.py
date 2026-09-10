@@ -57,7 +57,7 @@ def main() -> None:
         "s66_0826_neo_python_ecommerce_dashboard.main:app",
         host="0.0.0.0",
         port=8000,
-        reload=True,
+        reload=False,
     )
 
 
