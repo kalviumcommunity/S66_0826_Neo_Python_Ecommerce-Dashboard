@@ -36,16 +36,20 @@ def get_overview_analytics() -> dict[str, Any]:
 
     # High-Risk MoM Change: Compare the two latest active months across all seller histories
     monthly_high_risk: dict[str, int] = {}
-    for _, history_list in history_dict.items():
+    all_periods: set[str] = set()
+    for history_list in history_dict.values():
         for pt in history_list:
             period = pt["period"]
+            all_periods.add(period)
             if pt["risk_score"] > 70.0:
                 monthly_high_risk[period] = monthly_high_risk.get(period, 0) + 1
 
-    sorted_periods = sorted(monthly_high_risk.keys())
+    sorted_periods = sorted(all_periods)
     if len(sorted_periods) >= 2:
-        last_m = monthly_high_risk[sorted_periods[-1]]
-        prev_m = monthly_high_risk[sorted_periods[-2]]
+        last_period = sorted_periods[-1]
+        prev_period = sorted_periods[-2]
+        last_m = monthly_high_risk.get(last_period, 0)
+        prev_m = monthly_high_risk.get(prev_period, 0)
         high_risk_change_pct = round(((last_m - prev_m) / max(prev_m, 1)) * 100.0, 1)
     else:
         high_risk_change_pct = 0.0
