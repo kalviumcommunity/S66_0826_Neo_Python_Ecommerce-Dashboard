@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: uv sync --locked
 
+      - name: Install offline script test dependencies
+        run: uv pip install -r scripts/requirements-test.txt
+
       - name: Run tests
         run: uv run --locked pytest
 

@@ -1,0 +1,5 @@
+# Used only by the CI structure tests that import offline analysis scripts.
+# The scripts/ directory is excluded from the Vercel function bundle.
+matplotlib==3.11.1
+seaborn==0.13.2
+chardet==7.6.0
