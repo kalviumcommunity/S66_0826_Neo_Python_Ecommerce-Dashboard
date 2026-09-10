@@ -1,0 +1,27 @@
+[project]
+name = "olist-analytics"
+version = "0.1.0"
+description = "Offline data preparation and analysis for the seller dashboard"
+requires-python = ">=3.14"
+dependencies = [
+    "chardet>=7.6.0",
+    "fastapi>=0.141.1",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.11.1",
+    "numpy>=2.5.2",
+    "openpyxl>=3.1.5",
+    "pandas>=3.0.5",
+    "python-dotenv>=1.2.3",
+    "scikit-learn>=1.9.0",
+    "seaborn>=0.13.2",
+    "sqlalchemy>=2.0.30",
+    "streamlit>=1.61.1",
+    "uvicorn>=0.52.3",
+]
+
+[dependency-groups]
+dev = ["pytest>=9.1.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

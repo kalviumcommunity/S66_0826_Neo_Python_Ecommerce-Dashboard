@@ -2,8 +2,16 @@
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 import pandas as pd
 from sqlalchemy import create_engine, text
+
+# The cache writer updates the API's SQLite database in the sibling backend.
+BACKEND_DIR = Path(__file__).resolve().parents[2] / "backend"
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
 
 from server.config import DATABASE_URL
 from server.services.risk_service import compute_seller_risk_dataset

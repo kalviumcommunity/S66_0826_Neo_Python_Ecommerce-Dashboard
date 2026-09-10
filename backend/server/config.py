@@ -17,8 +17,9 @@ load_dotenv(BACKEND_DIR / ".env")
 # CSVs are analysis inputs for scripts and are never a runtime fallback.
 DB_PATH = SERVER_DIR / "analytics.db"
 QUERIES_DIR = BACKEND_DIR / "queries"
-OUTPUT_DIR = BACKEND_DIR / "output"
-KPI_RESULTS_FILE = OUTPUT_DIR / "kpi_report" / "kpi_results.json"
+# The API relies on the bundled SQLite database. Offline reports live in
+# ../analytics/output and are deliberately not part of the deployed backend.
+KPI_RESULTS_FILE = SERVER_DIR / "kpi_results.json"
 
 # Database connection string
 _raw_db_url = os.getenv("DATABASE_URL")
