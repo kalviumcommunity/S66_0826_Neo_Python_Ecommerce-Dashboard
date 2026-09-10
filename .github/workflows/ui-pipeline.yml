@@ -1,4 +1,4 @@
-name: UI-Pipeline
+name: CI and CD
 
 on:
   push:
@@ -10,10 +10,12 @@ on:
 
 
 jobs:
-  python-ci:
+  backend-ci:
+    name: Backend CI
     uses: ./.github/workflows/ci-python.yml
 
-  lint-build-quality:
+  frontend-ci:
+    name: Frontend CI
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -47,8 +49,9 @@ jobs:
       - name: Run quality check (React Doctor)
         run: npx react-doctor@latest
 
-  deploy:
-    needs: [lint-build-quality, python-ci]
+  deploy-frontend-production:
+    name: CD - Deploy frontend to Vercel
+    needs: [frontend-ci, backend-ci]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
@@ -90,9 +93,9 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: vercel --prod --yes --token="$VERCEL_TOKEN"
 
-  deploy-backend:
-    name: Deploy backend to Vercel
-    needs: [python-ci]
+  deploy-backend-production:
+    name: CD - Deploy backend to Vercel
+    needs: [backend-ci]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
