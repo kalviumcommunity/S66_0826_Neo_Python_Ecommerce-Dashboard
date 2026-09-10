@@ -4,11 +4,15 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Base directories
 PACKAGE_DIR = Path(__file__).resolve().parent
 SRC_DIR = PACKAGE_DIR.parent
 BACKEND_DIR = SRC_DIR.parent
+
+# Load environment variables from backend/.env if present
+load_dotenv(BACKEND_DIR / ".env")
 
 # Database & Data Paths
 DATA_DIR = BACKEND_DIR / "data"
@@ -18,13 +22,19 @@ QUERIES_DIR = BACKEND_DIR / "queries"
 OUTPUT_DIR = BACKEND_DIR / "output"
 KPI_RESULTS_FILE = OUTPUT_DIR / "kpi_report" / "kpi_results.json"
 
-# SQLite connection string
+# Database connection string (defaults to local SQLite if DATABASE_URL is not set)
 DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{DB_PATH}")
 
 # Risk Scoring Configuration adhering to DASHBOARD_THINKING.md
 RISK_THRESHOLD_LOW = 30.0
 RISK_THRESHOLD_MEDIUM = 70.0
 SPARSE_ORDER_THRESHOLD = 5
+
+# Bayesian Smoothing Parameters for Small/New Sellers
+PRIOR_DELIVERY_WEIGHT = 10.0
+PRIOR_LATE_RATE = 0.0811  # Platform baseline late delivery rate (~8.11%)
+PRIOR_REVIEW_WEIGHT = 5.0
+PRIOR_REVIEW_SCORE = 4.09  # Platform baseline review score (~4.09)
 
 # KPI Reference Targets
 TARGET_REVIEW_SCORE = 4.0

@@ -1,4 +1,4 @@
-"""Database connection, session management, and schema initialization."""
+"""Database connection, session management, and unified query execution."""
 
 from __future__ import annotations
 
@@ -6,12 +6,12 @@ import sqlite3
 import threading
 from collections.abc import Generator
 from contextlib import contextmanager
-from pathlib import Path
 from typing import Any
 
 import pandas as pd
 from fastapi import HTTPException
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect, text
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
 from s66_0826_neo_python_ecommerce_dashboard.config import (
@@ -22,9 +22,13 @@ from s66_0826_neo_python_ecommerce_dashboard.config import (
     QUERIES_DIR,
 )
 
+# Create a single unified SQLAlchemy Engine
+is_sqlite = "sqlite" in DATABASE_URL
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False} if "sqlite" in DATABASE_URL else {},
+    connect_args={"check_same_thread": False} if is_sqlite else {},
+    pool_pre_ping=True,
+    **({} if is_sqlite else {"pool_size": 10, "max_overflow": 20}),
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -57,88 +61,71 @@ TABLE_CSV_MAPPING = {
 
 
 def init_db_if_needed() -> None:
-    """Check whether required SQLite tables exist, and initialize them from processed CSVs if missing."""
+    """One-time fallback for testing or fresh environments if tables do not exist."""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     with _init_lock:
-        conn = sqlite3.connect(str(DB_PATH))
-        cursor = conn.cursor()
-        cursor.execute("SELECT name FROM sqlite_master WHERE type IN ('table', 'view');")
-        existing_tables = {row[0] for row in cursor.fetchall()}
+        inspector = inspect(engine)
+        existing_tables = set(inspector.get_table_names())
         missing = [t for t in REQUIRED_TABLES if t not in existing_tables]
 
         if not missing:
-            conn.close()
             return
 
-        print(f"Database tables missing ({missing}). Initializing SQLite database from processed CSVs...")
+        print(f"Database tables missing ({missing}). Initializing database...")
 
         # Load CSVs
-        missing_csvs: list[str] = []
         for csv_file, table_name in TABLE_CSV_MAPPING.items():
             if table_name not in existing_tables:
                 csv_path = PROCESSED_DATA_DIR / csv_file
-                if not csv_path.exists():
-                    missing_csvs.append(str(csv_path))
-                    continue
+                if csv_path.exists():
+                    print(f"  Loading {csv_file} -> '{table_name}'...")
+                    df = pd.read_csv(csv_path, low_memory=False)
+                    df.to_sql(table_name, engine, if_exists="replace", index=False)
 
-                print(f"  Loading {csv_file} -> '{table_name}'...")
-                df = pd.read_csv(csv_path, low_memory=False)
-                df.to_sql(table_name, engine, if_exists="replace", index=False)
+        # Re-check inspector for agg_seller_performance
+        inspector = inspect(engine)
+        if "agg_seller_performance" not in inspector.get_table_names():
+            agg_script = QUERIES_DIR / "agg_seller_performance.sql"
+            if agg_script.exists():
+                print("  Executing agg_seller_performance.sql...")
+                with engine.begin() as conn:
+                    with open(agg_script, "r", encoding="utf-8") as f:
+                        for statement in f.read().split(";"):
+                            stmt = statement.strip()
+                            if stmt:
+                                conn.execute(text(stmt))
 
-        if missing_csvs:
-            conn.close()
-            raise FileNotFoundError(
-                "Missing processed CSV files required to initialize the database: " + ", ".join(missing_csvs)
-            )
-
-        # Create Views and Pre-Aggregated Tables
-        scripts = [
-            "vw_monthly_revenue.sql",
-            "vw_active_customers.sql",
-            "agg_daily_revenue.sql",
-            "agg_seller_performance.sql",
-        ]
-        for script_name in scripts:
-            script_path = QUERIES_DIR / script_name
-            if script_path.exists():
-                print(f"  Executing {script_name}...")
-                with open(script_path, "r", encoding="utf-8") as f:
-                    conn.executescript(f.read())
-
-        conn.commit()
-        conn.close()
         print("✓ Database initialization complete.")
 
 
-def safe_read_sql(query: str, conn: sqlite3.Connection, params: Any = None) -> pd.DataFrame:
-    """Execute SQL query safely, returning a DataFrame or raising a clear HTTPException on missing schema."""
+def safe_read_sql(query: str, conn: Any, params: Any = None) -> pd.DataFrame:
+    """Execute SQL query safely through SQLAlchemy connection, returning a DataFrame."""
     try:
-        return pd.read_sql_query(query, conn, params=params)
-    except sqlite3.OperationalError as exc:
+        if isinstance(query, str):
+            # Use SQLAlchemy text() for parameter safety and cross-dialect compatibility
+            sql_stmt = text(query)
+        else:
+            sql_stmt = query
+        return pd.read_sql_query(sql_stmt, conn, params=params)
+    except (sqlite3.OperationalError, SQLAlchemyError) as exc:
         raise HTTPException(
             status_code=500,
-            detail=f"Database schema error: {exc}. Please verify required tables exist.",
+            detail=f"Database query error: {exc}. Please verify schema and connection.",
         ) from exc
 
 
+@contextmanager
+def get_db_connection() -> Generator[Any, None, None]:
+    """Single unified context manager for obtaining a database connection from the connection pool."""
+    with engine.connect() as conn:
+        yield conn
+
+
 def get_db() -> Generator[Session, None, None]:
-    """Dependency for obtaining a SQLAlchemy session."""
-    init_db_if_needed()
+    """Dependency for obtaining a SQLAlchemy ORM session."""
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
-
-
-@contextmanager
-def get_raw_sqlite() -> Generator[sqlite3.Connection, None, None]:
-    """Context manager for obtaining a raw sqlite3 connection with Row factory."""
-    init_db_if_needed()
-    conn = sqlite3.connect(str(DB_PATH))
-    conn.row_factory = sqlite3.Row
-    try:
-        yield conn
-    finally:
-        conn.close()

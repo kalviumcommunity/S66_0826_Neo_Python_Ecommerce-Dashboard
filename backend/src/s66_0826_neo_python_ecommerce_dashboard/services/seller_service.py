@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-import sqlite3
 from typing import Any
 import pandas as pd
 
-from s66_0826_neo_python_ecommerce_dashboard.config import DB_PATH
+from s66_0826_neo_python_ecommerce_dashboard.database import get_db_connection, safe_read_sql
 from s66_0826_neo_python_ecommerce_dashboard.services.risk_service import (
     get_all_sellers_df,
     get_cached_seller_data,
@@ -75,7 +74,6 @@ def get_sellers_directory(
     sellers_list = []
     for _, row in page_df.iterrows():
         sid = str(row["seller_id"])
-        # Format sparkline history (last 5 months)
         hist = history_dict.get(sid, [])
         sparkline = [
             {"period": h["period"], "risk_score": h["risk_score"]}
@@ -117,20 +115,27 @@ def get_seller_details(seller_id: str) -> dict[str, Any] | None:
     row = match.iloc[0]
     history = get_seller_history(seller_id)
 
-    # Compute average delivery days for this seller from orders
-    conn = sqlite3.connect(str(DB_PATH))
+    # Compute average delivery days for this seller from orders (database agnostic)
     query = """
-    SELECT AVG(julianday(o.order_delivered_customer_date) - julianday(o.order_purchase_timestamp))
+    SELECT o.order_delivered_customer_date, o.order_purchase_timestamp
     FROM order_items oi
     JOIN orders o ON oi.order_id = o.order_id
-    WHERE oi.seller_id = ?
+    WHERE oi.seller_id = :seller_id
       AND o.order_status = 'delivered'
       AND o.order_delivered_customer_date IS NOT NULL
       AND o.order_purchase_timestamp IS NOT NULL;
     """
-    res = conn.execute(query, (seller_id,)).fetchone()
-    conn.close()
-    avg_delivery_days = round(float(res[0]), 1) if res and res[0] is not None else 12.0
+    with get_db_connection() as conn:
+        deliv_df = safe_read_sql(query, conn, params={"seller_id": seller_id})
+
+    if not deliv_df.empty:
+        delivered_dt = pd.to_datetime(deliv_df["order_delivered_customer_date"], errors="coerce")
+        purchase_dt = pd.to_datetime(deliv_df["order_purchase_timestamp"], errors="coerce")
+        day_diffs = (delivered_dt - purchase_dt).dt.total_seconds() / 86400.0
+        valid_diffs = day_diffs.dropna()
+        avg_delivery_days = round(float(valid_diffs.mean()), 1) if len(valid_diffs) else 12.0
+    else:
+        avg_delivery_days = 12.0
 
     return {
         "seller_id": str(row["seller_id"]),

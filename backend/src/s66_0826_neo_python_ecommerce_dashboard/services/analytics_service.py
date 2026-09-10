@@ -3,18 +3,17 @@
 from __future__ import annotations
 
 import json
-import sqlite3
 from typing import Any
 import pandas as pd
+from sqlalchemy import text
 
 from s66_0826_neo_python_ecommerce_dashboard.config import (
-    DB_PATH,
     KPI_RESULTS_FILE,
     TARGET_CANCELLATION_RATE,
     TARGET_LATE_DELIVERY_PCT,
     TARGET_REVIEW_SCORE,
 )
-from s66_0826_neo_python_ecommerce_dashboard.database import init_db_if_needed, safe_read_sql
+from s66_0826_neo_python_ecommerce_dashboard.database import get_db_connection, safe_read_sql
 from s66_0826_neo_python_ecommerce_dashboard.services.risk_service import (
     get_all_sellers_df,
     get_cached_seller_data,
@@ -23,7 +22,6 @@ from s66_0826_neo_python_ecommerce_dashboard.services.risk_service import (
 
 def get_overview_analytics() -> dict[str, Any]:
     """Calculate Level 1 Executive Overview KPIs."""
-    init_db_if_needed()
     df_sellers = get_all_sellers_df()
     _, history_dict, _ = get_cached_seller_data()
 
@@ -34,10 +32,10 @@ def get_overview_analytics() -> dict[str, Any]:
     # High-Risk Seller Count
     high_risk_count = int((active_sellers["risk_tier"] == "HIGH").sum())
 
-    # High-Risk MoM Change: Compare the two latest active months across all seller histories
+    # High-Risk MoM Change: Compare the two latest active periods across all seller histories
     monthly_high_risk: dict[str, int] = {}
     all_periods: set[str] = set()
-    for history_list in history_dict.values():
+    for _, history_list in history_dict.items():
         for pt in history_list:
             period = pt["period"]
             all_periods.add(period)
@@ -54,24 +52,22 @@ def get_overview_analytics() -> dict[str, Any]:
     else:
         high_risk_change_pct = 0.0
 
-    # Macro Platform Metrics from Database
-    conn = sqlite3.connect(str(DB_PATH))
+    # Macro Platform Metrics from Database via single connection manager
+    with get_db_connection() as conn:
+        rev_row = conn.execute(
+            text("SELECT AVG(review_score) FROM order_reviews WHERE review_score IS NOT NULL")
+        ).fetchone()
+        avg_review_score = round(float(rev_row[0]), 2) if rev_row and rev_row[0] is not None else 4.09
 
-    # Review Score
-    rev_row = conn.execute("SELECT AVG(review_score) FROM order_reviews WHERE review_score IS NOT NULL").fetchone()
-    avg_review_score = round(float(rev_row[0]), 2) if rev_row and rev_row[0] is not None else 4.0
-
-    # Late Delivery Rate & Cancellation Rate
-    macro_query = """
-    SELECT
-        COUNT(*) AS total_orders,
-        SUM(CASE WHEN order_status = 'delivered' THEN 1 ELSE 0 END) AS delivered_orders,
-        SUM(CASE WHEN order_status = 'delivered' AND order_delivered_customer_date > order_estimated_delivery_date THEN 1 ELSE 0 END) AS late_orders,
-        SUM(CASE WHEN order_status = 'canceled' THEN 1 ELSE 0 END) AS canceled_orders
-    FROM orders;
-    """
-    row = conn.execute(macro_query).fetchone()
-    conn.close()
+        macro_query = """
+        SELECT
+            COUNT(*) AS total_orders,
+            SUM(CASE WHEN order_status = 'delivered' THEN 1 ELSE 0 END) AS delivered_orders,
+            SUM(CASE WHEN order_status = 'delivered' AND order_delivered_customer_date > order_estimated_delivery_date THEN 1 ELSE 0 END) AS late_orders,
+            SUM(CASE WHEN order_status = 'canceled' THEN 1 ELSE 0 END) AS canceled_orders
+        FROM orders;
+        """
+        row = conn.execute(text(macro_query)).fetchone()
 
     total_orders = row[0] or 1
     delivered_orders = row[1] or 1
@@ -107,23 +103,21 @@ def get_overview_analytics() -> dict[str, Any]:
 
 
 def get_review_trend_analytics() -> dict[str, Any]:
-    """Calculate Level 2 Longitudinal Average Review Score Trend."""
-    init_db_if_needed()
-    conn = sqlite3.connect(str(DB_PATH))
+    """Calculate Level 2 Longitudinal Average Review Score Trend (cross-DB compatible)."""
     query = """
     SELECT 
-        strftime('%Y-%m', o.order_purchase_timestamp) AS period,
+        substr(o.order_purchase_timestamp, 1, 7) AS period,
         ROUND(AVG(r.review_score), 2) AS average_review_score,
         COUNT(r.review_score) AS total_reviews
     FROM orders o
     JOIN order_reviews r ON o.order_id = r.order_id
     WHERE o.order_purchase_timestamp IS NOT NULL
-    GROUP BY period
-    HAVING period >= '2017-01' AND period <= '2018-08'
+    GROUP BY substr(o.order_purchase_timestamp, 1, 7)
+    HAVING substr(o.order_purchase_timestamp, 1, 7) >= '2017-01' AND substr(o.order_purchase_timestamp, 1, 7) <= '2018-08'
     ORDER BY period ASC;
     """
-    df_trend = safe_read_sql(query, conn)
-    conn.close()
+    with get_db_connection() as conn:
+        df_trend = safe_read_sql(query, conn)
 
     trend_points = [
         {
@@ -159,8 +153,6 @@ def get_risk_distribution_analytics() -> dict[str, int]:
 
 def get_review_distribution_analytics() -> dict[str, Any]:
     """Calculate Level 3 Review Star Distribution and Positive Percentage."""
-    init_db_if_needed()
-    conn = sqlite3.connect(str(DB_PATH))
     query = """
     SELECT
         review_score,
@@ -170,10 +162,10 @@ def get_review_distribution_analytics() -> dict[str, Any]:
     GROUP BY review_score
     ORDER BY review_score ASC;
     """
-    rows = conn.execute(query).fetchall()
-    conn.close()
+    with get_db_connection() as conn:
+        df_rev = safe_read_sql(query, conn)
 
-    star_map = {int(r[0]): int(r[1]) for r in rows}
+    star_map = {int(r["review_score"]): int(r["cnt"]) for _, r in df_rev.iterrows()}
     one_star = star_map.get(1, 0)
     two_star = star_map.get(2, 0)
     three_star = star_map.get(3, 0)
@@ -208,7 +200,7 @@ def get_formal_kpi_report() -> dict[str, Any]:
                 "kpis": data.get("kpis", []),
             }
 
-    # Fallback if json not found: return standard precomputed catalogue
+    # Fallback default catalogue
     return {
         "total_kpis": 6,
         "passing": 6,
