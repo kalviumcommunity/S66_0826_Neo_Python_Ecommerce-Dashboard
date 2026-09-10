@@ -16,7 +16,11 @@ All commands and data paths in this document are relative to `backend/`. This fo
 2. Install dependencies:
 
    ```bash
+   # API and tests only:
    uv sync
+
+   # Include notebooks and data-analysis scripts:
+   uv sync --all-groups
    ```
 
 3. Configure environment variables:
