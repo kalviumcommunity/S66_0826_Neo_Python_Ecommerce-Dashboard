@@ -5,9 +5,39 @@ from __future__ import annotations
 import pytest
 from fastapi.testclient import TestClient
 
+from server.config import DB_PATH, SERVER_DIR
 from server.main import app
 
 client = TestClient(app)
+
+
+def test_api_contract_exposes_dashboard_routes() -> None:
+    """Verify every public dashboard endpoint is registered in FastAPI."""
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+
+    paths = response.json()["paths"]
+    expected_paths = {
+        "/api/health",
+        "/api/analytics/overview",
+        "/api/analytics/review-trend",
+        "/api/analytics/risk-distribution",
+        "/api/analytics/review-distribution",
+        "/api/analytics/category-risk",
+        "/api/analytics/kpis",
+        "/api/sellers",
+        "/api/sellers/filters",
+        "/api/sellers/{seller_id}",
+        "/api/export/sellers",
+        "/api/export/analytics",
+    }
+    assert expected_paths.issubset(paths)
+
+
+def test_api_uses_versioned_server_sqlite_database() -> None:
+    """Ensure the API reads the committed server database, never CSV fallback data."""
+    assert DB_PATH == SERVER_DIR / "analytics.db"
+    assert DB_PATH.is_file()
 
 
 def test_health_check() -> None:
