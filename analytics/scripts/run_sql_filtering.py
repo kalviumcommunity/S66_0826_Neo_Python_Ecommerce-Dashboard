@@ -26,8 +26,9 @@ except ModuleNotFoundError:
 DATASET_DTYPES = dataset_dtypes
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DB_PATH = PROJECT_ROOT / "data" / "analytics.db"
-QUERIES_DIR = PROJECT_ROOT / "queries"
+BACKEND_DIR = PROJECT_ROOT.parent / "backend"
+DB_PATH = BACKEND_DIR / "server" / "analytics.db"
+QUERIES_DIR = BACKEND_DIR / "queries"
 OUTPUT_DIR = PROJECT_ROOT / "output" / "sql_filtering"
 PROCESSED_DATA_DIR = PROJECT_ROOT / "data" / "processed"
 

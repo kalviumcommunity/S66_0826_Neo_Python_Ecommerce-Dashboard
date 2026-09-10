@@ -1,8 +1,10 @@
 # Seller Trust & Safety Analysis
 
-Combines seller performance, returns, and reviews into a weekly view to identify sustained trust-damaging patterns earlier.
+FastAPI service powering the Seller Trust & Safety dashboard. It uses the
+bundled SQLite database at `server/analytics.db` and SQL files in `queries/`.
 
-All commands and data paths in this document are relative to `backend/`. This folder contains the Python analysis pipelines and the FastAPI HTTP server powering the Seller Trust & Safety dashboard.
+Offline data preparation and analysis live in [`../analytics/README.md`](../analytics/README.md)
+so they are never included in the Vercel backend deployment.
 
 ## Setup
 
@@ -32,36 +34,9 @@ All commands and data paths in this document are relative to `backend/`. This fo
 ## Project Structure
 
 ```text
-data/raw/        Source data
-data/ingested/   Re-exported data after ingestion
-data/processed/  Cleaned data
-docs/            Data dictionary and analysis documentation
 server/          FastAPI application and SQLite dashboard database
 tests/           Regression tests
-scripts/         Python scripts
-output/          Generated reports and figures
-```
-
-## Running the Analysis
-
-```bash
-uv run python scripts/ingest_data.py
-uv run python scripts/handle_missing.py
-uv run python scripts/deduplicate_data.py
-uv run python scripts/transform_datetime.py
-uv run python scripts/validate_merges.py
-uv run python scripts/analyze_correlations.py
-uv run python scripts/investigate_anomalies.py
-uv run python scripts/define_kpis.py
-uv run python scripts/detect_anomalies.py
-uv run python scripts/run_sql_filtering.py
-uv run python scripts/validate_sql_joins.py
-uv run python scripts/validate_cross_layer_computation.py
-uv run python scripts/clean_data.py
-uv run python scripts/database_integration.py
-uv run python scripts/analyze_revenue_distribution.py
-uv run python scripts/<analysis_script>.py
-uv run jupyter notebook
+queries/          SQL used by API services
 ```
 
 ## Running the API Server
