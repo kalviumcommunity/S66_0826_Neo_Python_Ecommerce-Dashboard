@@ -17,7 +17,9 @@ load_dotenv(BACKEND_DIR / ".env")
 # Database & Data Paths
 SERVER_DIR = BACKEND_DIR / "server"
 DATA_DIR = BACKEND_DIR / "data"
-DB_PATH = SERVER_DIR / "analytics.db" if (SERVER_DIR / "analytics.db").exists() else DATA_DIR / "analytics.db"
+DB_PATH = SERVER_DIR / "analytics.db"
+if not DB_PATH.exists() and (DATA_DIR / "analytics.db").exists():
+    DB_PATH = DATA_DIR / "analytics.db"
 
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 QUERIES_DIR = BACKEND_DIR / "queries"
