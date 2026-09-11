@@ -1,61 +1,68 @@
-# Neo — Seller Risk & Trust Dashboard
+# Frontend Dashboard
 
-Next.js port of the supplied Olist seller risk dashboard. The original components, charts, styling, and sample seller records live in `features/seller-risk`; `app/page.tsx` renders the dashboard.
+Next.js dashboard for exploring seller trust and risk data supplied by the FastAPI backend.
 
-Includes operational overview charts, searchable/filterable seller directory, seller detail tabs, review filters, investigation flagging, and CSV/JSON exports.
+## Features
 
-The dashboard loads marketplace metrics, seller records, seller details, reviews, and delivery-risk data from the FastAPI backend. Flags still exist only in browser memory and reset on refresh; flagging does not create a backend investigation.
+- Marketplace overview and seller-risk summary.
+- Review, delivery, cancellation, and category-risk charts.
+- Searchable and paginated seller directory.
+- Seller detail view with risk-factor breakdown, reviews, and order evidence.
+- CSV and JSON data exports.
 
-Before starting the frontend, copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_API_URL` to the FastAPI URL. For local development, use `http://localhost:8000`.
+## Requirements
 
-Run commands below from `frontend`. Validate changes with `npm run lint`, `npx tsc --noEmit`, and `npm run build`.
+- Node.js 24
+- npm
+- A running FastAPI backend URL
 
-## Getting Started
+## Environment configuration
 
-Use Node.js 24 and npm 11.18.0 (the version pinned in CI). To install with that npm version without changing your global npm installation:
+Copy the example file:
 
 ```bash
-npx --yes --package=npm@11.18.0 npm ci
+cp .env.example .env.local
 ```
 
-When dependency changes require a lockfile update, use `npx --yes --package=npm@11.18.0 npm install --package-lock-only`, then verify with the clean-install command above. Older npm versions can accept incomplete optional dependency entries that newer CI rejects. Commit `package-lock.json` alongside dependency changes.
+Set the API base URL without a trailing slash:
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```text
+NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`NEXT_PUBLIC_API_URL` is intentionally available to the browser; it must contain only the public backend URL, never a secret.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses `next/font` to self-host Inter and JetBrains Mono, matching the reference typography. The first build requires access to Google Fonts to download them.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Frontend
-
-The dashboard reads data from the FastAPI backend. Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_API_URL` to the backend address before starting the app.
+## Run locally
 
 ```bash
+npm ci
 npm run dev
 ```
+
+Open `http://localhost:3000`.
+
+## Quality checks
+
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```
+
+If `next` is not recognized, dependencies have not been installed. Run `npm ci` again from this folder.
+
+## API integration
+
+The dashboard requests these API groups from `NEXT_PUBLIC_API_URL`:
+
+- `/api/analytics/*` for overview, trends, distributions, categories, and KPIs.
+- `/api/sellers` for the directory, filters, and seller details.
+- `/api/export/*` for exports.
+
+The API health check is `<backend-url>/api/health`.
+
+## Deployment
+
+Deploy this folder as a separate Vercel project with Root Directory set to `frontend`.
+
+Add `NEXT_PUBLIC_API_URL` as a **Config** environment variable in Vercel for Production, and Preview if branch deployments should call the API. Redeploy after changing this value because Next.js embeds public environment variables during the build.
