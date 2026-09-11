@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   Search,
   ShieldAlert,
@@ -14,6 +14,7 @@ import {
 import { PrimaryRiskDriver, RiskTier, Seller } from '../types';
 import { SellerDetailInlinePanel } from './SellerDetailInlinePanel';
 import { formatCategoryName, exportSellersToCSV } from '../utils/csvExport';
+import { SellerDirectoryFilters } from '../data/api';
 
 interface SellerDirectoryPageProps {
   sellers: Seller[];
@@ -29,6 +30,8 @@ interface SellerDirectoryPageProps {
   totalPages: number;
   isPageLoading: boolean;
   onPageChange: (page: number) => void;
+  categories: string[];
+  onFiltersChange: (filters: SellerDirectoryFilters) => void;
 }
 
 export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
@@ -45,6 +48,8 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
   totalPages,
   isPageLoading,
   onPageChange,
+  categories,
+  onFiltersChange,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategoryFilter || 'All');
@@ -54,52 +59,28 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
   );
   const [sortBy, setSortBy] = useState<'risk_desc' | 'risk_asc' | 'orders_desc' | 'rating_asc'>('risk_desc');
 
-  // Unique categories in dataset
-  const categories = useMemo(() => {
-    return Array.from(new Set(sellers.map((s) => s.category))).filter(Boolean).sort();
-  }, [sellers]);
-
   const activeSeller = useMemo(
     () => sellers.find((s) => s.id === selectedSellerId) || null,
     [sellers, selectedSellerId]
   );
 
-  // Filter & Sort Logic
-  const filteredSellers = useMemo(() => {
-    return sellers
-      .filter((s) => {
-        // Search matching
-        const query = searchQuery.toLowerCase().trim();
-        const matchesSearch =
-          !query ||
-          s.id.toLowerCase().includes(query) ||
-          s.shortId.toLowerCase().includes(query) ||
-          s.city.toLowerCase().includes(query) ||
-          s.state.toLowerCase().includes(query) ||
-          s.category.toLowerCase().includes(query);
-
-        // Category matching
-        const matchesCategory =
-          selectedCategory === 'All' || s.category.toLowerCase() === selectedCategory.toLowerCase();
-
-        // Risk tier matching
-        const matchesRiskTier =
-          selectedRiskTier === 'All' || s.riskTier === selectedRiskTier;
-
-        // Risk driver matching
-        const matchesDriver =
-          selectedDriverFilter === 'All' || s.primaryRiskDriver === selectedDriverFilter;
-
-        return matchesSearch && matchesCategory && matchesRiskTier && matchesDriver;
-      })
-      .sort((a, b) => {
-        if (sortBy === 'risk_desc') return b.riskScore - a.riskScore;
-        if (sortBy === 'risk_asc') return a.riskScore - b.riskScore;
-        if (sortBy === 'orders_desc') return b.totalOrders - a.totalOrders;
-        if (sortBy === 'rating_asc') return a.avgReviewScore - b.avgReviewScore;
-        return 0;
+  // The API filters the entire directory before returning one page of 10 sellers.
+  // Debouncing avoids a new request for every key pressed in the search field.
+  useEffect(() => {
+    const timeout = window.setTimeout(() => {
+      onFiltersChange({
+        search: searchQuery,
+        category: selectedCategory,
+        riskTier: selectedRiskTier,
+        riskDriver: selectedDriverFilter,
+        sortBy,
       });
-  }, [sellers, searchQuery, selectedCategory, selectedRiskTier, selectedDriverFilter, sortBy]);
+    }, 300);
+
+    return () => window.clearTimeout(timeout);
+  }, [onFiltersChange, searchQuery, selectedCategory, selectedRiskTier, selectedDriverFilter, sortBy]);
+
+  const filteredSellers = sellers;
 
   const handleResetFilters = () => {
     setSearchQuery('');

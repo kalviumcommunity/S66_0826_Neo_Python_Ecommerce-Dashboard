@@ -215,7 +215,7 @@ def get_dynamic_filter_options() -> dict[str, list[str]]:
     df = get_all_sellers_df()
     active = df[df["total_orders"] > 0]
 
-    categories = sorted([c for c in active["category"].dropna().unique() if c and c != "other"])
+    categories = sorted([c for c in active["category"].dropna().unique() if c])
     risk_tiers = ["LOW", "MEDIUM", "HIGH"]
     risk_drivers = ["Delivery Delays", "Negative Reviews", "Cancellations"]
 

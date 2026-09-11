@@ -59,6 +59,18 @@ type ApiOverview = {
   cancellation_rate: number;
 };
 
+export type SellerDirectoryFilters = {
+  search?: string;
+  category?: string;
+  riskTier?: RiskTier | 'All';
+  riskDriver?: PrimaryRiskDriver | 'All';
+  sortBy?: 'risk_desc' | 'risk_asc' | 'orders_desc' | 'rating_asc';
+};
+
+export type SellerFilterOptions = {
+  categories: string[];
+};
+
 const riskTierMap: Record<ApiSeller['risk_tier'], RiskTier> = {
   LOW: 'Low',
   MEDIUM: 'Medium',
@@ -117,6 +129,7 @@ function applySellerDetail(seller: Seller, detail: ApiSellerDetail): Seller {
       month: point.period,
       orderVolume: point.orders,
       deliveriesDone: point.delivered_orders,
+      onTimeDeliveryCount: Math.max(0, point.delivered_orders - point.late_deliveries),
       lowReviewCount: point.low_review_count,
       reviewScore: point.avg_review,
       lateDeliveryCount: point.late_deliveries,
@@ -146,16 +159,18 @@ export async function loadDashboard(): Promise<{
   sellerTotal: number;
   sellerPage: number;
   sellerTotalPages: number;
+  sellerFilterOptions: SellerFilterOptions;
 }> {
   const firstPage = await loadSellerPage(1);
   const sellers = firstPage.sellers;
 
-  const [overview, trend, distribution, reviews, categories] = await Promise.all([
+  const [overview, trend, distribution, reviews, categories, sellerFilters] = await Promise.all([
     fetchApi<ApiOverview>('/api/analytics/overview'),
     fetchApi<{ target_score: number; trend: { period: string; average_review_score: number }[] }>('/api/analytics/review-trend'),
     fetchApi<{ low: number; medium: number; high: number }>('/api/analytics/risk-distribution'),
     fetchApi<{ distribution: Record<'1_star' | '2_star' | '3_star' | '4_star' | '5_star', number> }>('/api/analytics/review-distribution'),
     fetchApi<{ categories: { category: string; risk_score: number; total_sellers: number; high_risk_seller_count: number }[] }>('/api/analytics/category-risk'),
+    fetchApi<{ categories: string[] }>('/api/sellers/filters'),
   ]);
 
   const reviewTotal = Object.values(reviews.distribution).reduce((total, count) => total + count, 0);
@@ -164,6 +179,7 @@ export async function loadDashboard(): Promise<{
     sellerTotal: firstPage.total,
     sellerPage: firstPage.page,
     sellerTotalPages: firstPage.totalPages,
+    sellerFilterOptions: { categories: sellerFilters.categories },
     metrics: {
       totalSellers: overview.total_sellers,
       highRiskSellers: overview.high_risk_sellers,
@@ -192,18 +208,44 @@ export async function loadDashboard(): Promise<{
   };
 }
 
-export async function loadSellerPage(page: number): Promise<{
+export async function loadSellerPage(page: number, filters: SellerDirectoryFilters = {}): Promise<{
   sellers: Seller[];
   total: number;
   page: number;
   totalPages: number;
 }> {
+  const params = new URLSearchParams({ page: String(page), limit: '10' });
+  if (filters.search?.trim()) params.set('search', filters.search.trim());
+  if (filters.category && filters.category !== 'All') params.set('category', filters.category);
+  if (filters.riskTier && filters.riskTier !== 'All') params.set('risk_tier', filters.riskTier.toUpperCase());
+
+  const apiDriverByUiDriver: Partial<Record<PrimaryRiskDriver, string>> = {
+    'Late Delivery': 'Delivery Delays',
+    'Low Reviews': 'Negative Reviews',
+    'High Cancellations': 'Cancellations',
+  };
+  if (filters.riskDriver && filters.riskDriver !== 'All') {
+    const apiDriver = apiDriverByUiDriver[filters.riskDriver];
+    if (apiDriver) params.set('risk_driver', apiDriver);
+  }
+
+  const sortBy = filters.sortBy ?? 'risk_desc';
+  const sortParams = {
+    risk_desc: ['risk_score', 'desc'],
+    risk_asc: ['risk_score', 'asc'],
+    orders_desc: ['total_orders', 'desc'],
+    rating_asc: ['average_rating', 'asc'],
+  } as const;
+  const [sort, order] = sortParams[sortBy];
+  params.set('sort', sort);
+  params.set('order', order);
+
   const result = await fetchApi<{
     total: number;
     page: number;
     total_pages: number;
     sellers: ApiSeller[];
-  }>(`/api/sellers?page=${page}&limit=10`);
+  }>(`/api/sellers?${params.toString()}`);
 
   return {
     sellers: result.sellers.map(toSeller),
