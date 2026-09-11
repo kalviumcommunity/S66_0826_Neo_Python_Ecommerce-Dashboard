@@ -224,7 +224,7 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                   <h4 className="font-bold text-slate-900 text-xs uppercase font-mono tracking-wider">
                     Recent Trend Breakdown
                   </h4>
-                  <p className="text-[11px] text-slate-500">Review score, completed deliveries, delayed deliveries, and cancelled orders</p>
+                  <p className="text-[11px] text-slate-500">Review score, on-time deliveries, delayed deliveries, and cancelled orders</p>
                 </div>
               </div>
 
@@ -251,8 +251,8 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                     <Line
                       yAxisId="right"
                       type="monotone"
-                      dataKey="deliveriesDone"
-                      name="Deliveries Done"
+                      dataKey="onTimeDeliveryCount"
+                      name="On-Time Deliveries"
                       stroke="#16A34A"
                       strokeWidth={2}
                       dot={{ r: 3 }}

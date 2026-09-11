@@ -173,6 +173,15 @@ def test_sellers_directory_and_filters() -> None:
     assert "LOW" in filters["risk_tiers"]
     assert "Delivery Delays" in filters["risk_drivers"]
 
+    # A category from the complete filter list must query the whole directory,
+    # rather than only whichever ten sellers are currently visible in the UI.
+    category = filters["categories"][-1]
+    category_res = client.get("/api/sellers", params={"category": category, "page": 1, "limit": 10})
+    assert category_res.status_code == 200
+    category_body = category_res.json()
+    assert category_body["total"] > 0
+    assert all(seller["category"] == category for seller in category_body["sellers"])
+
     # 2. Directory listing (default page)
     res = client.get("/api/sellers?page=1&limit=10")
     assert res.status_code == 200

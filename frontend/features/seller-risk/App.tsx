@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { MarketplaceMetrics, PageView, PrimaryRiskDriver, Seller } from './types';
-import { loadDashboard, loadSellerDetail, loadSellerPage } from './data/api';
+import { loadDashboard, loadSellerDetail, loadSellerPage, SellerDirectoryFilters } from './data/api';
 import { Sidebar } from './components/Sidebar';
 import { OverviewPage } from './components/OverviewPage';
 import { SellerDirectoryPage } from './components/SellerDirectoryPage';
@@ -18,6 +18,9 @@ export default function App() {
   const [sellerPage, setSellerPage] = useState(1);
   const [sellerTotalPages, setSellerTotalPages] = useState(1);
   const [isSellerPageLoading, setIsSellerPageLoading] = useState(false);
+  const [sellerCategories, setSellerCategories] = useState<string[]>([]);
+  const [directoryFilters, setDirectoryFilters] = useState<SellerDirectoryFilters>({});
+  const sellerRequestId = useRef(0);
 
   // Selected seller in Directory (null by default so panel only opens on selection)
   const [selectedSellerId, setSelectedSellerId] = useState<string | null>(null);
@@ -42,6 +45,7 @@ export default function App() {
         setSellerTotal(dashboard.sellerTotal);
         setSellerPage(dashboard.sellerPage);
         setSellerTotalPages(dashboard.sellerTotalPages);
+        setSellerCategories(dashboard.sellerFilterOptions.categories);
       })
       .catch((error: unknown) => {
         if (!isCurrent) return;
@@ -77,23 +81,38 @@ export default function App() {
     }
   };
 
-  const handleSellerPageChange = async (page: number) => {
-    if (page < 1 || page > sellerTotalPages || isSellerPageLoading) return;
+  const fetchSellerPage = useCallback(async (page: number, filters: SellerDirectoryFilters) => {
+    if (page < 1) return;
 
+    const requestId = ++sellerRequestId.current;
     setIsSellerPageLoading(true);
     setSelectedSellerId(null);
     try {
-      const result = await loadSellerPage(page);
+      const result = await loadSellerPage(page, filters);
+      if (requestId !== sellerRequestId.current) return;
       setSellers(result.sellers);
       setSellerTotal(result.total);
       setSellerPage(result.page);
       setSellerTotalPages(result.totalPages);
     } catch (error) {
-      console.error('Unable to load seller page', error);
+      if (requestId === sellerRequestId.current) {
+        console.error('Unable to load seller page', error);
+      }
     } finally {
-      setIsSellerPageLoading(false);
+      if (requestId === sellerRequestId.current) {
+        setIsSellerPageLoading(false);
+      }
     }
-  };
+  }, []);
+
+  const handleSellerPageChange = useCallback((page: number) => {
+    void fetchSellerPage(page, directoryFilters);
+  }, [directoryFilters, fetchSellerPage]);
+
+  const handleDirectoryFiltersChange = useCallback((filters: SellerDirectoryFilters) => {
+    setDirectoryFilters(filters);
+    void fetchSellerPage(1, filters);
+  }, [fetchSellerPage]);
 
   const handleConfirmFlag = (sellerId: string, reason: string) => {
     setSellers((prev) =>
@@ -171,6 +190,8 @@ export default function App() {
             totalPages={sellerTotalPages}
             isPageLoading={isSellerPageLoading}
             onPageChange={handleSellerPageChange}
+            categories={sellerCategories}
+            onFiltersChange={handleDirectoryFiltersChange}
           />
         )}
       </main>

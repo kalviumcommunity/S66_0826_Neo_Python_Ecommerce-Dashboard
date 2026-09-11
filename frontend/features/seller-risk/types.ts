@@ -25,6 +25,7 @@ export interface Seller {
     month: string; // e.g. "Jan", "Feb"
     orderVolume: number;
     deliveriesDone: number;
+    onTimeDeliveryCount: number;
     lowReviewCount: number;
     reviewScore: number;
     lateDeliveryCount: number;
