@@ -1,93 +1,81 @@
 # Seller Trust & Safety Dashboard
 
-This repository contains independently managed Python analysis and Next.js frontend projects.
+A full-stack data product that helps marketplace teams identify seller trust and operational-risk signals in the Olist Brazilian e-commerce dataset.
 
-## Structure
+## What the product delivers
+
+- Seller risk scores based on delayed deliveries, low review ratings, and order cancellations.
+- Executive metrics, trends, risk tiers, and high-risk product-category comparisons.
+- A paginated seller directory, seller investigation view, and CSV/JSON exports.
+- A reproducible offline analytics workflow that prepares the data used by the API.
+
+## Project map
+
+| Folder | Purpose | Read more |
+| --- | --- | --- |
+| [`frontend/`](frontend/) | Next.js dashboard users interact with. | [Frontend README](frontend/README.md) |
+| [`backend/`](backend/) | Deployable FastAPI service, API SQL, and SQLite dashboard database. | [Backend README](backend/README.md) |
+| [`analytics/`](analytics/) | Offline CSV data, preparation scripts, validation, and reports. | [Analytics README](analytics/README.md) |
+| [`.github/workflows/`](.github/workflows/) | Pull-request CI and production deployment workflows. | [CI/CD workflows](.github/workflows/) |
+
+## Architecture
 
 ```text
-backend/
-  data/              Raw, ingested, and processed datasets
-  docs/              Data dictionary
-  output/            Existing analysis reports and figures
-  scripts/           Python analysis and validation pipelines
-  src/               Installable Python package
-  tests/             Python tests
-  pyproject.toml     Python dependencies and project configuration
-  uv.lock            Locked Python dependencies
-frontend/            Next.js dashboard and its npm dependencies
-.github/workflows/   Python CI and frontend CI/deployment
+Olist CSV data → analytics/ scripts → backend/server/analytics.db
+                                         ↓
+                                FastAPI backend API
+                                         ↓
+                              Next.js frontend dashboard
 ```
 
-## Backend
+The analytics workspace is separate from the deployable backend so large CSVs,
+notebooks, reports, and analysis packages are never bundled into the Vercel API function.
 
-Requires uv and Python 3.14:
+## Data source
+
+The project uses the historical [Olist Brazilian e-commerce dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce): customers, sellers, orders, items, payments, reviews, products, and geolocation reference data. Values are in Brazilian reais (BRL). See the [data dictionary](analytics/docs/DATA_DICTIONARY.md).
+
+## Quick start
+
+Prerequisites: Node.js 24, npm, Python 3.14, and [uv](https://docs.astral.sh/uv/).
 
 ```bash
+# Terminal 1: API
 cd backend
 uv sync --locked
-uv run pytest
-uv run python scripts/ingest_data.py
-uv run python scripts/run_sql_filtering.py
-uv run python scripts/validate_sql_joins.py
-uv run python scripts/validate_cross_layer_computation.py
-```
+uv run --locked uvicorn server.main:app --reload --port 8000
 
-See [backend setup and analysis commands](backend/README.md), [workflow guide](backend/WORKFLOW.md), and [data dictionary](backend/docs/DATA_DICTIONARY.md).
-From the repository root, use `uv run --directory backend pytest` or `uv run --directory backend python scripts/<script>.py`.
-
-The Python project currently provides batch analysis pipelines, not a web API. Its data and output paths resolve inside `backend/`.
-
-## Frontend
-
-Requires Node.js 24:
-
-```bash
-cd frontend
+# Terminal 2: dashboard
+cd ../frontend
+cp .env.example .env.local
 npm ci
 npm run dev
 ```
 
-See [frontend documentation](frontend/README.md). The dashboard currently uses mock data and is not connected to the Python pipelines.
+Set this value in `frontend/.env.local` before starting the dashboard:
 
-## Checks
-
-```bash
-cd backend
-uv run pytest
-cd ../frontend
-npm run lint
-npm run build
+```text
+NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
-GitHub Actions runs each project's commands from its own directory. The existing Vercel deployment step remains at repository root; configure the Vercel project's Root Directory as `frontend` and provide its deployment credentials in GitHub settings.
+Open `http://localhost:3000`. The API health route is `http://localhost:8000/api/health`.
 
-## Local files after restructuring
-
-### Teammates pulling the folder migration
-
-Commit or stash any local work before pulling. Once the migration is committed and merged, pull the updated branch, then open a new terminal at the repository root (or run `deactivate` if an old Python virtual environment is active).
-
-Install Node.js 24 and uv if they are not already available. Run these commands on Windows, macOS, or Linux:
+## Quality checks
 
 ```bash
-cd backend
-uv sync --locked
-uv run --locked pytest
-cd ../frontend
-npm ci
-npm run lint
-npm run build
-npm run dev
+cd backend && uv run --locked pytest && uv build
+cd ../analytics && uv run --locked pytest
+cd ../frontend && npm run lint && npm run build
 ```
 
-uv uses `backend/.python-version` to select Python 3.14 and can download it if needed. The lockfiles must be committed with the migration; do not regenerate them just to set up a teammate's machine. `npm ci` recreates `frontend/node_modules` from its lockfile. Internet access is needed for uncached dependencies, Python downloads, and the frontend's build-time Google Fonts downloads.
+GitHub Actions runs backend, analytics, and frontend checks on pull requests. Production deployments run after successful checks on `main`.
 
-No API keys or Vercel credentials are required to run the current mock-data dashboard or the existing Python tests. Existing private environment files are not moved by Git. If you have custom backend environment variables or untracked datasets, copy them to the corresponding location inside `backend/` yourself without overwriting the tracked datasets. Next.js-specific local variables belong in `frontend/.env.local`; a repository-root `.env.local` is not automatically loaded by the frontend.
+## Submission materials
 
-Update IDE Python interpreter settings to `backend/.venv/Scripts/python.exe` on Windows or `backend/.venv/bin/python` on macOS/Linux. Update custom run configurations to use `backend` as their working directory. Old root-level commands such as `uv run python scripts/ingest_data.py` must now run inside `backend/`, or use `uv run --directory backend python scripts/ingest_data.py` from the root.
+- [Dashboard information architecture](analytics/docs/DASHBOARD_THINKING.md)
+- [Data dictionary](analytics/docs/DATA_DICTIONARY.md)
+- Add links to the team’s existing PRD and UX mock-up here before final submission so reviewers can reach every required artifact from this README.
 
-Python CI installs from the lockfile and runs tests on Windows, macOS, and Linux. Frontend CI performs a clean install, lint, and production build on Linux. These remote checks must pass on the pull request before merging; local checks alone do not guarantee every teammate's machine configuration.
+## Security and data notes
 
-An existing root `.venv/` is left untouched because virtual environments are not portable. Run `uv sync --locked` inside `backend/` to create `backend/.venv/`. Do not move the old environment manually.
-
-Root `.env.local` and `.vercel/` settings remain untouched. Put backend-specific variables in `backend/.env` when needed; never commit secrets. The root `.gitignore` covers both projects.
+Never commit `.env`, `.env.local`, Vercel tokens, or other credentials. The deployed backend reads its bundled SQLite database from read-only serverless storage; browser-only investigation flags do not persist after refresh.
