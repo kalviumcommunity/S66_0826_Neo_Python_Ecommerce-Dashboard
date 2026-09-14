@@ -39,7 +39,7 @@ export const CircularRiskMeter: React.FC<CircularRiskMeterProps> = ({
             cx={size / 2}
             cy={size / 2}
             r={radius}
-            stroke="#e2e8f0"
+            stroke="var(--risk-meter-track)"
             strokeWidth={strokeWidth}
             fill="transparent"
           />
@@ -54,7 +54,7 @@ export const CircularRiskMeter: React.FC<CircularRiskMeterProps> = ({
             strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
             fill="transparent"
-            className="transition-all duration-700 ease-out"
+            className="transition-[stroke-dashoffset] duration-700 ease-out"
           />
         </svg>
 

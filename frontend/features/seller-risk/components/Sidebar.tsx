@@ -1,5 +1,6 @@
 import React from 'react';
-import { LayoutDashboard, Users, ShieldAlert, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import { LayoutDashboard, Users, ChevronRight, Moon, Sun } from 'lucide-react';
 import { PageView } from '../types';
 
 interface SidebarProps {
@@ -7,29 +8,30 @@ interface SidebarProps {
   onNavigate: (page: PageView) => void;
   highRiskCount?: number;
   totalSellersCount?: number;
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
   activePage,
   onNavigate,
   highRiskCount = 0,
+  theme,
+  onToggleTheme,
 }) => {
   return (
     <aside className="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 min-h-screen">
       <div>
         {/* Logo Section */}
-        <div className="p-5 border-b border-slate-100 flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-700 font-bold">
-            <ShieldAlert className="w-5 h-5 text-amber-700" />
-          </div>
-          <div>
-            <div className="flex items-center space-x-1.5">
-              <span className="font-bold text-slate-900 text-base tracking-tight">Neo</span>
-              <span className="font-mono text-xs font-semibold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200">
-                TRUST
-              </span>
-            </div>
-          </div>
+        <div className="p-5 border-b border-slate-100 flex items-center">
+          <Image
+            src={theme === 'dark' ? '/neo-insight-symbol-dark.svg' : '/neo-insight-symbol-light.svg'}
+            alt="Seller risk analytics logo"
+            width={44}
+            height={44}
+            priority
+            className="h-11 w-11 object-contain drop-shadow-sm"
+          />
         </div>
 
         {/* Navigation Menu */}
@@ -72,6 +74,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
             )}
           </button>
         </div>
+      </div>
+
+      <div className="border-t border-slate-100 p-4">
+        <button
+          type="button"
+          onClick={onToggleTheme}
+          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+          className="flex w-full items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+        >
+          <span className="flex items-center gap-3">
+            {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4 text-amber-500" />}
+            {theme === 'light' ? 'Dark mode' : 'Light mode'}
+          </span>
+          <span className="theme-toggle-track relative h-6 w-10 shrink-0 rounded-full bg-slate-300 transition-colors dark:bg-slate-700">
+            <span
+              className={`theme-toggle-knob absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform ${
+                theme === 'dark' ? 'translate-x-4' : 'translate-x-0'
+              }`}
+            />
+          </span>
+        </button>
       </div>
     </aside>
   );

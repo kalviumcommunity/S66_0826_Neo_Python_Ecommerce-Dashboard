@@ -93,7 +93,9 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
+            aria-label="Close export dialog"
             className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
           >
             <X className="w-5 h-5" />
@@ -117,15 +119,16 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             <>
               {/* Scope Selection (if single seller selected) */}
               {selectedSeller && (
-                <div>
-                  <label className="block text-xs font-mono font-semibold uppercase text-slate-500 mb-2">
+                <fieldset>
+                  <legend className="block text-xs font-mono font-semibold uppercase text-slate-500 mb-2">
                     Export Target Scope
-                  </label>
+                  </legend>
                   <div className="grid grid-cols-2 gap-2.5">
                     <button
                       type="button"
                       onClick={() => setExportScope('current_seller')}
-                      className={`p-3 rounded-xl border text-left transition-all ${
+                      aria-pressed={exportScope === 'current_seller'}
+                      className={`p-3 rounded-xl border text-left transition-colors ${
                         exportScope === 'current_seller'
                           ? 'border-amber-500 bg-amber-50/50 text-slate-900 font-semibold'
                           : 'border-slate-200 hover:border-slate-300 text-slate-600'
@@ -138,7 +141,8 @@ export const ExportModal: React.FC<ExportModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setExportScope('all')}
-                      className={`p-3 rounded-xl border text-left transition-all ${
+                      aria-pressed={exportScope === 'all'}
+                      className={`p-3 rounded-xl border text-left transition-colors ${
                         exportScope === 'all'
                           ? 'border-amber-500 bg-amber-50/50 text-slate-900 font-semibold'
                           : 'border-slate-200 hover:border-slate-300 text-slate-600'
@@ -148,21 +152,22 @@ export const ExportModal: React.FC<ExportModalProps> = ({
                       <div className="text-[11px] text-slate-500 font-mono">{sellers.length} records</div>
                     </button>
                   </div>
-                </div>
+                </fieldset>
               )}
 
               {/* Format Selection */}
-              <div>
-                <label className="block text-xs font-mono font-semibold uppercase text-slate-500 mb-2">
+              <fieldset>
+                <legend className="block text-xs font-mono font-semibold uppercase text-slate-500 mb-2">
                   File Format
-                </label>
+                </legend>
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     type="button"
                     onClick={() => setFormat('csv')}
-                    className={`p-3 rounded-xl border text-center transition-all flex flex-col items-center space-y-1.5 ${
+                    aria-pressed={format === 'csv'}
+                    className={`export-format-option p-3 rounded-xl border text-center transition-colors flex flex-col items-center space-y-1.5 ${
                       format === 'csv'
-                        ? 'border-amber-500 bg-amber-50/50 text-amber-900 font-semibold'
+                        ? 'export-format-selected border-amber-500 bg-amber-50/50 text-amber-900 font-semibold'
                         : 'border-slate-200 hover:border-slate-300 text-slate-600'
                     }`}
                   >
@@ -174,9 +179,10 @@ export const ExportModal: React.FC<ExportModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setFormat('json')}
-                    className={`p-3 rounded-xl border text-center transition-all flex flex-col items-center space-y-1.5 ${
+                    aria-pressed={format === 'json'}
+                    className={`export-format-option p-3 rounded-xl border text-center transition-colors flex flex-col items-center space-y-1.5 ${
                       format === 'json'
-                        ? 'border-amber-500 bg-amber-50/50 text-amber-900 font-semibold'
+                        ? 'export-format-selected border-amber-500 bg-amber-50/50 text-amber-900 font-semibold'
                         : 'border-slate-200 hover:border-slate-300 text-slate-600'
                     }`}
                   >
@@ -185,7 +191,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
                     <span className="text-[10px] text-slate-500">Raw API Structure</span>
                   </button>
                 </div>
-              </div>
+              </fieldset>
 
               {/* Case Attachment Tip */}
               <div className="bg-slate-50 rounded-xl p-3 border border-slate-200 flex items-start space-x-2.5">
