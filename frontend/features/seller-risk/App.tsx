@@ -10,6 +10,7 @@ import { ExportModal } from './components/ExportModal';
 import { FlagModal } from './components/FlagModal';
 
 export default function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [activePage, setActivePage] = useState<PageView>('Overview');
   const [sellers, setSellers] = useState<Seller[]>([]);
   const [metrics, setMetrics] = useState<MarketplaceMetrics | null>(null);
@@ -19,7 +20,7 @@ export default function App() {
   const [sellerTotalPages, setSellerTotalPages] = useState(1);
   const [isSellerPageLoading, setIsSellerPageLoading] = useState(false);
   const [sellerCategories, setSellerCategories] = useState<string[]>([]);
-  const [directoryFilters, setDirectoryFilters] = useState<SellerDirectoryFilters>({});
+  const directoryFilters = useRef<SellerDirectoryFilters>({});
   const sellerRequestId = useRef(0);
 
   // Selected seller in Directory (null by default so panel only opens on selection)
@@ -33,6 +34,35 @@ export default function App() {
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [isFlagModalOpen, setIsFlagModalOpen] = useState(false);
   const [flagTargetSeller, setFlagTargetSeller] = useState<Seller | null>(null);
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem('neo-theme');
+    const initialTheme = savedTheme === 'dark' ? 'dark' : 'light';
+    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
+    const frameId = window.requestAnimationFrame(() => setTheme(initialTheme));
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, []);
+
+  const handleToggleTheme = () => {
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(nextTheme);
+    document.documentElement.classList.toggle('dark', nextTheme === 'dark');
+    window.localStorage.setItem('neo-theme', nextTheme);
+  };
+
+  useEffect(() => {
+    let favicon = document.querySelector<HTMLLinkElement>('link[data-theme-favicon]');
+
+    if (!favicon) {
+      favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      favicon.dataset.themeFavicon = 'true';
+      document.head.appendChild(favicon);
+    }
+
+    favicon.href = theme === 'dark' ? '/neo-insight-symbol-dark.svg' : '/neo-insight-symbol-light.svg';
+  }, [theme]);
 
   useEffect(() => {
     let isCurrent = true;
@@ -106,11 +136,11 @@ export default function App() {
   }, []);
 
   const handleSellerPageChange = useCallback((page: number) => {
-    void fetchSellerPage(page, directoryFilters);
-  }, [directoryFilters, fetchSellerPage]);
+    void fetchSellerPage(page, directoryFilters.current);
+  }, [fetchSellerPage]);
 
   const handleDirectoryFiltersChange = useCallback((filters: SellerDirectoryFilters) => {
-    setDirectoryFilters(filters);
+    directoryFilters.current = filters;
     void fetchSellerPage(1, filters);
   }, [fetchSellerPage]);
 
@@ -154,6 +184,8 @@ export default function App() {
       {/* Sidebar */}
       <Sidebar
         activePage={activePage}
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
         onNavigate={(page) => {
           setActivePage(page);
           if (page === 'Overview') {

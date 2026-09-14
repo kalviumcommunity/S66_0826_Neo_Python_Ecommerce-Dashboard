@@ -14,7 +14,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Neo - Seller Risk & Trust Dashboard",
-  description: "Marketplace seller health, category risk distributions, and operational anomaly detection.",
+  description: "Seller risk and trust analytics for marketplace operations.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

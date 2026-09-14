@@ -70,7 +70,7 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
   }));
 
   return (
-    <div className="bg-white border-l border-slate-200 shadow-2xl flex flex-col h-full overflow-hidden w-full lg:w-[620px] xl:w-[680px] shrink-0 transition-all duration-300">
+    <div className="bg-white border-l border-slate-200 shadow-2xl flex flex-col h-full overflow-hidden w-full lg:w-[620px] xl:w-[680px] shrink-0 transition-[width] duration-300">
       {/* Drawer Header */}
       <div className="p-5 border-b border-slate-100 bg-slate-50/50 space-y-4">
         <div className="flex items-start justify-between">
@@ -231,10 +231,10 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
               <div className="h-56 w-full pt-1">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={seller.monthlyPerformance} margin={{ top: 5, right: 10, left: -25, bottom: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis yAxisId="left" domain={[1, 5]} tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis yAxisId="right" orientation="right" allowDecimals={false} tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" vertical={false} />
+                    <XAxis dataKey="month" tick={{ fontSize: 10, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
+                    <YAxis yAxisId="left" domain={[1, 5]} tick={{ fontSize: 10, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
+                    <YAxis yAxisId="right" orientation="right" allowDecimals={false} tick={{ fontSize: 10, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
                     <Tooltip
                       contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', borderColor: '#e2e8f0', fontSize: '11px' }}
                     />
@@ -244,7 +244,7 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                       type="monotone"
                       dataKey="reviewScore"
                       name="Review Score (1-5)"
-                      stroke="#35260E"
+                      stroke="var(--chart-primary)"
                       strokeWidth={2}
                       dot={{ r: 3 }}
                     />
@@ -253,7 +253,7 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                       type="monotone"
                       dataKey="onTimeDeliveryCount"
                       name="On-Time Deliveries"
-                      stroke="#16A34A"
+                      stroke="var(--chart-positive)"
                       strokeWidth={2}
                       dot={{ r: 3 }}
                     />
@@ -262,7 +262,7 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                       type="monotone"
                       dataKey="lateDeliveryCount"
                       name="Delayed Deliveries"
-                      stroke="#EF4444"
+                      stroke="var(--chart-negative)"
                       strokeWidth={2}
                       dot={{ r: 3 }}
                     />
@@ -271,7 +271,7 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                       type="monotone"
                       dataKey="cancelledOrderCount"
                       name="Cancelled Orders"
-                      stroke="#F59E0B"
+                      stroke="var(--chart-warning)"
                       strokeWidth={2}
                       dot={{ r: 3 }}
                     />
@@ -296,7 +296,7 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                     </div>
                     <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
                       <div
-                        className="h-2 rounded-full transition-all duration-500"
+                        className="h-2 rounded-full transition-[width] duration-500"
                         style={{ width: `${factor.percentage}%`, backgroundColor: factor.color }}
                       />
                     </div>
@@ -322,15 +322,15 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
               <div className="h-56 w-full pt-1">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={seller.monthlyPerformance} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" vertical={false} />
+                    <XAxis dataKey="month" tick={{ fontSize: 10, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
+                    <YAxis tick={{ fontSize: 10, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
                     <Tooltip
                       contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', borderColor: '#e2e8f0', fontSize: '11px' }}
                     />
                     <Legend wrapperStyle={{ fontSize: '11px' }} />
-                    <Bar dataKey="orderVolume" name="Total Orders" fill="#35260E" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="lowReviewCount" name="Low Reviews (1-2★)" fill="#EF4444" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="orderVolume" name="Total Orders" fill="var(--chart-primary)" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="lowReviewCount" name="Low Reviews (1-2★)" fill="var(--chart-negative)" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -348,14 +348,14 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
               <div className="h-48 w-full pt-1">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={seller.delayDistribution} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-                    <XAxis dataKey="range" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" vertical={false} />
+                    <XAxis dataKey="range" tick={{ fontSize: 10, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
+                    <YAxis tick={{ fontSize: 10, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
                     <Tooltip
                       contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', borderColor: '#e2e8f0', fontSize: '11px' }}
                       formatter={(val) => [`${val} orders`, 'Volume']}
                     />
-                    <Bar dataKey="count" fill="#64748B" radius={[4, 4, 0, 0]} barSize={24} />
+                    <Bar dataKey="count" fill="var(--chart-neutral)" radius={[4, 4, 0, 0]} barSize={24} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -435,9 +435,9 @@ export const SellerDetailInlinePanel: React.FC<SellerDetailInlinePanelProps> = (
                       innerRadius={30}
                       outerRadius={45}
                     >
-                      {reviewStarCounts.map((_, index) => {
+                      {reviewStarCounts.map((entry, index) => {
                         const colors = ['#10B981', '#3B82F6', '#F59E0B', '#F97316', '#EF4444'];
-                        return <Cell key={`rcell-${index}`} fill={colors[index]} />;
+                        return <Cell key={entry.stars} fill={colors[index]} />;
                       })}
                     </Pie>
                     <Tooltip contentStyle={{ fontSize: '11px', borderRadius: '8px' }} />

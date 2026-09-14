@@ -54,9 +54,6 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
           <div className="flex items-center space-x-2">
             <h1 className="font-bold text-slate-900 text-xl tracking-tight">Operational Overview</h1>
           </div>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Marketplace-wide seller health, category risk distributions, and operational anomaly detection.
-          </p>
         </div>
 
         {onOpenExportModal && (
@@ -88,7 +85,7 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
         </div>
 
         {/* High-Risk Sellers */}
-        <div className={`p-4 rounded-xl border shadow-2xs flex flex-col justify-between space-y-2 transition-all ${
+        <div className={`p-4 rounded-xl border shadow-2xs flex flex-col justify-between space-y-2 transition-colors ${
           highRiskCount > 0 ? 'bg-white border-rose-200' : 'bg-emerald-50/50 border-emerald-200'
         }`}>
           <div className="flex items-center justify-between">
@@ -182,21 +179,21 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
           <div className="h-64 w-full pt-2">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={metrics.monthlyReviewScoreTrend} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-                <XAxis dataKey="month" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                <YAxis domain={[3.5, 4.5]} tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" vertical={false} />
+                <XAxis dataKey="month" tick={{ fontSize: 11, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
+                <YAxis domain={[3.5, 4.5]} tick={{ fontSize: 11, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
                 <Tooltip
                   contentStyle={{ backgroundColor: '#ffffff', borderRadius: '12px', borderColor: '#e2e8f0', fontSize: '12px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
                   formatter={(val) => [`${val} Rating`, 'Average Score']}
                 />
-                <ReferenceLine y={4.0} stroke="#94a3b8" strokeDasharray="4 4" />
+                <ReferenceLine y={4.0} stroke="var(--chart-reference)" strokeDasharray="4 4" />
                 <Line
                   type="monotone"
                   dataKey="score"
-                  stroke="#35260E"
+                  stroke="var(--chart-primary)"
                   strokeWidth={2.5}
-                  dot={{ r: 3, fill: '#35260E' }}
-                  activeDot={{ r: 6, fill: '#35260E' }}
+                  dot={{ r: 3, fill: 'var(--chart-primary)' }}
+                  activeDot={{ r: 6, fill: 'var(--chart-primary)' }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -216,16 +213,16 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
           <div className="h-64 w-full pt-2">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={riskTierData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-                <XAxis dataKey="tier" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" vertical={false} />
+                <XAxis dataKey="tier" tick={{ fontSize: 11, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
                 <Tooltip
                   contentStyle={{ backgroundColor: '#ffffff', borderRadius: '12px', borderColor: '#e2e8f0', fontSize: '12px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
                   formatter={(value) => [`${value} Sellers`, 'Count']}
                 />
                 <Bar dataKey="count" radius={[8, 8, 0, 0]}>
-                  {riskTierData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  {riskTierData.map((entry) => (
+                    <Cell key={entry.tier} fill={entry.color} />
                   ))}
                 </Bar>
               </BarChart>
@@ -260,7 +257,7 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
                 >
                   {metrics.starDistribution.map((entry, index) => {
                     const colors = ['#10B981', '#3B82F6', '#F59E0B', '#F97316', '#EF4444'];
-                    return <Cell key={`star-${index}`} fill={colors[index % colors.length]} />;
+                    return <Cell key={entry.stars} fill={colors[index % colors.length]} />;
                   })}
                 </Pie>
                 <Tooltip
@@ -297,8 +294,8 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
                 data={categoryRiskData}
                 margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" horizontal={false} />
-                <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" horizontal={false} />
+                <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 11, fill: 'var(--chart-axis)' }} axisLine={false} tickLine={false} />
                 <YAxis
                   dataKey="formattedCategory"
                   type="category"
@@ -306,7 +303,7 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
                     const label = String(value);
                     return label.length > 18 ? `${label.slice(0, 17)}…` : label;
                   }}
-                  tick={{ fontSize: 11, fill: '#334155', cursor: 'pointer' }}
+                  tick={{ fontSize: 11, fill: 'var(--chart-axis-strong)', cursor: 'pointer' }}
                   width={140}
                   axisLine={false}
                   tickLine={false}
@@ -325,7 +322,7 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
                 <Bar
                   onClick={(_, index) => onNavigateToDirectoryWithFilter?.(undefined, categoryRiskData[index].category)}
                   dataKey="avgRiskScore"
-                  fill="#35260E"
+                  fill="var(--chart-primary)"
                   radius={[0, 6, 6, 0]}
                   barSize={16}
                   cursor="pointer"

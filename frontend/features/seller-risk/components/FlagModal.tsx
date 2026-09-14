@@ -51,7 +51,9 @@ export const FlagModal: React.FC<FlagModalProps> = ({
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
+            aria-label="Close investigation dialog"
             className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
           >
             <X className="w-5 h-5" />
@@ -79,17 +81,18 @@ export const FlagModal: React.FC<FlagModalProps> = ({
                 </p>
               </div>
 
-              <div>
-                <label className="block text-xs font-mono font-semibold uppercase text-slate-500 mb-1.5">
+              <fieldset>
+                <legend className="block text-xs font-mono font-semibold uppercase text-slate-500 mb-1.5">
                   Investigation Priority
-                </label>
+                </legend>
                 <div className="grid grid-cols-3 gap-2">
                   {(['Medium', 'High', 'Critical'] as const).map((p) => (
                     <button
                       key={p}
                       type="button"
                       onClick={() => setPriority(p)}
-                      className={`py-2 rounded-lg text-xs font-mono font-semibold border transition-all ${
+                      aria-pressed={priority === p}
+                      className={`py-2 rounded-lg text-xs font-mono font-semibold border transition-colors ${
                         priority === p
                           ? p === 'Critical'
                             ? 'bg-rose-100 text-rose-800 border-rose-300'
@@ -101,13 +104,14 @@ export const FlagModal: React.FC<FlagModalProps> = ({
                     </button>
                   ))}
                 </div>
-              </div>
+              </fieldset>
 
               <div>
-                <label className="block text-xs font-mono font-semibold uppercase text-slate-500 mb-1.5">
+                <label htmlFor="investigation-reason" className="block text-xs font-mono font-semibold uppercase text-slate-500 mb-1.5">
                   Investigation Reason / Notes
                 </label>
                 <textarea
+                  id="investigation-reason"
                   value={reason}
                   onChange={(e) => setReason(e.target.value)}
                   rows={3}

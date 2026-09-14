@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Seller analytics insight">
+  <defs>
+    <linearGradient id="frame" x1="12" y1="8" x2="48" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#94A3B8"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="12" y1="34" x2="43" y2="17" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#34D399"/>
+    </linearGradient>
+    <clipPath id="lens">
+      <circle cx="27" cy="27" r="17"/>
+    </clipPath>
+  </defs>
+  <circle cx="27" cy="27" r="21" fill="none" stroke="url(#frame)" stroke-width="6"/>
+  <path d="M42 42 56 56" fill="none" stroke="url(#frame)" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="27" cy="27" r="17.5" fill="none" stroke="#22D3EE" stroke-width="1.5" opacity=".9"/>
+  <g clip-path="url(#lens)">
+    <path d="M7 35 19 24 29 35 43 17" fill="none" stroke="url(#signal)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="19" cy="24" r="4" fill="#22D3EE"/>
+    <circle cx="29" cy="35" r="4.5" fill="#A78BFA"/>
+    <circle cx="43" cy="17" r="4" fill="#34D399"/>
+    <circle cx="19" cy="24" r="1.5" fill="#020617"/>
+    <circle cx="29" cy="35" r="1.5" fill="#020617"/>
+    <circle cx="43" cy="17" r="1.5" fill="#020617"/>
+  </g>
+  <path d="M14 18a16 16 0 0 1 8-6" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+</svg>

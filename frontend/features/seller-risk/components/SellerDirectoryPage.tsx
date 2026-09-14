@@ -115,9 +115,6 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
                 </span>
               )}
             </div>
-            <p className="text-xs text-[#64748B] mt-0.5">
-              Filter by category, investigate merchant risk drivers, or export seller audit data to CSV for case attachments.
-            </p>
           </div>
 
           {/* Export Action Buttons */}
@@ -146,8 +143,12 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
             {/* Search Input */}
             <div className="relative">
+              <label htmlFor="seller-directory-search" className="sr-only">
+                Search sellers by ID, city, or state
+              </label>
               <Search className="w-3.5 h-3.5 absolute left-3 top-3 text-[#94A3B8] pointer-events-none" />
               <input
+                id="seller-directory-search"
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -160,6 +161,7 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
             <div className="relative">
               <Tag className="w-3.5 h-3.5 absolute left-3 top-3 text-[#94A3B8] pointer-events-none" />
               <select
+                aria-label="Filter sellers by category"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className={`w-full pl-8 pr-3 py-2 text-xs rounded-lg border border-[#E2E8F0] focus:outline-none focus:ring-2 focus:ring-[#35260E]/20 ${
@@ -181,6 +183,7 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
             <div className="relative">
               <ShieldAlert className="w-3.5 h-3.5 absolute left-3 top-3 text-[#94A3B8] pointer-events-none" />
               <select
+                aria-label="Filter sellers by risk tier"
                 value={selectedRiskTier}
                 onChange={(e) => setSelectedRiskTier(e.target.value as RiskTier | 'All')}
                 className="w-full pl-8 pr-3 py-2 text-xs rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#35260E]/20"
@@ -196,6 +199,7 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
             <div className="relative">
               <AlertTriangle className="w-3.5 h-3.5 absolute left-3 top-3 text-[#94A3B8] pointer-events-none" />
               <select
+                aria-label="Filter sellers by primary risk driver"
                 value={selectedDriverFilter}
                 onChange={(e) => setSelectedDriverFilter(e.target.value as PrimaryRiskDriver | 'All')}
                 className="w-full pl-8 pr-3 py-2 text-xs rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#35260E]/20"
@@ -213,6 +217,7 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
             <div className="relative">
               <ArrowUpDown className="w-3.5 h-3.5 absolute left-3 top-3 text-[#94A3B8] pointer-events-none" />
               <select
+                aria-label="Sort sellers"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
                 className="w-full pl-8 pr-3 py-2 text-xs rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#35260E]/20"
@@ -239,7 +244,9 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
                   <Tag className="w-3 h-3 text-amber-700" />
                   Category: {formatCategoryName(selectedCategory)}
                   <button
+                    type="button"
                     onClick={() => setSelectedCategory('All')}
+                    aria-label={`Remove ${formatCategoryName(selectedCategory)} category filter`}
                     className="ml-1 text-amber-700 hover:text-amber-900 font-bold"
                   >
                     ×
@@ -258,7 +265,7 @@ export const SellerDirectoryPage: React.FC<SellerDirectoryPageProps> = ({
               )}
               <button
                 onClick={handleResetFilters}
-                className="text-[#35260E] font-bold hover:underline flex items-center space-x-1 ml-auto cursor-pointer"
+                className="directory-reset-button text-[#35260E] font-bold hover:underline flex items-center space-x-1 ml-auto cursor-pointer"
               >
                 <RotateCcw className="w-3 h-3" />
                 <span>Reset Filters</span>
